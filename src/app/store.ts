@@ -17,7 +17,7 @@ export type AppRootStateType = ReturnType<typeof rootReducer>
 export type AppActionsType = ProfileActionsType | AuthActionsType | TestActionsType
 export type AppDispatch = ThunkDispatch<AppRootStateType, unknown, AppActionsType>
 export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
+  void,
   AppRootStateType,
   unknown,
   AppActionsType
