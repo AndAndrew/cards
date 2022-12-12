@@ -6,6 +6,12 @@ export const instance = axios.create({
   // baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:7542/2.0/' : ,
   withCredentials: true,
 })
+
+export const testApi = {
+  testPing(data: PingDataType) {
+    return instance.post<PingResponceType>('/ping', data)
+  },
+}
 export const cardsApi = {
   changeProfileData(data: ProfileDataType) {
     return instance.put<{ updatedUser: ProfileDataType; error?: string }>('/auth/me', data)
@@ -50,4 +56,13 @@ export type LoginDataType = {
   email: string
   password: string
   rememberMe: boolean
+}
+export type PingDataType = {
+  frontTime: number
+}
+type PingResponceType = {
+  ping: number
+  backTime: number
+  frontTime: number
+  info: string
 }

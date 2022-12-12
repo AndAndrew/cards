@@ -1,29 +1,33 @@
-import { useState } from 'react'
+import React from 'react'
 
-import { Button } from '../../common/components/button/Button'
-import { Checkbox } from '../../common/components/checkbox/Checkbox'
-import { Input } from '../../common/components/input/Input'
+import { Button } from '@mui/material'
+import { useSelector } from 'react-redux'
+
+import { AppRootStateType } from '../../app/store'
+import { useAppDispatch } from '../../common/hooks/react-redux-hooks'
+
+import style from './../../common/styles/common.container.module.css'
+import { testTC } from './testReducer'
 
 export const TestPage = () => {
-  const [inputTitle, setInputTitle] = useState('')
-  const [checked, setChecked] = useState(false)
-  const onCheckboxClick = () => {
-    setChecked(!checked)
+  const dispatch = useAppDispatch()
+  const ping = useSelector<AppRootStateType, number>(state => state.test.currentPing)
+
+  const PingButtonHandler = () => {
+    const currentData = { frontTime: Date.now() }
+
+    dispatch(testTC(currentData))
   }
-  const onInputTitleChanged = (title: string) => {
-    setInputTitle(title)
-  }
-  const onButtonClick = () => {}
 
   return (
-    <div>
-      <span>
-        <Input title={inputTitle} callBack={onInputTitleChanged} />
-      </span>
-      <span>
-        <Checkbox checked={checked} callBack={onCheckboxClick} />
-      </span>
-      <Button title={'button'} onClick={onButtonClick} />
+    <div className={style.AppContainer}>
+      <div className={style.personalInformationBlock}>
+        <h1>Show Current Ping</h1>
+        <div>{ping}</div>
+        <Button onClick={PingButtonHandler} type={'submit'} variant={'contained'} color={'primary'}>
+          START
+        </Button>
+      </div>
     </div>
   )
 }

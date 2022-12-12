@@ -1,4 +1,5 @@
 import { cardsApi, LoginDataType, RecoveryPasswordType } from '../../api/cards-api'
+import { setAppStatus } from '../../app/appReducer'
 import { AppThunk } from '../../app/store'
 import { profileAC, ShowProfileEmailAC } from '../profile/profileReducer'
 
@@ -26,17 +27,20 @@ export const loginAC = (value: boolean) => {
 export const LoginTC =
   (data: LoginDataType): AppThunk =>
   dispatch => {
+    dispatch(setAppStatus('loading'))
     cardsApi.login(data).then(res => {
-      console.log(res)
       dispatch(loginAC(true))
       dispatch(ShowProfileEmailAC(res.data.email))
       dispatch(profileAC({ name: res.data.name, avatar: '' }))
+      dispatch(setAppStatus('succesed'))
     })
   }
 export const logOutTC = (): AppThunk => dispatch => {
+  dispatch(setAppStatus('loading'))
   cardsApi.logOut().then(res => {
     console.log(res.data)
     dispatch(loginAC(false))
+    dispatch(setAppStatus('succesed'))
   })
 }
 export const passwordRecoveryTC =
