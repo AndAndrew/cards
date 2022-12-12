@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe08af64-9699-4d7a-b185-a9d021c18b41" name="Changes" comment="feat: added /.idea in gitignore">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/components/button/Button.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/components/button/Button.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/components/checkbox/Checkbox.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/components/checkbox/Checkbox.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/components/header/Header.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/components/header/Header.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/components/input/Input.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/components/input/Input.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/login/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/login/LoginPage.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="fe08af64-9699-4d7a-b185-a9d021c18b41" name="Changes" comment="feat: added /.idea in gitignore" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,27 +21,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/andreykrivokhizhin/Develop/ChangingShoes/IT-incubator/test/src",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.stylelint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.stylelint": "/Users/andreykrivokhizhin/Develop/ChangingShoes/IT-incubator/test/node_modules/stylelint",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "node",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "/Users/andreykrivokhizhin/Develop/ChangingShoes/IT-incubator/test/node_modules/prettier",
-    "settings.editor.selected.configurable": "actions.on.save",
-    "ts.external.directory.path": "/Users/andreykrivokhizhin/Develop/ChangingShoes/IT-incubator/test/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/andreykrivokhizhin/Develop/ChangingShoes/IT-incubator/test/src&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.stylelint&quot;: &quot;/Users/andreykrivokhizhin/Develop/ChangingShoes/IT-incubator/test/node_modules/stylelint&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/andreykrivokhizhin/Develop/ChangingShoes/IT-incubator/test/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/andreykrivokhizhin/Develop/ChangingShoes/IT-incubator/test/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
@@ -62,7 +55,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1670772554868</updated>
-      <workItem from="1670772555960" duration="8191000" />
+      <workItem from="1670772555960" duration="8665000" />
     </task>
     <task id="LOCAL-00001" summary="feat: added /.idea in gitignore">
       <created>1670772814587</created>
