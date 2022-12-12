@@ -1,0 +1,31 @@
+.blockDiscription {
+  text-align: center;
+}
+
+.ProfileAvatar {
+  background-image: url('https://klike.net/uploads/posts/2019-06/1560329641_2.jpg');
+  background-size: cover;
+  border: 1px solid green;
+  width: 96px;
+  height: 96px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: end;
+  border-radius: 50px;
+}
+
+img {
+  width: 96px;
+  height: 96px;
+}
+
+.Title {
+  margin: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .personalInformationBlock {
+    width: 60%;
+  }
+}

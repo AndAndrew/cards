@@ -4,6 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+    <list default="true" id="fe08af64-9699-4d7a-b185-a9d021c18b41" name="Changes" comment="feat: added /.idea in gitignore">
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/components/button/Button.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/components/button/Button.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/components/checkbox/Checkbox.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/components/checkbox/Checkbox.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/components/header/Header.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/components/header/Header.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/components/input/Input.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/components/input/Input.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/auth/authReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/authReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/auth/login/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/login/LoginPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/auth/passRecovery/PassRecoveryPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/passRecovery/PassRecoveryPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/profile/ProfilePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/profile/ProfilePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/profile/profileReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/profile/profileReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    </list>
     <list default="true" id="fe08af64-9699-4d7a-b185-a9d021c18b41" name="Changes" comment="feat: added /.idea in gitignore" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,12 +28,20 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2Im2h740knJ5dVQFymuBNZ96iVd" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -41,11 +66,28 @@
     &quot;ts.external.directory.path&quot;: &quot;/Users/andreykrivokhizhin/Develop/ChangingShoes/IT-incubator/test/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -55,7 +97,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1670772554868</updated>
-      <workItem from="1670772555960" duration="8665000" />
+      <workItem from="1670772555960" duration="790000" />
+      <workItem from="1670826424408" duration="228000" />
+      <workItem from="1670827015683" duration="929000" />
+      <workItem from="1670828412505" duration="354000" />
+      <workItem from="1670829367783" duration="2317000" />
     </task>
     <task id="LOCAL-00001" summary="feat: added /.idea in gitignore">
       <created>1670772814587</created>
@@ -82,7 +128,12 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="feat: added /.idea in gitignore" />
     <option name="LAST_COMMIT_MESSAGE" value="feat: added /.idea in gitignore" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
