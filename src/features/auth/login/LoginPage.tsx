@@ -16,20 +16,41 @@ import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redu
 import style from '../../../common/styles/common.container.module.css'
 import { LoginTC } from '../authReducer'
 
-import styles from './Login.module.css'
+import styles from './LoginPage.module.css'
 
 export const LoginPage = () => {
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
   const error = useAppSelector(state => state.auth.error)
   const dispatch = useAppDispatch()
+
+  type FormikErrorType = {
+    email?: string
+    password?: string
+    rememberMe?: boolean
+  }
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
       rememberMe: false,
     },
+    validate: values => {
+      const errors: FormikErrorType = {}
+
+      if (!values.email) {
+        errors.email = 'Email is required'
+      } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = 'Invalid email address'
+      }
+      if (!values.password) {
+        errors.password = 'Password is required'
+      }
+
+      return errors
+    },
     onSubmit: values => {
       dispatch(LoginTC(values))
+      formik.resetForm()
     },
   })
 
@@ -44,19 +65,44 @@ export const LoginPage = () => {
           <Grid item justifyContent={'center'}>
             <FormControl>
               Sign in
-              <form onSubmit={formik.handleSubmit}>
+              <form onSubmit={formik.handleSubmit} onChange={formik.handleChange}>
                 <FormGroup>
-                  <TextField label="Email" margin="normal" {...formik.getFieldProps('email')} />
-                  <TextField
-                    type="password"
-                    label="Password"
-                    margin="normal"
-                    {...formik.getFieldProps('password')}
-                  />
+                  {!formik.errors.email ? (
+                    <TextField
+                      variant="standard"
+                      label="Email"
+                      {...formik.getFieldProps('email')}
+                    />
+                  ) : (
+                    <TextField
+                      error
+                      variant="standard"
+                      label="Error"
+                      {...formik.getFieldProps('email')}
+                      helperText={formik.errors.email}
+                    />
+                  )}
+                  {!formik.errors.password ? (
+                    <TextField
+                      variant="standard"
+                      type="password"
+                      label="Password"
+                      {...formik.getFieldProps('password')}
+                    />
+                  ) : (
+                    <TextField
+                      error
+                      variant="standard"
+                      label="Error"
+                      {...formik.getFieldProps('password')}
+                      helperText={formik.errors.password}
+                    />
+                  )}
                   <FormControlLabel
                     label={'Remember me'}
                     control={<Checkbox />}
                     {...formik.getFieldProps('rememberMe')}
+                    checked={formik.values.rememberMe}
                   />
                   <div>
                     <a href={'/passRecovery#/passRecovery'}>Forgot Password?</a>
