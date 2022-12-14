@@ -12,14 +12,16 @@ import { RegisterPage } from '../features/auth/register/RegisterPage'
 import { ProfilePage } from '../features/profile/ProfilePage'
 import { TestPage } from '../features/test/TestPage'
 
+import { ButtonAppBar } from './ButtonAppBar'
 import { store } from './store'
 
 function App() {
   return (
-    <div className="App">
-      <HashRouter>
-        <Header />
+    <HashRouter>
+      <div className="App">
         <Provider store={store}>
+          <ButtonAppBar />
+          {/*<Header />*/}
           <Routes>
             <Route path={'/'} element={<TestPage />} />
             <Route path={'/login'} element={<LoginPage />} />
@@ -31,8 +33,8 @@ function App() {
             <Route path={'*'} element={<Navigate to={'/404'} />} />
           </Routes>
         </Provider>
-      </HashRouter>
-    </div>
+      </div>
+    </HashRouter>
   )
 }
 
