@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe08af64-9699-4d7a-b185-a9d021c18b41" name="Changes" comment="feat: added /.idea in gitignore">
-      <change afterPath="$PROJECT_DIR$/src/common/components/title/Title.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/common/components/title/Title.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/cards-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/cards-api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/authReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/authReducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/newPassInput/NewPassInputPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/newPassInput/NewPassInputPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/passRecovery/PassRecoveryPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/passRecovery/PassRecoveryPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/components/title/Title.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/components/title/Title.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/components/title/Title.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/styles/common.container.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/styles/common.container.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/auth/login/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/login/LoginPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/auth/register/RegisterPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/register/RegisterPage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +51,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/it-kamasutra/1lessonFriday/cards/src/features/auth/newPassInput/NewPassInputPage.tsx",
+    "last_opened_file_path": "E:/it-kamasutra/portfolio/src/myProjects/MyProjects.js",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
@@ -106,7 +103,7 @@
       <workItem from="1670827015683" duration="929000" />
       <workItem from="1670828412505" duration="354000" />
       <workItem from="1670829367783" duration="11373000" />
-      <workItem from="1671007377701" duration="8715000" />
+      <workItem from="1671007377701" duration="12407000" />
     </task>
     <task id="LOCAL-00001" summary="feat: added /.idea in gitignore">
       <created>1670772814587</created>

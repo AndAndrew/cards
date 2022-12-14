@@ -1,20 +1,39 @@
 .AppContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+
   width: 80%;
   height: 100vh;
   margin: 0 auto;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
 }
 .personalInformationBlock {
-  border: 2px solid grey;
-  background-color: white;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+
   width: 450px;
   min-height: 450px;
+
+  background-color: white;
+  border: 2px solid grey;
+}
+.content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
-  flex-wrap: nowrap;
+  justify-content: space-around;
+
+  width: 80%;
+  height: 300px;
+}
+.titleContainer {
+  margin-top: 30px;
+}
+.titleStyle {
+  font-family: Arial;
+  font-size: 30px;
 }

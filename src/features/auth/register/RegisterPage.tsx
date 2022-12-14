@@ -16,15 +16,20 @@ export const RegisterPage = () => {
     <div className={style.AppContainer}>
       <div className={style.personalInformationBlock}>
         <Title title={'Check Email'} />
-        <img
-          src={
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReWLTYQmALBv3FwyPU0aaRRzMwMFOtyc2UrQ&usqp=CAU'
-          }
-        />
-        <div>We have sent an Email with instruction to ___email---- </div>
-        <Button onClick={ToLogin} type={'submit'} variant={'contained'} color={'primary'}>
-          Back to Login
-        </Button>
+        <div className={style.content}>
+          <img
+            src={
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReWLTYQmALBv3FwyPU0aaRRzMwMFOtyc2UrQ&usqp=CAU'
+            }
+          />
+          <div>
+            We have sent an Emailhave sent an Email with instruction with instruction to
+            ___email----
+          </div>
+          <Button onClick={ToLogin} type={'submit'} variant={'contained'} color={'primary'}>
+            Back to Login
+          </Button>
+        </div>
       </div>
     </div>
   )

@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 
 import { AppRootStateType } from '../../../app/store'
+import { Title } from '../../../common/components/title/Title'
 import { useAppDispatch } from '../../../common/hooks/react-redux-hooks'
 import style from '../../../common/styles/common.container.module.css'
 import { LoginTC } from '../authReducer'
@@ -39,32 +40,34 @@ export const LoginPage = () => {
   return (
     <div className={style.AppContainer}>
       <div className={style.personalInformationBlock}>
+        <Title title={'Sign in'} />
         <Grid container justifyContent={'center'}>
           <Grid item justifyContent={'center'}>
             <FormControl>
-              Sign in
-              <form onSubmit={formik.handleSubmit}>
-                <FormGroup>
-                  <TextField label="Email" margin="normal" {...formik.getFieldProps('email')} />
-                  <TextField
-                    type="password"
-                    label="Password"
-                    margin="normal"
-                    {...formik.getFieldProps('password')}
-                  />
-                  <FormControlLabel
-                    label={'Remember me'}
-                    control={<Checkbox />}
-                    {...formik.getFieldProps('rememberMe')}
-                  />
-                  <div>
-                    <a href={'/passRecovery#/passRecovery'}>Forgot Password?</a>
-                  </div>
-                  <Button type={'submit'} variant={'contained'} color={'primary'}>
-                    Login
-                  </Button>
-                </FormGroup>
-              </form>
+              <div className={style.content}>
+                <form onSubmit={formik.handleSubmit}>
+                  <FormGroup>
+                    <TextField label="Email" margin="normal" {...formik.getFieldProps('email')} />
+                    <TextField
+                      type="password"
+                      label="Password"
+                      margin="normal"
+                      {...formik.getFieldProps('password')}
+                    />
+                    <FormControlLabel
+                      label={'Remember me'}
+                      control={<Checkbox />}
+                      {...formik.getFieldProps('rememberMe')}
+                    />
+                    <div>
+                      <a href={'/passRecovery#/passRecovery'}>Forgot Password?</a>
+                    </div>
+                    <Button type={'submit'} variant={'contained'} color={'primary'}>
+                      Login
+                    </Button>
+                  </FormGroup>
+                </form>
+              </div>
             </FormControl>
           </Grid>
         </Grid>
