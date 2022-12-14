@@ -8,6 +8,12 @@ export const instance = axios.create({
       : 'https://neko-back.herokuapp.com/2.0/',
   withCredentials: true,
 })
+
+export const testApi = {
+  testPing(data: PingDataType) {
+    return instance.post<PingResponceType>('/ping', data)
+  },
+}
 export const cardsApi = {
   changeProfileData(data: ProfileDataType) {
     return instance.put<{ updatedUser: ProfileDataType; error?: string }>('/auth/me', data)
@@ -20,6 +26,9 @@ export const cardsApi = {
   },
   recoveryPassword(data: RecoveryPasswordType) {
     return instance.post<{ info: string; error: string }>('/auth/forgot', data)
+  },
+  createNewPassword(data: CreateNewPasswordType) {
+    return instance.post<{ info: string; error: string }>('/auth/set-new-password', data)
   },
 }
 
@@ -52,4 +61,17 @@ export type LoginDataType = {
   email: string
   password: string
   rememberMe: boolean
+}
+export type PingDataType = {
+  frontTime: number
+}
+type PingResponceType = {
+  ping: number
+  backTime: number
+  frontTime: number
+  info: string
+}
+export type CreateNewPasswordType = {
+  password: string
+  resetPasswordToken: string | undefined
 }

@@ -2,7 +2,9 @@ import React from 'react'
 
 import './App.css'
 import { Provider } from 'react-redux'
-import { Navigate, Route, Routes, HashRouter } from 'react-router-dom'
+import { LinearProgress } from '@mui/material'
+import { useSelector } from 'react-redux'
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 
 import { Header } from '../common/components/header/Header'
 import { LoginPage } from '../features/auth/login/LoginPage'
@@ -14,13 +16,18 @@ import { TestPage } from '../features/test/TestPage'
 
 import { ButtonAppBar } from './ButtonAppBar'
 import { store } from './store'
+import { appStatusType } from './appReducer'
+import { AppRootStateType } from './store'
 
 function App() {
+  const Status = useSelector<AppRootStateType, appStatusType>(state => state.appStatus.appStatus)
+
   return (
     <HashRouter>
       <div className="App">
         <Provider store={store}>
           <ButtonAppBar />
+          {Status === 'loading' && <LinearProgress color="inherit" />}
           {/*<Header />*/}
           <Routes>
             <Route path={'/'} element={<TestPage />} />

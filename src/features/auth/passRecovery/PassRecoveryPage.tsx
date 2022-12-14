@@ -1,18 +1,24 @@
 import React, { ChangeEvent, useState } from 'react'
 
 import { Button, TextField } from '@mui/material'
+import { useSelector } from 'react-redux'
+import { Navigate } from 'react-router-dom'
 
 import { RecoveryPasswordType } from '../../../api/cards-api'
+import { AppRootStateType } from '../../../app/store'
 import { useAppDispatch } from '../../../common/hooks/react-redux-hooks'
 import { passwordRecoveryTC } from '../authReducer'
 
 import style from './../../../common/styles/common.container.module.css'
 
 export const PassRecoveryPage = () => {
+  const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
   const [emailTitle, setEmailTitle] = useState('')
   const dispatch = useAppDispatch()
 
-  console.log(emailTitle)
+  if (isLoggedIn) {
+    return <Navigate to={'/profile'} />
+  }
 
   const SendInstriction = () => {
     const recoveryData: RecoveryPasswordType = {
@@ -20,7 +26,7 @@ export const PassRecoveryPage = () => {
       from: 'test-front-admin <ai73a@yandex.by>',
       message: `<div style="background-color: lime; padding: 15px">
 password recovery link: 
-<a href='http://localhost:3000/#/set-new-password/$token$'>
+<a href='http://localhost:3000/#/newPassInput/$token$'>
 link</a>
 </div>`,
     }
@@ -48,6 +54,14 @@ link</a>
           <a href={'/login'}>Try Logging In</a>
         </div>
       </div>
+    </div>
+  )
+}
+
+const CheckMailPage = () => {
+  return (
+    <div className={style.AppContainer}>
+      <div className={style.personalInformationBlock}></div>
     </div>
   )
 }
