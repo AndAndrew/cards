@@ -13,7 +13,7 @@ import { useFormik } from 'formik'
 import { Navigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
-import style from '../../../common/styles/common.container.module.css'
+import commonStyles from '../../../common/styles/common.container.module.css'
 import { LoginTC, setError } from '../authReducer'
 
 import styles from './LoginPage.module.css'
@@ -62,11 +62,20 @@ export const LoginPage = () => {
   }
 
   return (
-    <div className={style.AppContainer}>
-      <div className={style.personalInformationBlock}>
-        <form className={styles.form} onSubmit={formik.handleSubmit} onChange={formik.handleChange}>
-          <FormControl>
-            <FormLabel>Sign in</FormLabel>
+    <div className={commonStyles.AppContainer}>
+      <div className={commonStyles.personalInformationBlock}>
+        <form onSubmit={formik.handleSubmit} onChange={formik.handleChange}>
+          <FormControl className={styles.form}>
+            <FormLabel
+              style={{
+                fontFamily: 'Montserrat',
+                fontWeight: '600',
+                fontSize: '26px',
+                color: 'black',
+              }}
+            >
+              Sign in
+            </FormLabel>
             <FormGroup>
               {!formik.errors.email ? (
                 <TextField variant="standard" label="Email" {...formik.getFieldProps('email')} />
@@ -105,7 +114,13 @@ export const LoginPage = () => {
                 Forgot Password?
               </a>
               <Button
-                className={styles.signInButton}
+                style={{
+                  fontFamily: 'Montserrat',
+                  fontWeight: '500',
+                  borderRadius: '20px',
+                  fontSize: '16px',
+                  textTransform: 'capitalize',
+                }}
                 type={'submit'}
                 variant={'contained'}
                 color={'primary'}
@@ -115,10 +130,12 @@ export const LoginPage = () => {
             </FormGroup>
             {error && <div className={styles.error}>{error}</div>}
 
-            <span>Already have an account?</span>
-            <a className={styles.signUp} href={'RegisterPage#/register'}>
-              Sign Up
-            </a>
+            <div>
+              <div>Already have an account?</div>
+              <a className={styles.signUp} href={'RegisterPage#/register'}>
+                Sign Up
+              </a>
+            </div>
           </FormControl>
         </form>
       </div>
