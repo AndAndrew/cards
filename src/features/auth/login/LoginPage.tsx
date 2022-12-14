@@ -6,6 +6,7 @@ import {
   FormControl,
   FormControlLabel,
   FormGroup,
+  FormLabel,
   Grid,
   TextField,
 } from '@mui/material'
@@ -61,61 +62,63 @@ export const LoginPage = () => {
   return (
     <div className={style.AppContainer}>
       <div className={style.personalInformationBlock}>
-        <Grid container justifyContent={'center'}>
-          <Grid item justifyContent={'center'}>
-            <FormControl>
-              Sign in
-              <form onSubmit={formik.handleSubmit} onChange={formik.handleChange}>
-                <FormGroup>
-                  {!formik.errors.email ? (
-                    <TextField
-                      variant="standard"
-                      label="Email"
-                      {...formik.getFieldProps('email')}
-                    />
-                  ) : (
-                    <TextField
-                      error
-                      variant="standard"
-                      label="Error"
-                      {...formik.getFieldProps('email')}
-                      helperText={formik.errors.email}
-                    />
-                  )}
-                  {!formik.errors.password ? (
-                    <TextField
-                      variant="standard"
-                      type="password"
-                      label="Password"
-                      {...formik.getFieldProps('password')}
-                    />
-                  ) : (
-                    <TextField
-                      error
-                      variant="standard"
-                      label="Error"
-                      {...formik.getFieldProps('password')}
-                      helperText={formik.errors.password}
-                    />
-                  )}
-                  <FormControlLabel
-                    label={'Remember me'}
-                    control={<Checkbox />}
-                    {...formik.getFieldProps('rememberMe')}
-                    checked={formik.values.rememberMe}
-                  />
-                  <div>
-                    <a href={'/passRecovery#/passRecovery'}>Forgot Password?</a>
-                  </div>
-                  <Button type={'submit'} variant={'contained'} color={'primary'}>
-                    Login
-                  </Button>
-                  {error && <div className={styles.error}>{error}</div>}
-                </FormGroup>
-              </form>
-            </FormControl>
-          </Grid>
-        </Grid>
+        <form className={styles.form} onSubmit={formik.handleSubmit} onChange={formik.handleChange}>
+          <FormControl>
+            <FormLabel>Sign in</FormLabel>
+            <FormGroup>
+              {!formik.errors.email ? (
+                <TextField variant="standard" label="Email" {...formik.getFieldProps('email')} />
+              ) : (
+                <TextField
+                  error
+                  variant="standard"
+                  label="Error"
+                  {...formik.getFieldProps('email')}
+                  helperText={formik.errors.email}
+                />
+              )}
+              {!formik.errors.password ? (
+                <TextField
+                  variant="standard"
+                  type="password"
+                  label="Password"
+                  {...formik.getFieldProps('password')}
+                />
+              ) : (
+                <TextField
+                  error
+                  variant="standard"
+                  label="Error"
+                  {...formik.getFieldProps('password')}
+                  helperText={formik.errors.password}
+                />
+              )}
+              <FormControlLabel
+                label={'Remember me'}
+                control={<Checkbox />}
+                {...formik.getFieldProps('rememberMe')}
+                checked={formik.values.rememberMe}
+              />
+              <a className={styles.forgotPass} href={'/passRecovery#/passRecovery'}>
+                Forgot Password?
+              </a>
+              <Button
+                className={styles.signInButton}
+                type={'submit'}
+                variant={'contained'}
+                color={'primary'}
+              >
+                Sign In
+              </Button>
+            </FormGroup>
+            {error && <div className={styles.error}>{error}</div>}
+
+            <span>Already have an account?</span>
+            <a className={styles.signUp} href={'RegisterPage#/register'}>
+              Sign Up
+            </a>
+          </FormControl>
+        </form>
       </div>
     </div>
   )
