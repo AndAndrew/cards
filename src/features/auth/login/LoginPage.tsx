@@ -7,7 +7,6 @@ import {
   FormControlLabel,
   FormGroup,
   FormLabel,
-  Grid,
   TextField,
 } from '@mui/material'
 import { useFormik } from 'formik'
@@ -15,7 +14,7 @@ import { Navigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
 import style from '../../../common/styles/common.container.module.css'
-import { LoginTC } from '../authReducer'
+import { LoginTC, setError } from '../authReducer'
 
 import styles from './LoginPage.module.css'
 
@@ -38,6 +37,9 @@ export const LoginPage = () => {
     validate: values => {
       const errors: FormikErrorType = {}
 
+      if (error) {
+        dispatch(setError(null))
+      }
       if (!values.email) {
         errors.email = 'Email is required'
       } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {

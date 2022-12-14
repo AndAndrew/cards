@@ -4,7 +4,7 @@ import { profileAC, ShowProfileEmailAC } from '../profile/profileReducer'
 
 const InitialState = {
   isLoggedIn: false as boolean,
-  error: '' as string,
+  error: null as string | null,
 }
 
 export type AuthActionsType = ReturnType<typeof setIsLoggedInAC> | ReturnType<typeof setError>
@@ -25,7 +25,7 @@ export const setIsLoggedInAC = (value: boolean) => {
     value,
   } as const
 }
-export const setError = (message: string) => {
+export const setError = (message: null | string) => {
   return {
     type: 'LOGIN/SET-ERROR',
     message,
