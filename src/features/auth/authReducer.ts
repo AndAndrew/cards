@@ -1,4 +1,9 @@
-import { cardsApi, LoginDataType, RecoveryPasswordType } from '../../api/cards-api'
+import {
+  cardsApi,
+  CreateNewPasswordType,
+  LoginDataType,
+  RecoveryPasswordType,
+} from '../../api/cards-api'
 import { setAppStatus } from '../../app/appReducer'
 import { AppThunk } from '../../app/store'
 import { profileAC, ShowProfileEmailAC } from '../profile/profileReducer'
@@ -47,4 +52,9 @@ export const passwordRecoveryTC =
   (data: RecoveryPasswordType): AppThunk =>
   dispatch => {
     cardsApi.recoveryPassword(data).then(res => console.log(res))
+  }
+export const NewPasswordTC =
+  (data: CreateNewPasswordType): AppThunk =>
+  dispatch => {
+    cardsApi.createNewPassword(data).then(res => res.data)
   }

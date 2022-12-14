@@ -30,7 +30,7 @@ function App() {
           <Route path={'/login'} element={<LoginPage />} />
           <Route path={'/register'} element={<RegisterPage />} />
           <Route path={'/passRecovery'} element={<PassRecoveryPage />} />
-          <Route path={'/newPassInput'} element={<NewPassInputPage />} />
+          <Route path={'/newPassInput/:token'} element={<NewPassInputPage />} />
           <Route path={'/profile'} element={<ProfilePage />} />
           <Route path={'/404'} element={<h1>404: PAGE NOT FOUND</h1>} />
           <Route path={'*'} element={<Navigate to={'/404'} />} />

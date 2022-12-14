@@ -25,6 +25,9 @@ export const cardsApi = {
   recoveryPassword(data: RecoveryPasswordType) {
     return instance.post<{ info: string; error: string }>('/auth/forgot', data)
   },
+  createNewPassword(data: CreateNewPasswordType) {
+    return instance.post<{ info: string; error: string }>('/auth/set-new-password', data)
+  },
 }
 
 type LoginResponseType = {
@@ -65,4 +68,8 @@ type PingResponceType = {
   backTime: number
   frontTime: number
   info: string
+}
+export type CreateNewPasswordType = {
+  password: string
+  resetPasswordToken: string | undefined
 }
