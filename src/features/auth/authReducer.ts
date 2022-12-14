@@ -40,11 +40,13 @@ export const setError = (message: null | string) => {
 export const LoginTC =
   (data: LoginDataType): AppThunk =>
   dispatch => {
+    dispatch(setAppStatus('loading'))
     cardsApi
       .login(data)
       .then(res => {
         console.log(res)
         dispatch(setIsLoggedInAC(true))
+        dispatch(setAppStatus('successes'))
         dispatch(ShowProfileEmailAC(res.data.email))
         dispatch(profileAC({ name: res.data.name, avatar: '' }))
       })
@@ -58,7 +60,7 @@ export const logOutTC = (): AppThunk => dispatch => {
   cardsApi.logOut().then(res => {
     console.log(res.data)
     dispatch(setIsLoggedInAC(false))
-    dispatch(setAppStatus('succesed'))
+    dispatch(setAppStatus('successes'))
   })
 }
 export const passwordRecoveryTC =

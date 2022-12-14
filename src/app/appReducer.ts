@@ -1,8 +1,8 @@
 const initialState = {
-  appStatus: 'loading' as appStatusType,
+  appStatus: 'idle' as appStatusType,
 }
 
-export type appStatusType = 'idle' | 'succesed' | 'failed' | 'loading'
+export type appStatusType = 'idle' | 'successes' | 'failed' | 'loading'
 
 export type AppReducerActionType = ReturnType<typeof setAppStatus>
 

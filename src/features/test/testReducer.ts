@@ -29,6 +29,6 @@ export const testTC =
     dispatch(setAppStatus('loading'))
     testApi.testPing(data).then(res => {
       dispatch(testAC(res.data.ping))
-      dispatch(setAppStatus('succesed'))
+      dispatch(setAppStatus('successes'))
     })
   }

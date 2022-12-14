@@ -1,12 +1,10 @@
 import React from 'react'
 
 import './App.css'
-import { Provider } from 'react-redux'
 import { LinearProgress } from '@mui/material'
-import { useSelector } from 'react-redux'
+import { Provider } from 'react-redux'
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 
-import { Header } from '../common/components/header/Header'
 import { LoginPage } from '../features/auth/login/LoginPage'
 import { NewPassInputPage } from '../features/auth/newPassInput/NewPassInputPage'
 import { PassRecoveryPage } from '../features/auth/passRecovery/PassRecoveryPage'
@@ -16,21 +14,18 @@ import { TestPage } from '../features/test/TestPage'
 
 import { ButtonAppBar } from './ButtonAppBar'
 import { store } from './store'
-import { appStatusType } from './appReducer'
-import { AppRootStateType } from './store'
+import {useAppSelector} from "../common/hooks/react-redux-hooks";
 
 function App() {
-  const Status = useSelector<AppRootStateType, appStatusType>(state => state.appStatus.appStatus)
-
+  const Status = useAppSelector(state => state.appStatus.appStatus)
   return (
     <HashRouter>
       <div className="App">
         <Provider store={store}>
           <ButtonAppBar />
           {Status === 'loading' && <LinearProgress color="inherit" />}
-          {/*<Header />*/}
           <Routes>
-            <Route path={'/'} element={<TestPage />} />
+            <Route path={'/'} element={<ProfilePage />} />
             <Route path={'/login'} element={<LoginPage />} />
             <Route path={'/register'} element={<RegisterPage />} />
             <Route path={'/passRecovery'} element={<PassRecoveryPage />} />
