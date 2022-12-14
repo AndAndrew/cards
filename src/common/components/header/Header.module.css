@@ -1,8 +1,8 @@
 .container {
-    position: static;
+  position: static;
 
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 
-    height: 30px;
+  height: 30px;
 }

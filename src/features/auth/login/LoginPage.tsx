@@ -10,16 +10,17 @@ import {
   TextField,
 } from '@mui/material'
 import { useFormik } from 'formik'
-import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 
-import { AppRootStateType } from '../../../app/store'
-import { useAppDispatch } from '../../../common/hooks/react-redux-hooks'
+import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
 import style from '../../../common/styles/common.container.module.css'
 import { LoginTC } from '../authReducer'
 
+import styles from './Login.module.css'
+
 export const LoginPage = () => {
-  const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+  const error = useAppSelector(state => state.auth.error)
   const dispatch = useAppDispatch()
   const formik = useFormik({
     initialValues: {
@@ -63,6 +64,7 @@ export const LoginPage = () => {
                   <Button type={'submit'} variant={'contained'} color={'primary'}>
                     Login
                   </Button>
+                  {error && <div className={styles.error}>{error}</div>}
                 </FormGroup>
               </form>
             </FormControl>
