@@ -1,6 +1,8 @@
 .container {
-  height: 30px;
+  position: static;
+
   display: flex;
   justify-content: space-evenly;
-  position: static;
+
+  height: 30px;
 }

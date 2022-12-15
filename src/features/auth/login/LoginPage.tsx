@@ -6,30 +6,54 @@ import {
   FormControl,
   FormControlLabel,
   FormGroup,
-  Grid,
+  FormLabel,
   TextField,
 } from '@mui/material'
 import { useFormik } from 'formik'
-import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 
-import { AppRootStateType } from '../../../app/store'
-import { Title } from '../../../common/components/title/Title'
-import { useAppDispatch } from '../../../common/hooks/react-redux-hooks'
-import style from '../../../common/styles/common.container.module.css'
-import { LoginTC } from '../authReducer'
+import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
+import commonStyles from '../../../common/styles/common.container.module.css'
+import { LoginTC, setError } from '../authReducer'
+
+import styles from './LoginPage.module.css'
 
 export const LoginPage = () => {
-  const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+  const error = useAppSelector(state => state.auth.error)
   const dispatch = useAppDispatch()
+
+  type FormikErrorType = {
+    email?: string
+    password?: string
+    rememberMe?: boolean
+  }
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
       rememberMe: false,
     },
+    validate: values => {
+      const errors: FormikErrorType = {}
+
+      if (error) {
+        dispatch(setError(null))
+      }
+      if (!values.email) {
+        errors.email = 'Email is required'
+      } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = 'Invalid email address'
+      }
+      if (!values.password) {
+        errors.password = 'Password is required'
+      }
+
+      return errors
+    },
     onSubmit: values => {
       dispatch(LoginTC(values))
+      formik.resetForm()
     },
   })
 
@@ -38,39 +62,82 @@ export const LoginPage = () => {
   }
 
   return (
-    <div className={style.AppContainer}>
-      <div className={style.personalInformationBlock}>
-        <Title title={'Sign in'} />
-        <Grid container justifyContent={'center'}>
-          <Grid item justifyContent={'center'}>
-            <FormControl>
-              <div className={style.content}>
-                <form onSubmit={formik.handleSubmit}>
-                  <FormGroup>
-                    <TextField label="Email" margin="normal" {...formik.getFieldProps('email')} />
-                    <TextField
-                      type="password"
-                      label="Password"
-                      margin="normal"
-                      {...formik.getFieldProps('password')}
-                    />
-                    <FormControlLabel
-                      label={'Remember me'}
-                      control={<Checkbox />}
-                      {...formik.getFieldProps('rememberMe')}
-                    />
-                    <div>
-                      <a href={'/passRecovery#/passRecovery'}>Forgot Password?</a>
-                    </div>
-                    <Button type={'submit'} variant={'contained'} color={'primary'}>
-                      Login
-                    </Button>
-                  </FormGroup>
-                </form>
-              </div>
-            </FormControl>
-          </Grid>
-        </Grid>
+    <div className={commonStyles.AppContainer}>
+      <div className={commonStyles.personalInformationBlock}>
+        <form onSubmit={formik.handleSubmit} onChange={formik.handleChange}>
+          <FormControl className={styles.form}>
+            <FormLabel
+              style={{
+                fontFamily: 'Montserrat',
+                fontWeight: '600',
+                fontSize: '26px',
+                color: 'black',
+              }}
+            >
+              Sign in
+            </FormLabel>
+            <FormGroup>
+              {!formik.errors.email ? (
+                <TextField variant="standard" label="Email" {...formik.getFieldProps('email')} />
+              ) : (
+                <TextField
+                  error
+                  variant="standard"
+                  label="Error"
+                  {...formik.getFieldProps('email')}
+                  helperText={formik.errors.email}
+                />
+              )}
+              {!formik.errors.password ? (
+                <TextField
+                  variant="standard"
+                  type="password"
+                  label="Password"
+                  {...formik.getFieldProps('password')}
+                />
+              ) : (
+                <TextField
+                  error
+                  variant="standard"
+                  label="Error"
+                  {...formik.getFieldProps('password')}
+                  helperText={formik.errors.password}
+                />
+              )}
+              <FormControlLabel
+                label={'Remember me'}
+                control={<Checkbox />}
+                {...formik.getFieldProps('rememberMe')}
+                checked={formik.values.rememberMe}
+              />
+              <a className={styles.forgotPass} href={'/passRecovery#/passRecovery'}>
+                Forgot Password?
+              </a>
+              <Button
+                style={{
+                  fontFamily: 'Montserrat',
+                  fontWeight: '500',
+                  borderRadius: '20px',
+                  fontSize: '16px',
+                  textTransform: 'capitalize',
+                }}
+                type={'submit'}
+                variant={'contained'}
+                color={'primary'}
+              >
+                Sign In
+              </Button>
+            </FormGroup>
+            {error && <div className={styles.error}>{error}</div>}
+
+            <div>
+              <div>Already have an account?</div>
+              <a className={styles.signUp} href={'RegisterPage#/register'}>
+                Sign Up
+              </a>
+            </div>
+          </FormControl>
+        </form>
       </div>
     </div>
   )

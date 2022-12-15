@@ -1,83 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a204b2c-c853-49d0-9bd5-94ab5b5b6613" name="Changes" comment="feat: added /.idea in gitignore">
-      <change afterPath="$PROJECT_DIR$/src/features/auth/CheckEmalPage/CheckEmailPage.tsx" afterDir="false" />
+    <list default="true" id="6a204b2c-c853-49d0-9bd5-94ab5b5b6613" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/app/ButtonAppBar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/auth/login/LoginPage.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/cards-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/cards-api.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/components/header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/components/header/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/appReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/appReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/components/header/Header.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/components/header/Header.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/styles/common.container.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/styles/common.container.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/auth/authReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/authReducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/newPassInput/NewPassInputPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/newPassInput/NewPassInputPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/passRecovery/PassRecoveryPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/passRecovery/PassRecoveryPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/register/RegisterPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/register/RegisterPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/profile/Profile.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/profile/Profile.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/profile/ProfilePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/profile/ProfilePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/auth/login/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/login/LoginPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/test/testReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/test/testReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="TypeScript File" />
-        <option value="CSS File" />
-        <option value="TypeScript JSX File" />
-      </list>
-    </option>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
   </component>
-  <component name="ProjectId" id="2Im2h740knJ5dVQFymuBNZ96iVd" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/it-kamasutra/toDo/src/features/Login/Login.tsx",
-    "list.type.of.created.stylesheet": "CSS",
+    "js.linters.configure.manually.selectedeslint": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
-    "node.js.detected.package.stylelint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.standard": "",
-    "node.js.selected.package.stylelint": "E:\\it-kamasutra\\AnewCaards\\test\\node_modules\\stylelint",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "node",
-    "nodejs_package_manager_path": "npm",
     "prettierjs.PrettierConfiguration.Package": "E:\\it-kamasutra\\AnewCaards\\test\\node_modules\\prettier",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "E:\\it-kamasutra\\AnewCaards\\test\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+    "settings.editor.selected.configurable": "actions.on.save",
+    "ts.external.directory.path": "E:\\it-kamasutra\\AnewCaards\\test\\node_modules\\typescript\\lib"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src" />
-    </key>
-  </component>
   <component name="RunManager">
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -95,34 +67,8 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="6a204b2c-c853-49d0-9bd5-94ab5b5b6613" name="Changes" comment="feat: added /.idea in gitignore" />
-      <created>1670772554868</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1670772554868</updated>
-      <workItem from="1670772555960" duration="790000" />
-      <workItem from="1670826424408" duration="228000" />
-      <workItem from="1670827015683" duration="929000" />
-      <workItem from="1670828412505" duration="354000" />
-      <workItem from="1670829367783" duration="11373000" />
-      <workItem from="1671007377701" duration="12407000" />
-      <workItem from="1671083946821" duration="6376000" />
-    </task>
-    <task id="LOCAL-00001" summary="feat: added /.idea in gitignore">
-      <created>1670772814587</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1670772814587</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -134,11 +80,6 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="feat: added /.idea in gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: added /.idea in gitignore" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

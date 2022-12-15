@@ -1,0 +1,33 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  width: 90%;
+  min-height: 520px;
+
+  font-family: 'Montserrat';
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.forgotPass {
+  padding: 5px 0 50px 0;
+
+  font-size: 14px;
+  line-height: 18px;
+  color: black;
+  text-align: right;
+  text-decoration: none;
+}
+
+.signUp {
+  font-size: 16px;
+  font-weight: 600;
+  color: blue;
+}
+
+.error {
+  color: red;
+}
