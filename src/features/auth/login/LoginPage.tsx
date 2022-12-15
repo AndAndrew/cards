@@ -78,10 +78,34 @@ export const LoginPage = () => {
             </FormLabel>
             <FormGroup>
               {!formik.errors.email ? (
-                <TextField variant="standard" label="Email" {...formik.getFieldProps('email')} />
+                <TextField
+                  sx={{
+                    '& .MuiInputLabel-root': { fontFamily: 'Montserrat', fontWeight: '400' },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      fontFamily: 'Montserrat',
+                      fontWeight: '400',
+                    },
+                    '& .MuiInputBase-root': {
+                      '& input': { fontFamily: 'Montserrat', fontWeight: '500' },
+                    },
+                  }}
+                  variant="standard"
+                  label="Email"
+                  {...formik.getFieldProps('email')}
+                />
               ) : (
                 <TextField
                   error
+                  sx={{
+                    '& .MuiInputLabel-root': { fontFamily: 'Montserrat', fontWeight: '400' },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      fontFamily: 'Montserrat',
+                      fontWeight: '400',
+                    },
+                    '& .MuiInputBase-root': {
+                      '& input': { fontFamily: 'Montserrat', fontWeight: '500' },
+                    },
+                  }}
                   variant="standard"
                   label="Error"
                   {...formik.getFieldProps('email')}
@@ -90,6 +114,16 @@ export const LoginPage = () => {
               )}
               {!formik.errors.password ? (
                 <TextField
+                  sx={{
+                    '& .MuiInputLabel-root': { fontFamily: 'Montserrat', fontWeight: '400' },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      fontFamily: 'Montserrat',
+                      fontWeight: '400',
+                    },
+                    '& .MuiInputBase-root': {
+                      '& input': { fontFamily: 'Montserrat', fontWeight: '500' },
+                    },
+                  }}
                   variant="standard"
                   type="password"
                   label="Password"
@@ -98,6 +132,16 @@ export const LoginPage = () => {
               ) : (
                 <TextField
                   error
+                  sx={{
+                    '& .MuiInputLabel-root': { fontFamily: 'Montserrat', fontWeight: '400' },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      fontFamily: 'Montserrat',
+                      fontWeight: '400',
+                    },
+                    '& .MuiInputBase-root': {
+                      '& input': { fontFamily: 'Montserrat', fontWeight: '500' },
+                    },
+                  }}
                   variant="standard"
                   label="Error"
                   {...formik.getFieldProps('password')}
@@ -105,6 +149,10 @@ export const LoginPage = () => {
                 />
               )}
               <FormControlLabel
+                sx={{
+                  '& .MuiFormControlLabel-label': { fontFamily: 'Montserrat', fontWeight: '500' },
+                }}
+                style={{ fontFamily: 'Montserrat', fontWeight: '800' }}
                 label={'Remember me'}
                 control={<Checkbox />}
                 {...formik.getFieldProps('rememberMe')}

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { AppBar, Box, Button, IconButton, Toolbar, Typography } from '@mui/material'
+import { AppBar, Box, Button, IconButton, Toolbar } from '@mui/material'
 
 import { useAppDispatch, useAppSelector } from '../common/hooks/react-redux-hooks'
 import { logOutTC } from '../features/auth/authReducer'
