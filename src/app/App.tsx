@@ -21,10 +21,9 @@ import { store } from './store'
 const App = () => {
   console.log('app')
   const Status = useAppSelector(state => state.appStatus.appStatus)
+  const initialized = useAppSelector(state => state.appStatus.isInitialized)
 
   const dispatch = useAppDispatch()
-
-  const initialized = useAppSelector<boolean>(state => state.appStatus.isInitialized)
 
   useEffect(() => {
     dispatch(isInitializedTC())
