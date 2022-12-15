@@ -1,21 +1,14 @@
 import React from 'react'
 
-
 import { AppBar, Box, Button, IconButton, Toolbar } from '@mui/material'
 import { useSelector } from 'react-redux'
-import { Navigate } from 'react-router-dom'
-
-import { AppBar, Box, Button, IconButton, Toolbar, Typography } from '@mui/material'
-import { Navigate, useNavigate } from 'react-router-dom'
-
-import { AppBar, Box, Button, IconButton, Toolbar } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../common/hooks/react-redux-hooks'
 import { logOutTC } from '../features/auth/authReducer'
 
 import style from './../common/styles/common.container.module.css'
 import { AppRootStateType } from './store'
-import { logOutTC } from '../features/auth/authReducer'
 
 export const ButtonAppBar = () => {
   const ActualName = useSelector<AppRootStateType, string>(state => state.profile.name)
@@ -45,14 +38,9 @@ export const ButtonAppBar = () => {
           <Button color="inherit" onClick={TestHahdler}>
             Test
           </Button>
-          {isLoggedIn ? (
           {isLoggedIn && (
             <Button color="inherit" onClick={logoutHandler}>
               Log Out
-            </Button>
-          ) : (
-            <Button color="inherit" onClick={loginHandler}>
-              Sign In
             </Button>
           )}
           {isLoggedIn && (

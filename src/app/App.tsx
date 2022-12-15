@@ -6,6 +6,7 @@ import { CircularProgress, LinearProgress } from '@mui/material'
 import { Provider } from 'react-redux'
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 
+import { useAppDispatch, useAppSelector } from '../common/hooks/react-redux-hooks'
 import { LoginPage } from '../features/auth/login/LoginPage'
 import { NewPassInputPage } from '../features/auth/newPassInput/NewPassInputPage'
 import { PassRecoveryPage } from '../features/auth/passRecovery/PassRecoveryPage'
@@ -16,10 +17,11 @@ import { TestPage } from '../features/test/TestPage'
 import { isInitializedTC } from './appReducer'
 import { ButtonAppBar } from './ButtonAppBar'
 import { store } from './store'
-import {useAppSelector} from "../common/hooks/react-redux-hooks";
 
-function App() {
+const App = () => {
+  console.log('app')
   const Status = useAppSelector(state => state.appStatus.appStatus)
+
   const dispatch = useAppDispatch()
 
   const initialized = useAppSelector<boolean>(state => state.appStatus.isInitialized)
@@ -31,7 +33,6 @@ function App() {
   if (!initialized) {
     return <CircularProgress color="inherit" size={100} />
   }
-
 
   return (
     <HashRouter>
