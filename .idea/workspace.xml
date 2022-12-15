@@ -5,15 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70d525a3-da69-44fd-83e3-e07a3627a51e" name="Changes" comment="fix: fixed some minor errors">
+      <change afterPath="$PROJECT_DIR$/src/features/auth/passRecovery/PassRecoveryPage.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/auth/login/LoginPage.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/login/LoginPage.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/auth/login/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/login/LoginPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/register/RegisterPage.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/register/RegisterPage.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/auth/passRecovery/PassRecoveryPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/passRecovery/PassRecoveryPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/auth/register/RegisterPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/register/RegisterPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/profile/ProfilePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/profile/ProfilePage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -24,6 +34,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "js.linters.configure.manually.selectedeslint": "true",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.selected.package.eslint": "(autodetect)",

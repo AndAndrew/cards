@@ -1,21 +1,19 @@
 import React, { ChangeEvent, useState } from 'react'
 
 import { Button, TextField } from '@mui/material'
-import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 
 import { RecoveryPasswordType } from '../../../api/cards-api'
-import { AppRootStateType } from '../../../app/store'
-import { Title } from '../../../common/components/title/Title'
-import { useAppDispatch } from '../../../common/hooks/react-redux-hooks'
+import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
 import { passwordRecoveryTC } from '../authReducer'
 import { CheckEmailPage } from '../CheckEmalPage/CheckEmailPage'
 
 import style from './../../../common/styles/common.container.module.css'
+import styles from './PassRecoveryPage.module.css'
 
 export const PassRecoveryPage = () => {
-  const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
-  const isMessageSent = useSelector<AppRootStateType, boolean>(state => state.auth.isMessageSent)
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+  const isMessageSent = useAppSelector(state => state.auth.isMessageSent)
 
   const [emailTitle, setEmailTitle] = useState('')
   const dispatch = useAppDispatch()
@@ -49,17 +47,46 @@ link</a>
   return (
     <div className={style.AppContainer}>
       <div className={style.personalInformationBlock}>
-        <Title title={'Forgot your pass?'} />
-        <TextField value={emailTitle} onChange={EmailInputChanging} label="Email" margin="normal" />
-        <span style={{ color: 'grey' }}>
-          Enter your email address and we will send you further instruction
-        </span>
-        <Button onClick={SendInstruction} type={'submit'} variant={'contained'} color={'primary'}>
-          send instruction
-        </Button>
-        <div style={{ color: 'grey' }}>Did you remember your password?</div>
-        <div>
-          <a href={'/login'}>Try Logging In</a>
+        <div className={styles.form}>
+          <div className={styles.title}>Forgot your pass?</div>
+          <TextField
+            sx={{
+              '& .MuiInputLabel-root': { fontFamily: 'Montserrat', fontWeight: '400' },
+              '& .MuiInputLabel-root.Mui-focused': {
+                fontFamily: 'Montserrat',
+                fontWeight: '400',
+              },
+              '& .MuiInputBase-root': {
+                '& input': { fontFamily: 'Montserrat', fontWeight: '500' },
+              },
+            }}
+            value={emailTitle}
+            onChange={EmailInputChanging}
+            label="Email"
+            variant={'standard'}
+          />
+          <span style={{ color: 'grey', textAlign: 'left' }}>
+            Enter your email address and we will send you further instruction
+          </span>
+          <Button
+            style={{
+              fontFamily: 'Montserrat',
+              fontWeight: '500',
+              borderRadius: '20px',
+              fontSize: '16px',
+              textTransform: 'capitalize',
+            }}
+            onClick={SendInstruction}
+            type={'submit'}
+            variant={'contained'}
+            color={'primary'}
+          >
+            send instruction
+          </Button>
+          <div>
+            <div className={styles.rememberPass}>Did you remember your password?</div>
+            <a href={'/login#'}>Try Logging In</a>
+          </div>
         </div>
       </div>
     </div>

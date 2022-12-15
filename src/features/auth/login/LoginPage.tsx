@@ -58,7 +58,7 @@ export const LoginPage = () => {
   })
 
   if (isLoggedIn) {
-    return <Navigate to={'/profile'} />
+    return <Navigate to={'/#/profile'} />
   }
 
   return (
@@ -158,7 +158,7 @@ export const LoginPage = () => {
                 {...formik.getFieldProps('rememberMe')}
                 checked={formik.values.rememberMe}
               />
-              <a className={styles.forgotPass} href={'/passRecovery#/passRecovery'}>
+              <a className={styles.forgotPass} href={'/#/passRecovery'}>
                 Forgot Password?
               </a>
               <Button
@@ -178,8 +178,8 @@ export const LoginPage = () => {
             </FormGroup>
             {error && <div className={styles.error}>{error}</div>}
             <div>
-              <div>Already have an account?</div>
-              <a className={styles.signUp} href={'/register'}>
+              <div className={styles.haveAcc}>Already have an account?</div>
+              <a className={styles.signUp} href={'/#/register'}>
                 Sign Up
               </a>
             </div>
