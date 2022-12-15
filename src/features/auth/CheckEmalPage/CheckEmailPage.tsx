@@ -33,8 +33,20 @@ export const CheckEmailPage = (props: PropsType) => {
             }
           />
           <div>We have sent an Email with instruction to {props.email}</div>
-          <Button onClick={ToLogin} type={'submit'} variant={'contained'} color={'primary'}>
-            Back to Login
+          <Button
+            style={{
+              fontFamily: 'Montserrat',
+              fontWeight: '500',
+              borderRadius: '20px',
+              fontSize: '16px',
+              textTransform: 'capitalize',
+            }}
+            type={'submit'}
+            variant={'contained'}
+            color={'primary'}
+            onClick={ToLogin}
+          >
+            Back to login
           </Button>
         </div>
       </div>

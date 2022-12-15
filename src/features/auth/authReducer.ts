@@ -6,7 +6,7 @@ import {
 } from '../../api/cards-api'
 import { setAppStatus } from '../../app/appReducer'
 import { AppThunk } from '../../app/store'
-import { profileAC, ShowProfileEmailAC } from '../profile/profileReducer'
+import { profileAC, showProfileEmailAC } from '../profile/profileReducer'
 
 const InitialState = {
   isLoggedIn: false as boolean,
@@ -66,10 +66,10 @@ export const LoginTC =
     cardsApi
       .login(data)
       .then(res => {
-        console.log(res)
+        console.log(res + 'res data login')
         dispatch(setIsLoggedInAC(true))
         dispatch(setAppStatus('successes'))
-        dispatch(ShowProfileEmailAC(res.data.email))
+        dispatch(showProfileEmailAC(res.data.email))
         dispatch(profileAC({ name: res.data.name, avatar: '' }))
       })
       .catch(error => {

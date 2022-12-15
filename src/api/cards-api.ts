@@ -3,9 +3,9 @@ import axios from 'axios'
 export const instance = axios.create({
   /*baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/',*/
   /*  baseURL:
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:7542/2.0/'
-      : 'https://neko-back.herokuapp.com/2.0/',*/
+          process.env.NODE_ENV === 'development'
+            ? 'http://localhost:7542/2.0/'
+            : 'https://neko-back.herokuapp.com/2.0/',*/
   baseURL: 'https://neko-back.herokuapp.com/2.0/',
   withCredentials: true,
 })
@@ -31,25 +31,9 @@ export const cardsApi = {
   createNewPassword(data: CreateNewPasswordType) {
     return instance.post<{ info: string; error: string }>('/auth/set-new-password', data)
   },
-  me(data = {}) {
-    return instance.post<{ data: meResponseType }>('/auth/me', data)
+  me() {
+    return instance.post<LoginResponseType>('/auth/me')
   },
-}
-
-type meResponseType = {
-  _id: string
-  email: string
-  name: string
-  avatar?: string
-  publicCardPacksCount: number // количество колод
-
-  created: Date
-  updated: Date
-  isAdmin: boolean
-  verified: boolean // подтвердил ли почту
-  rememberMe: boolean
-
-  error?: string
 }
 
 type LoginResponseType = {

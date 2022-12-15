@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import './App.css'
 
-import { LinearProgress } from '@mui/material'
+import { CircularProgress, LinearProgress } from '@mui/material'
 import { Provider } from 'react-redux'
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 
@@ -13,19 +13,24 @@ import { PassRecoveryPage } from '../features/auth/passRecovery/PassRecoveryPage
 import { RegisterPage } from '../features/auth/register/RegisterPage'
 import { ProfilePage } from '../features/profile/ProfilePage'
 
+import { isInitializedTC } from './appReducer'
 import { ButtonAppBar } from './ButtonAppBar'
 import { store } from './store'
 
-function App() {
+const App = () => {
+  console.log('app')
   const Status = useAppSelector(state => state.appStatus.appStatus)
   const dispatch = useAppDispatch()
 
-  /*   useEffect(() => {
-             cardsApi.me({}).then(res => {
-                 console.log(res.data)
-                 dispatch(setIsLoggedInAC(true))
-             })
-         }, [])*/
+  const initialized = useAppSelector<boolean>(state => state.appStatus.isInitialized)
+
+  useEffect(() => {
+    dispatch(isInitializedTC())
+  }, [])
+
+  if (!initialized) {
+    return <CircularProgress color="inherit" size={100} />
+  }
 
   return (
     <HashRouter>
@@ -38,7 +43,7 @@ function App() {
             <Route path={'/login'} element={<LoginPage />} />
             <Route path={'/register'} element={<RegisterPage />} />
             <Route path={'/passRecovery'} element={<PassRecoveryPage />} />
-            <Route path={'/newPassInput'} element={<NewPassInputPage />} />
+            <Route path={'/newPassInput/:token'} element={<NewPassInputPage />} />
             <Route path={'/profile'} element={<ProfilePage />} />
             <Route path={'/404'} element={<h1>404: PAGE NOT FOUND</h1>} />
             <Route path={'*'} element={<Navigate to={'/404'} />} />

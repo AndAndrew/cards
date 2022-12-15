@@ -1,8 +1,12 @@
+import React from 'react'
+
+import { Button } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 
 import { AppRootStateType } from '../../app/store'
 import { EditableSpan } from '../../common/components/EditableSpan/EditableSpan'
+import { Title } from '../../common/components/title/Title'
 import { useAppDispatch } from '../../common/hooks/react-redux-hooks'
 import { logOutTC } from '../auth/authReducer'
 
@@ -14,7 +18,7 @@ export const ProfilePage = () => {
   const dispatch = useAppDispatch()
   const ActualEmail = useSelector<AppRootStateType, string>(state => state.profile.email)
   const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
-  const Actualname = useSelector<AppRootStateType, string>(state => state.profile.name)
+  const ActualName = useSelector<AppRootStateType, string>(state => state.profile.name)
 
   if (!isLoggedIn) {
     return <Navigate to={'/login'} />
@@ -31,14 +35,29 @@ export const ProfilePage = () => {
     <div className={style.AppContainer}>
       <div className={style.personalInformationBlock}>
         <div className={s.blockDescription}>
-          <h1 className={s.Title}>Personal Information</h1>
+          <Title title={'Personal Information'} />
+
+          <div className={s.ProfileAvatar}>
+            <button>+</button>
+          </div>
         </div>
-        <div className={s.ProfileAvatar}>
-          <button>+</button>
-        </div>
-        <EditableSpan ChangeName={ChangeName} name={Actualname} />
+        <EditableSpan ChangeName={ChangeName} name={ActualName} />
         <div style={{ color: 'gray' }}>{ActualEmail}</div>
-        <button onClick={LogoutButtonHandler}> logout</button>
+        <Button
+          style={{
+            fontFamily: 'Montserrat',
+            fontWeight: '500',
+            borderRadius: '20px',
+            fontSize: '16px',
+            textTransform: 'capitalize',
+          }}
+          type={'submit'}
+          variant={'contained'}
+          color={'primary'}
+          onClick={LogoutButtonHandler}
+        >
+          Log out
+        </Button>
       </div>
     </div>
   )

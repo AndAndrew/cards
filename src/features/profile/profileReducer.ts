@@ -9,7 +9,7 @@ const initialState = {
 
 export type ProfileActionsType =
   | ReturnType<typeof profileAC>
-  | ReturnType<typeof ShowProfileEmailAC>
+  | ReturnType<typeof showProfileEmailAC>
 
 export const profileReducer = (
   state: typeof initialState = initialState,
@@ -28,7 +28,7 @@ export const profileReducer = (
 export const profileAC = (data: ChangeProfileModelType) => {
   return { type: 'PROFILE/CHANGE-NAME', data } as const
 }
-export const ShowProfileEmailAC = (email: string) => {
+export const showProfileEmailAC = (email: string) => {
   return { type: 'PROFILE/SHOW-EMAIL', email } as const
 }
 

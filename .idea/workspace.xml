@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a204b2c-c853-49d0-9bd5-94ab5b5b6613" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/ButtonAppBar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/auth/login/LoginPage.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" />
+    <list default="true" id="6a204b2c-c853-49d0-9bd5-94ab5b5b6613" name="Changes" comment="feat: added merged successfull">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/cards-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/cards-api.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ButtonAppBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/ButtonAppBar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/appReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/appReducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/components/header/Header.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/components/header/Header.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/styles/common.container.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/styles/common.container.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/auth/CheckEmalPage/CheckEmailPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/CheckEmalPage/CheckEmailPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/auth/authReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/authReducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/login/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/login/LoginPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/test/testReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/test/testReducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/profile/Profile.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/profile/Profile.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/profile/ProfilePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/profile/ProfilePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/profile/profileReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/profile/profileReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +35,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "js.linters.configure.manually.selectedeslint": "true",
+    "last_opened_file_path": "E:/it-kamasutra/toDo/src/components/EditableSpan/EditableSpan.tsx",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -68,6 +63,14 @@
     </recent_temporary>
   </component>
   <component name="TaskManager">
+    <task id="LOCAL-00001" summary="feat: added merged successfull">
+      <created>1671099123525</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1671099123526</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -80,6 +83,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: added merged successfull" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: added merged successfull" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
