@@ -6,13 +6,17 @@ import { Navigate } from 'react-router-dom'
 
 import { RecoveryPasswordType } from '../../../api/cards-api'
 import { AppRootStateType } from '../../../app/store'
+import { Title } from '../../../common/components/title/Title'
 import { useAppDispatch } from '../../../common/hooks/react-redux-hooks'
 import { passwordRecoveryTC } from '../authReducer'
+import { CheckEmailPage } from '../CheckEmalPage/CheckEmailPage'
 
 import style from './../../../common/styles/common.container.module.css'
 
 export const PassRecoveryPage = () => {
   const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
+  const isMessageSent = useSelector<AppRootStateType, boolean>(state => state.auth.isMessageSent)
+
   const [emailTitle, setEmailTitle] = useState('')
   const dispatch = useAppDispatch()
 
@@ -20,7 +24,7 @@ export const PassRecoveryPage = () => {
     return <Navigate to={'/profile'} />
   }
 
-  const SendInstriction = () => {
+  const SendInstruction = () => {
     const recoveryData: RecoveryPasswordType = {
       email: emailTitle,
       from: 'test-front-admin <ai73a@yandex.by>',
@@ -38,15 +42,19 @@ link</a>
     setEmailTitle(e.currentTarget.value)
   }
 
+  if (isMessageSent) {
+    return <CheckEmailPage email={emailTitle} />
+  }
+
   return (
     <div className={style.AppContainer}>
       <div className={style.personalInformationBlock}>
-        Forgot your pass?
+        <Title title={'Forgot your pass?'} />
         <TextField value={emailTitle} onChange={EmailInputChanging} label="Email" margin="normal" />
         <span style={{ color: 'grey' }}>
           Enter your email address and we will send you further instruction
         </span>
-        <Button onClick={SendInstriction} type={'submit'} variant={'contained'} color={'primary'}>
+        <Button onClick={SendInstruction} type={'submit'} variant={'contained'} color={'primary'}>
           send instruction
         </Button>
         <div style={{ color: 'grey' }}>Did you remember your password?</div>
@@ -54,14 +62,6 @@ link</a>
           <a href={'/login'}>Try Logging In</a>
         </div>
       </div>
-    </div>
-  )
-}
-
-const CheckMailPage = () => {
-  return (
-    <div className={style.AppContainer}>
-      <div className={style.personalInformationBlock}></div>
     </div>
   )
 }

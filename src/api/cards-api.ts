@@ -1,15 +1,13 @@
 import axios from 'axios'
 
 export const instance = axios.create({
-  baseURL:
-    'https://neko-back.herokuapp.com/2.0/' /* process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/',*/,
-  // baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:7542/2.0/' : ,
+  baseURL: 'https://neko-back.herokuapp.com/2.0/',
   withCredentials: true,
 })
 
 export const testApi = {
   testPing(data: PingDataType) {
-    return instance.post<PingResponceType>('/ping', data)
+    return instance.post<PingResponseType>('/ping', data)
   },
 }
 export const cardsApi = {
@@ -28,6 +26,25 @@ export const cardsApi = {
   createNewPassword(data: CreateNewPasswordType) {
     return instance.post<{ info: string; error: string }>('/auth/set-new-password', data)
   },
+  me(data = {}) {
+    return instance.post<{ data: meResponseType }>('/auth/me', data)
+  },
+}
+
+type meResponseType = {
+  _id: string
+  email: string
+  name: string
+  avatar?: string
+  publicCardPacksCount: number // количество колод
+
+  created: Date
+  updated: Date
+  isAdmin: boolean
+  verified: boolean // подтвердил ли почту
+  rememberMe: boolean
+
+  error?: string
 }
 
 type LoginResponseType = {
@@ -63,7 +80,7 @@ export type LoginDataType = {
 export type PingDataType = {
   frontTime: number
 }
-type PingResponceType = {
+type PingResponseType = {
   ping: number
   backTime: number
   frontTime: number

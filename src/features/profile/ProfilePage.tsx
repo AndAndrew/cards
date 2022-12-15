@@ -30,7 +30,7 @@ export const ProfilePage = () => {
   return (
     <div className={style.AppContainer}>
       <div className={style.personalInformationBlock}>
-        <div className={s.blockDiscription}>
+        <div className={s.blockDescription}>
           <h1 className={s.Title}>Personal Information</h1>
         </div>
         <div className={s.ProfileAvatar}>

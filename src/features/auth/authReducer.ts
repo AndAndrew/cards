@@ -10,14 +10,23 @@ import { profileAC, ShowProfileEmailAC } from '../profile/profileReducer'
 
 const InitialState = {
   isLoggedIn: false as boolean,
+  isMessageSent: false as boolean,
+  isNewPasswordCorrect: false as boolean,
 }
 
-export type AuthActionsType = ReturnType<typeof loginAC>
+export type AuthActionsType =
+  | ReturnType<typeof loginAC>
+  | ReturnType<typeof isMessagesentAC>
+  | ReturnType<typeof isNewPasswordCorrectAC>
 
 export const authReducer = (state: typeof InitialState = InitialState, action: AuthActionsType) => {
   switch (action.type) {
     case 'LOGIN':
       return { ...state, isLoggedIn: action.value }
+    case 'IS-MESSAGE-SENT':
+      return { ...state, isMessageSent: action.value }
+    case 'IS-NEW-PASSWORD-CORRECT':
+      return { ...state, isNewPasswordCorrect: action.value }
     default:
       return state
   }
@@ -26,6 +35,18 @@ export const authReducer = (state: typeof InitialState = InitialState, action: A
 export const loginAC = (value: boolean) => {
   return {
     type: 'LOGIN',
+    value,
+  } as const
+}
+export const isMessagesentAC = (value: boolean) => {
+  return {
+    type: 'IS-MESSAGE-SENT',
+    value,
+  } as const
+}
+export const isNewPasswordCorrectAC = (value: boolean) => {
+  return {
+    type: 'IS-NEW-PASSWORD-CORRECT',
     value,
   } as const
 }
@@ -51,10 +72,16 @@ export const logOutTC = (): AppThunk => dispatch => {
 export const passwordRecoveryTC =
   (data: RecoveryPasswordType): AppThunk =>
   dispatch => {
-    cardsApi.recoveryPassword(data).then(res => console.log(res))
+    cardsApi.recoveryPassword(data).then(res => {
+      dispatch(isMessagesentAC(true))
+      console.log(res)
+    })
   }
 export const NewPasswordTC =
   (data: CreateNewPasswordType): AppThunk =>
   dispatch => {
-    cardsApi.createNewPassword(data).then(res => res.data)
+    cardsApi.createNewPassword(data).then(res => {
+      dispatch(isNewPasswordCorrectAC(true))
+      res.data
+    })
   }

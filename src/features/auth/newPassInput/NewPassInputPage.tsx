@@ -1,11 +1,14 @@
 import React, { ChangeEvent, useState } from 'react'
 
 import { Button, TextField } from '@mui/material'
-import { useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { CreateNewPasswordType } from '../../../api/cards-api'
+import { AppRootStateType } from '../../../app/store'
 import { useAppDispatch } from '../../../common/hooks/react-redux-hooks'
 import { NewPasswordTC } from '../authReducer'
+import { CheckEmailPage } from '../CheckEmalPage/CheckEmailPage'
 
 import style from './../../../common/styles/common.container.module.css'
 
@@ -13,6 +16,11 @@ export const NewPassInputPage = () => {
   const dispatch = useAppDispatch()
   const [newPass, SetNewPass] = useState('')
   const { token } = useParams()
+  const navigate = useNavigate()
+  const isNewPasswordCorrect = useSelector<AppRootStateType, boolean>(
+    state => state.auth.isNewPasswordCorrect
+  )
+
   const inputChanging = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     SetNewPass(e.currentTarget.value)
   }
@@ -25,6 +33,10 @@ export const NewPassInputPage = () => {
 
   const SubmitNewPassword = () => {
     dispatch(NewPasswordTC(NewPass))
+  }
+
+  if (isNewPasswordCorrect) {
+    navigate('/login')
   }
 
   return (

@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import './App.css'
 import { LinearProgress } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 
+import { cardsApi } from '../api/cards-api'
 import { Header } from '../common/components/header/Header'
+import { useAppDispatch } from '../common/hooks/react-redux-hooks'
+import { loginAC } from '../features/auth/authReducer'
 import { LoginPage } from '../features/auth/login/LoginPage'
 import { NewPassInputPage } from '../features/auth/newPassInput/NewPassInputPage'
 import { PassRecoveryPage } from '../features/auth/passRecovery/PassRecoveryPage'
@@ -18,6 +21,14 @@ import { AppRootStateType } from './store'
 
 function App() {
   const Status = useSelector<AppRootStateType, appStatusType>(state => state.appStatus.appStatus)
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    cardsApi.me({}).then(res => {
+      console.log(res.data)
+      dispatch(loginAC(true))
+    })
+  }, [])
 
   return (
     <div className="App">

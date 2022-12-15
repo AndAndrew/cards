@@ -4,13 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe08af64-9699-4d7a-b185-a9d021c18b41" name="Changes" comment="feat: added /.idea in gitignore">
+    <list default="true" id="6a204b2c-c853-49d0-9bd5-94ab5b5b6613" name="Changes" comment="feat: added /.idea in gitignore">
+      <change afterPath="$PROJECT_DIR$/src/features/auth/CheckEmalPage/CheckEmailPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/components/title/Title.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/components/title/Title.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/components/title/Title.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/styles/common.container.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/styles/common.container.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/login/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/login/LoginPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/cards-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/cards-api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/components/header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/components/header/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/auth/authReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/authReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/auth/newPassInput/NewPassInputPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/newPassInput/NewPassInputPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/auth/passRecovery/PassRecoveryPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/passRecovery/PassRecoveryPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/auth/register/RegisterPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/register/RegisterPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/profile/Profile.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/profile/Profile.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/profile/ProfilePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/profile/ProfilePage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +26,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript File" />
-        <option value="TypeScript JSX File" />
         <option value="CSS File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -51,7 +56,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/it-kamasutra/portfolio/src/myProjects/MyProjects.js",
+    "last_opened_file_path": "E:/it-kamasutra/toDo/src/features/Login/Login.tsx",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
@@ -93,7 +98,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="fe08af64-9699-4d7a-b185-a9d021c18b41" name="Changes" comment="" />
+      <changelist id="6a204b2c-c853-49d0-9bd5-94ab5b5b6613" name="Changes" comment="feat: added /.idea in gitignore" />
       <created>1670772554868</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -104,6 +109,7 @@
       <workItem from="1670828412505" duration="354000" />
       <workItem from="1670829367783" duration="11373000" />
       <workItem from="1671007377701" duration="12407000" />
+      <workItem from="1671083946821" duration="6376000" />
     </task>
     <task id="LOCAL-00001" summary="feat: added /.idea in gitignore">
       <created>1670772814587</created>
