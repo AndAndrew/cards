@@ -179,7 +179,7 @@ export const LoginPage = () => {
             {error && <div className={styles.error}>{error}</div>}
             <div>
               <div>Already have an account?</div>
-              <a className={styles.signUp} href={'RegisterPage#/register'}>
+              <a className={styles.signUp} href={'/register'}>
                 Sign Up
               </a>
             </div>

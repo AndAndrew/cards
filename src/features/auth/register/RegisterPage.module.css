@@ -1,9 +1,26 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  width: 90%;
+  min-height: 520px;
+
+  font-family: 'Montserrat';
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.haveAcc {
+  padding-bottom: 10px;
+}
+
 .passwordInputContainer {
   position: relative;
-  margin-bottom: 20px;
 }
 .EyeIconPosition {
   position: absolute !important;
   top: 9px;
-  left: 265px;
+  left: 360px;
 }

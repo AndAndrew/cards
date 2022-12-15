@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { VisibilityOff } from '@material-ui/icons'
 import Visibility from '@material-ui/icons/Visibility'
-import { Button, FormControl, FormGroup, IconButton, TextField } from '@mui/material'
+import { Button, FormControl, FormGroup, FormLabel, IconButton, TextField } from '@mui/material'
 import { useFormik } from 'formik'
 import { useSelector } from 'react-redux'
 import { Navigate, NavLink } from 'react-router-dom'
@@ -12,7 +12,7 @@ import { useAppDispatch } from '../../../common/hooks/react-redux-hooks'
 import style from '../../../common/styles/common.container.module.css'
 import { registerTC } from '../authReducer'
 
-import s from './RegisterPage.module.css'
+import styles from './RegisterPage.module.css'
 
 export const RegisterPage = () => {
   const registered = useSelector<AppRootStateType, boolean>(state => state.auth.registered)
@@ -75,12 +75,30 @@ export const RegisterPage = () => {
   return (
     <div className={style.AppContainer}>
       <div className={style.personalInformationBlock}>
-        <FormControl style={{ minWidth: '250px' }}>
-          <h2>Sign up</h2>
-          <form onSubmit={formik.handleSubmit}>
+        <form onSubmit={formik.handleSubmit}>
+          <FormControl className={styles.form}>
+            <FormLabel
+              style={{
+                fontFamily: 'Montserrat',
+                fontWeight: '600',
+                fontSize: '26px',
+                color: 'black',
+              }}
+            >
+              Sign up
+            </FormLabel>
             <FormGroup>
               <TextField
-                sx={{ width: '100%', marginBottom: '20px' }}
+                sx={{
+                  '& .MuiInputLabel-root': { fontFamily: 'Montserrat', fontWeight: '400' },
+                  '& .MuiInputLabel-root.Mui-focused': {
+                    fontFamily: 'Montserrat',
+                    fontWeight: '400',
+                  },
+                  '& .MuiInputBase-root': {
+                    '& input': { fontFamily: 'Montserrat', fontWeight: '500' },
+                  },
+                }}
                 error={formik.touched.email && formik.errors.email !== undefined}
                 {...formik.getFieldProps('email')}
                 id="email"
@@ -88,9 +106,19 @@ export const RegisterPage = () => {
                 helperText={formik.touched.email ? formik.errors.email : ''}
                 variant="standard"
               />
-              <div className={s.passwordInputContainer}>
+              <div className={styles.passwordInputContainer}>
                 <TextField
-                  sx={{ width: '100%' }}
+                  sx={{
+                    '& .MuiInputLabel-root': { fontFamily: 'Montserrat', fontWeight: '400' },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      fontFamily: 'Montserrat',
+                      fontWeight: '400',
+                    },
+                    '& .MuiInputBase-root': {
+                      '& input': { fontFamily: 'Montserrat', fontWeight: '500' },
+                    },
+                    width: '100%',
+                  }}
                   error={formik.touched.password && formik.errors.password !== undefined}
                   {...formik.getFieldProps('password')}
                   type={showPasswordInputOne ? 'text' : 'password'}
@@ -100,7 +128,7 @@ export const RegisterPage = () => {
                   variant="standard"
                 />
                 <IconButton
-                  className={s.EyeIconPosition}
+                  className={styles.EyeIconPosition}
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPasswordInputOne}
                   onMouseDown={() => {}}
@@ -109,9 +137,19 @@ export const RegisterPage = () => {
                   {showPasswordInputOne ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </div>
-              <div className={s.passwordInputContainer}>
+              <div className={styles.passwordInputContainer}>
                 <TextField
-                  sx={{ width: '100%' }}
+                  sx={{
+                    '& .MuiInputLabel-root': { fontFamily: 'Montserrat', fontWeight: '400' },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      fontFamily: 'Montserrat',
+                      fontWeight: '400',
+                    },
+                    '& .MuiInputBase-root': {
+                      '& input': { fontFamily: 'Montserrat', fontWeight: '500' },
+                    },
+                    width: '100%',
+                  }}
                   error={
                     formik.touched.confirm_password && formik.errors.confirm_password !== undefined
                   }
@@ -123,7 +161,7 @@ export const RegisterPage = () => {
                   variant="standard"
                 />
                 <IconButton
-                  className={s.EyeIconPosition}
+                  className={styles.EyeIconPosition}
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPasswordInputTwo}
                   onMouseDown={() => {}}
@@ -133,7 +171,14 @@ export const RegisterPage = () => {
                 </IconButton>
               </div>
               <Button
-                sx={{ borderRadius: '25px', width: '300px' }}
+                style={{
+                  fontFamily: 'Montserrat',
+                  fontWeight: '500',
+                  borderRadius: '20px',
+                  fontSize: '16px',
+                  textTransform: 'capitalize',
+                  margin: '50px 0 5px 0',
+                }}
                 type={'submit'}
                 variant={'contained'}
                 color={'primary'}
@@ -141,12 +186,12 @@ export const RegisterPage = () => {
                 Sign up
               </Button>
             </FormGroup>
-          </form>
-        </FormControl>
-        Already have an account?
-        <NavLink style={{ color: '#366EFF' }} to={'/login'}>
-          Sign in
-        </NavLink>
+            <div>
+              <div className={styles.haveAcc}>Already have an account?</div>
+              <NavLink to={'/login'}>Sign in</NavLink>
+            </div>
+          </FormControl>
+        </form>
       </div>
     </div>
   )
