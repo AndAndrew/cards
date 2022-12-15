@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="936e968b-cfc4-4b1f-b66f-8228bad54687" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/ButtonAppBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/ButtonAppBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/login/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/login/LoginPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/styles/common.container.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/styles/common.container.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/auth/login/LoginPage.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/login/LoginPage.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/auth/register/RegisterPage.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/register/RegisterPage.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,19 +21,19 @@
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "js.linters.configure.manually.selectedeslint": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "prettierjs.PrettierConfiguration.Package": "/Users/andreykrivokhizhin/Develop/ChangingShoes/IT-incubator/cards/node_modules/prettier",
-    "settings.editor.selected.configurable": "watcher.settings",
-    "ts.external.directory.path": "/Users/andreykrivokhizhin/Develop/ChangingShoes/IT-incubator/cards/node_modules/typescript/lib"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;js.linters.configure.manually.selectedeslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/andreykrivokhizhin/Develop/ChangingShoes/IT-incubator/cards/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;watcher.settings&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/andreykrivokhizhin/Develop/ChangingShoes/IT-incubator/cards/node_modules/typescript/lib&quot;
   }
-}]]></component>
+}</component>
   <component name="TaskManager">
     <servers />
   </component>

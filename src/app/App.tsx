@@ -5,6 +5,7 @@ import { LinearProgress } from '@mui/material'
 import { Provider } from 'react-redux'
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 
+import { useAppSelector } from '../common/hooks/react-redux-hooks'
 import { LoginPage } from '../features/auth/login/LoginPage'
 import { NewPassInputPage } from '../features/auth/newPassInput/NewPassInputPage'
 import { PassRecoveryPage } from '../features/auth/passRecovery/PassRecoveryPage'
@@ -14,10 +15,10 @@ import { TestPage } from '../features/test/TestPage'
 
 import { ButtonAppBar } from './ButtonAppBar'
 import { store } from './store'
-import { useAppSelector } from '../common/hooks/react-redux-hooks'
 
 function App() {
   const Status = useAppSelector(state => state.appStatus.appStatus)
+
   return (
     <HashRouter>
       <div className="App">

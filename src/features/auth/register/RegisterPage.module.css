@@ -1,0 +1,9 @@
+.passwordInputContainer {
+  position: relative;
+  margin-bottom: 20px;
+}
+.EyeIconPosition {
+  position: absolute !important;
+  top: 9px;
+  left: 265px;
+}

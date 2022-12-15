@@ -1,7 +1,6 @@
 import axios from 'axios'
 
 export const instance = axios.create({
-  /*baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/',*/
   baseURL:
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:7542/2.0/'
@@ -30,8 +29,26 @@ export const cardsApi = {
   createNewPassword(data: CreateNewPasswordType) {
     return instance.post<{ info: string; error: string }>('/auth/set-new-password', data)
   },
+  register(data: RegisterDataType) {
+    return instance.post<{ updatedUser: RegisterResponseType; error?: string }>(
+      '/auth/register',
+      data
+    )
+  },
 }
 
+type RegisterResponseType = {
+  created: string
+  email: string
+  isAdmin: boolean
+  name: string
+  publicCardPacksCount: number
+  rememberMe: boolean
+  updated: string
+  verified: boolean
+  _v: number
+  _id: string
+}
 type LoginResponseType = {
   avatar: string
   created: string
@@ -61,6 +78,10 @@ export type LoginDataType = {
   email: string
   password: string
   rememberMe: boolean
+}
+export type RegisterDataType = {
+  email: string
+  password: string
 }
 export type PingDataType = {
   frontTime: number
