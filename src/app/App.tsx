@@ -6,7 +6,11 @@ import { CircularProgress, LinearProgress } from '@mui/material'
 import { Provider } from 'react-redux'
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 
+<<<<<<< Updated upstream
 import { useAppDispatch, useAppSelector } from '../common/hooks/react-redux-hooks'
+=======
+import { useAppSelector } from '../common/hooks/react-redux-hooks'
+>>>>>>> Stashed changes
 import { LoginPage } from '../features/auth/login/LoginPage'
 import { NewPassInputPage } from '../features/auth/newPassInput/NewPassInputPage'
 import { PassRecoveryPage } from '../features/auth/passRecovery/PassRecoveryPage'
@@ -20,6 +24,7 @@ import { store } from './store'
 const App = () => {
   console.log('app')
   const Status = useAppSelector(state => state.appStatus.appStatus)
+<<<<<<< Updated upstream
   const dispatch = useAppDispatch()
 
   const initialized = useAppSelector<boolean>(state => state.appStatus.isInitialized)
@@ -31,6 +36,8 @@ const App = () => {
   if (!initialized) {
     return <CircularProgress color="inherit" size={100} />
   }
+=======
+>>>>>>> Stashed changes
 
   return (
     <HashRouter>
@@ -40,6 +47,7 @@ const App = () => {
           {Status === 'loading' && <LinearProgress color="inherit" />}
           <Routes>
             <Route path={'/'} element={<ProfilePage />} />
+            <Route path={'/test'} element={<TestPage />} />
             <Route path={'/login'} element={<LoginPage />} />
             <Route path={'/register'} element={<RegisterPage />} />
             <Route path={'/passRecovery'} element={<PassRecoveryPage />} />

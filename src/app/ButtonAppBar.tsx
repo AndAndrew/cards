@@ -1,8 +1,13 @@
 import React from 'react'
 
+<<<<<<< Updated upstream
 import { AppBar, Box, Button, IconButton, Toolbar } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
+=======
+import { AppBar, Box, Button, IconButton, Toolbar, Typography } from '@mui/material'
+import { Navigate, useNavigate } from 'react-router-dom'
+>>>>>>> Stashed changes
 
 import { useAppDispatch, useAppSelector } from '../common/hooks/react-redux-hooks'
 import { logOutTC } from '../features/auth/authReducer'
@@ -15,12 +20,17 @@ export const ButtonAppBar = () => {
 
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
   const loginHandler = () => {
-    return <Navigate to={'/login'} />
+    navigate('/login')
   }
   const logoutHandler = () => {
     dispatch(logOutTC())
+  }
+
+  const TestHahdler = () => {
+    navigate('/test')
   }
 
   return (
@@ -30,6 +40,9 @@ export const ButtonAppBar = () => {
           <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
             icon
           </IconButton>
+          <Button color="inherit" onClick={TestHahdler}>
+            Test
+          </Button>
           {isLoggedIn ? (
             <Button color="inherit" onClick={logoutHandler}>
               Log Out
