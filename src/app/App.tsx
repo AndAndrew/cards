@@ -14,7 +14,7 @@ import { TestPage } from '../features/test/TestPage'
 
 import { ButtonAppBar } from './ButtonAppBar'
 import { store } from './store'
-import {useAppSelector} from "../common/hooks/react-redux-hooks";
+import { useAppSelector } from '../common/hooks/react-redux-hooks'
 
 function App() {
   const Status = useAppSelector(state => state.appStatus.appStatus)
