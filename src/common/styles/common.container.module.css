@@ -1,24 +1,22 @@
 .AppContainer {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
 
-    width: 80%;
-    height: 100vh;
-    margin: 0 auto;
+  width: 80%;
+  height: 100vh;
+  margin: 0 auto;
 }
 
 .personalInformationBlock {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: space-evenly;
-    width: 450px;
-    min-height: 520px;
-    border: 2px solid #7c8385;
-}
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  width: 450px;
+  min-height: 520px;
 
+  border: 2px solid #7c8385;
+}
 .content {
     display: flex;
     flex-direction: column;
@@ -28,14 +26,12 @@
 
     height: 300px;
 }
-
 .titleContainer {
-    margin-top: 30px;
+  margin-top: 30px;
 }
-
 .titleStyle {
-    font-family: Arial;
-    font-size: 30px;
+  font-family: Arial;
+  font-size: 30px;
 }
 
 .BarImg {

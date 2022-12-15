@@ -1,19 +1,21 @@
 import React from 'react'
 
-<<<<<<< Updated upstream
+
 import { AppBar, Box, Button, IconButton, Toolbar } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
-=======
+
 import { AppBar, Box, Button, IconButton, Toolbar, Typography } from '@mui/material'
 import { Navigate, useNavigate } from 'react-router-dom'
->>>>>>> Stashed changes
+
+import { AppBar, Box, Button, IconButton, Toolbar } from '@mui/material'
 
 import { useAppDispatch, useAppSelector } from '../common/hooks/react-redux-hooks'
 import { logOutTC } from '../features/auth/authReducer'
 
 import style from './../common/styles/common.container.module.css'
 import { AppRootStateType } from './store'
+import { logOutTC } from '../features/auth/authReducer'
 
 export const ButtonAppBar = () => {
   const ActualName = useSelector<AppRootStateType, string>(state => state.profile.name)
@@ -36,7 +38,7 @@ export const ButtonAppBar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar style={{ justifyContent: 'space-between' }}>
           <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
             icon
           </IconButton>
@@ -44,6 +46,7 @@ export const ButtonAppBar = () => {
             Test
           </Button>
           {isLoggedIn ? (
+          {isLoggedIn && (
             <Button color="inherit" onClick={logoutHandler}>
               Log Out
             </Button>

@@ -1,8 +1,11 @@
+import { Dispatch } from 'redux'
+
 import {
   cardsApi,
   CreateNewPasswordType,
   LoginDataType,
   RecoveryPasswordType,
+  RegisterDataType,
 } from '../../api/cards-api'
 import { setAppStatus } from '../../app/appReducer'
 import { AppThunk } from '../../app/store'
@@ -13,6 +16,7 @@ const InitialState = {
   error: null as string | null,
   isMessageSent: false as boolean,
   isNewPasswordCorrect: false as boolean,
+  registered: false as boolean,
 }
 
 export type AuthActionsType =
@@ -20,6 +24,7 @@ export type AuthActionsType =
   | ReturnType<typeof setError>
   | ReturnType<typeof isMessagesentAC>
   | ReturnType<typeof isNewPasswordCorrectAC>
+  | ReturnType<typeof setIsRegisteredAC>
 
 export const authReducer = (state: typeof InitialState = InitialState, action: AuthActionsType) => {
   switch (action.type) {
@@ -31,6 +36,8 @@ export const authReducer = (state: typeof InitialState = InitialState, action: A
       return { ...state, isNewPasswordCorrect: action.value }
     case 'LOGIN/SET-ERROR':
       return { ...state, error: action.message }
+    case 'REGISTERED/SET-IS-REGISTERED':
+      return { ...state, registered: action.registered }
     default:
       return state
   }
@@ -57,6 +64,12 @@ export const isNewPasswordCorrectAC = (value: boolean) => {
   return {
     type: 'IS-NEW-PASSWORD-CORRECT',
     value,
+  } as const
+}
+export const setIsRegisteredAC = (registered: boolean) => {
+  return {
+    type: 'REGISTERED/SET-IS-REGISTERED',
+    registered,
   } as const
 }
 export const LoginTC =
@@ -101,3 +114,15 @@ export const NewPasswordTC =
       res.data
     })
   }
+
+export const registerTC = (data: RegisterDataType) => (dispatch: Dispatch) => {
+  cardsApi
+    .register(data)
+    .then(res => {
+      dispatch(setIsRegisteredAC(true))
+    })
+    .catch(error => {
+      console.log(error.message)
+      dispatch(setError(error.message))
+    })
+}

@@ -6,25 +6,20 @@ import { CircularProgress, LinearProgress } from '@mui/material'
 import { Provider } from 'react-redux'
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 
-<<<<<<< Updated upstream
-import { useAppDispatch, useAppSelector } from '../common/hooks/react-redux-hooks'
-=======
-import { useAppSelector } from '../common/hooks/react-redux-hooks'
->>>>>>> Stashed changes
 import { LoginPage } from '../features/auth/login/LoginPage'
 import { NewPassInputPage } from '../features/auth/newPassInput/NewPassInputPage'
 import { PassRecoveryPage } from '../features/auth/passRecovery/PassRecoveryPage'
 import { RegisterPage } from '../features/auth/register/RegisterPage'
 import { ProfilePage } from '../features/profile/ProfilePage'
+import { TestPage } from '../features/test/TestPage'
 
 import { isInitializedTC } from './appReducer'
 import { ButtonAppBar } from './ButtonAppBar'
 import { store } from './store'
+import {useAppSelector} from "../common/hooks/react-redux-hooks";
 
-const App = () => {
-  console.log('app')
+function App() {
   const Status = useAppSelector(state => state.appStatus.appStatus)
-<<<<<<< Updated upstream
   const dispatch = useAppDispatch()
 
   const initialized = useAppSelector<boolean>(state => state.appStatus.isInitialized)
@@ -36,8 +31,7 @@ const App = () => {
   if (!initialized) {
     return <CircularProgress color="inherit" size={100} />
   }
-=======
->>>>>>> Stashed changes
+
 
   return (
     <HashRouter>
