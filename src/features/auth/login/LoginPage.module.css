@@ -22,6 +22,10 @@
   text-decoration: none;
 }
 
+.signUp {
+  font-weight: 500;
+}
+
 .haveAcc {
   padding-bottom: 10px;
 }

@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../common/hooks/react-redux-hooks'
+import { CheckEmailPage } from '../features/auth/CheckEmalPage/CheckEmailPage'
 import { LoginPage } from '../features/auth/login/LoginPage'
 import { NewPassInputPage } from '../features/auth/newPassInput/NewPassInputPage'
 import { PassRecoveryPage } from '../features/auth/passRecovery/PassRecoveryPage'
@@ -46,6 +47,7 @@ const App = () => {
             <Route path={'/register'} element={<RegisterPage />} />
             <Route path={'/passRecovery'} element={<PassRecoveryPage />} />
             <Route path={'/newPassInput/:token'} element={<NewPassInputPage />} />
+            {/*<Route path={'/checkEmail'} element={<CheckEmailPage email={''} />} />*/}
             <Route path={'/profile'} element={<ProfilePage />} />
             <Route path={'/404'} element={<h1>404: PAGE NOT FOUND</h1>} />
             <Route path={'*'} element={<Navigate to={'/404'} />} />

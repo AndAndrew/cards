@@ -8,9 +8,9 @@ import { CreateNewPasswordType } from '../../../api/cards-api'
 import { AppRootStateType } from '../../../app/store'
 import { useAppDispatch } from '../../../common/hooks/react-redux-hooks'
 import { NewPasswordTC } from '../authReducer'
-import { CheckEmailPage } from '../CheckEmalPage/CheckEmailPage'
 
 import style from './../../../common/styles/common.container.module.css'
+import styles from './NewPassInputPage.module.css'
 
 export const NewPassInputPage = () => {
   const dispatch = useAppDispatch()
@@ -42,14 +42,43 @@ export const NewPassInputPage = () => {
   return (
     <div className={style.AppContainer}>
       <div className={style.personalInformationBlock}>
-        Create new password
-        <TextField value={newPass} onChange={inputChanging} label="Password" margin="normal" />
-        <div style={{ color: 'grey' }}>
-          Create new password and we will send you further instructions to email
+        <div className={styles.form}>
+          <div className={styles.title}>Create new password</div>
+          <TextField
+            sx={{
+              '& .MuiInputLabel-root': { fontFamily: 'Montserrat', fontWeight: '400' },
+              '& .MuiInputLabel-root.Mui-focused': {
+                fontFamily: 'Montserrat',
+                fontWeight: '400',
+              },
+              '& .MuiInputBase-root': {
+                '& input': { fontFamily: 'Montserrat', fontWeight: '500' },
+              },
+            }}
+            value={newPass}
+            onChange={inputChanging}
+            label="Password"
+            variant={'standard'}
+          />
+          <span style={{ color: 'grey', textAlign: 'left' }}>
+            Create new password and we will send you further instructions to email
+          </span>
+          <Button
+            style={{
+              fontFamily: 'Montserrat',
+              fontWeight: '500',
+              borderRadius: '20px',
+              fontSize: '16px',
+              textTransform: 'capitalize',
+            }}
+            onClick={SubmitNewPassword}
+            type={'submit'}
+            variant={'contained'}
+            color={'primary'}
+          >
+            Create new password
+          </Button>
         </div>
-        <Button onClick={SubmitNewPassword} type={'submit'} variant={'contained'} color={'primary'}>
-          Create new password
-        </Button>
       </div>
     </div>
   )

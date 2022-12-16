@@ -85,7 +85,9 @@ link</a>
           </Button>
           <div>
             <div className={styles.rememberPass}>Did you remember your password?</div>
-            <a href={'/login#'}>Try Logging In</a>
+            <a className={styles.loginIn} href={'/login#'}>
+              Try Logging In
+            </a>
           </div>
         </div>
       </div>
