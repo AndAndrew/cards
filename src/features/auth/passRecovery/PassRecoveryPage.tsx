@@ -19,7 +19,7 @@ export const PassRecoveryPage = () => {
   const dispatch = useAppDispatch()
 
   if (isLoggedIn) {
-    return <Navigate to={'/profile'} />
+    return <Navigate to={'/cards/#/profile'} />
   }
 
   const SendInstruction = () => {
@@ -85,7 +85,7 @@ link</a>
           </Button>
           <div>
             <div className={styles.rememberPass}>Did you remember your password?</div>
-            <a className={styles.loginIn} href={'/login#'}>
+            <a className={styles.loginIn} href={'/cards/#/login'}>
               Try Logging In
             </a>
           </div>

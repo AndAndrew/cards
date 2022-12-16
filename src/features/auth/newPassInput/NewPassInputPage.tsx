@@ -36,7 +36,7 @@ export const NewPassInputPage = () => {
   }
 
   if (isNewPasswordCorrect) {
-    navigate('/login')
+    navigate('/cards/#/login')
   }
 
   return (

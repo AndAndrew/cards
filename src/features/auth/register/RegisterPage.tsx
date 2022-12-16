@@ -61,7 +61,7 @@ export const RegisterPage = () => {
   })
 
   if (registered) {
-    return <Navigate to={'/login'} />
+    return <Navigate to={'/cards/#/login'} />
   }
 
   const handleClickShowPasswordInputOne = () => {
@@ -188,7 +188,7 @@ export const RegisterPage = () => {
             </FormGroup>
             <div>
               <div className={styles.haveAcc}>Already have an account?</div>
-              <NavLink to={'/login#/login'}>Sign in</NavLink>
+              <NavLink to={'/login'}>Sign in</NavLink>
             </div>
           </FormControl>
         </form>

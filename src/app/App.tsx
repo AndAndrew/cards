@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../common/hooks/react-redux-hooks'
-import { CheckEmailPage } from '../features/auth/CheckEmalPage/CheckEmailPage'
+import style from '../common/styles/common.container.module.css'
 import { LoginPage } from '../features/auth/login/LoginPage'
 import { NewPassInputPage } from '../features/auth/newPassInput/NewPassInputPage'
 import { PassRecoveryPage } from '../features/auth/passRecovery/PassRecoveryPage'
@@ -31,7 +31,11 @@ const App = () => {
   }, [])
 
   if (!initialized) {
-    return <CircularProgress color="inherit" size={100} />
+    return (
+      <div className={style.AppContainer}>
+        <CircularProgress color="inherit" size={100} />
+      </div>
+    )
   }
 
   return (
