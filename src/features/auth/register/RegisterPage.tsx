@@ -61,7 +61,7 @@ export const RegisterPage = () => {
   })
 
   if (registered) {
-    return <Navigate to={'/cards/#/login'} />
+    return <Navigate to={'/login'} />
   }
 
   const handleClickShowPasswordInputOne = () => {
