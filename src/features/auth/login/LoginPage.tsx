@@ -58,7 +58,7 @@ export const LoginPage = () => {
   })
 
   if (isLoggedIn) {
-    return <Navigate to={'/profile'} />
+    return <Navigate to={'/cardsPage'} />
   }
 
   return (

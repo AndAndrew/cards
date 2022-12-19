@@ -1,11 +1,10 @@
 import axios from 'axios'
 
 export const instance = axios.create({
-  baseURL:
-    // 'https://neko-back.herokuapp.com/2.0/',
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:7542/2.0/'
-      : 'https://neko-back.herokuapp.com/2.0/',
+  baseURL: 'https://neko-back.herokuapp.com/2.0/',
+  // process.env.NODE_ENV === 'development'
+  //   ? 'http://localhost:7542/2.0/'
+  //   : 'https://neko-back.herokuapp.com/2.0/',
 
   withCredentials: true,
 })
@@ -16,6 +15,12 @@ export const testApi = {
   },
 }
 export const cardsApi = {
+  getPacks(packId?: string) {
+    return packId ? instance.get(`/cards/pack?user_id=${packId}`) : instance.get('/cards/pack')
+  },
+  getCardPack(cardsPackId: string) {
+    return instance.get<CardsPackType>(`/cards/card?cardsPack_id=${cardsPackId}`)
+  },
   changeProfileData(data: ProfileDataType) {
     return instance.put<{ updatedUser: ProfileDataType; error?: string }>('/auth/me', data)
   },
@@ -100,4 +105,25 @@ type PingResponseType = {
 export type CreateNewPasswordType = {
   password: string
   resetPasswordToken: string | undefined
+}
+type CardsPackType = {
+  cards: Array<CardType>
+  cardsTotalCount: number
+  maxGrade: number
+  minGrade: number
+  page: number
+  pageCount: number
+  packUserId: string
+}
+
+export type CardType = {
+  answer: string
+  question: string
+  cardsPack_id: string
+  grade: number
+  shots: number
+  user_id: string
+  created: string
+  updated: string
+  _id: string
 }

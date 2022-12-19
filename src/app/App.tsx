@@ -12,6 +12,7 @@ import { LoginPage } from '../features/auth/login/LoginPage'
 import { NewPassInputPage } from '../features/auth/newPassInput/NewPassInputPage'
 import { PassRecoveryPage } from '../features/auth/passRecovery/PassRecoveryPage'
 import { RegisterPage } from '../features/auth/register/RegisterPage'
+import { CardsPage } from '../features/cardsPage/CardsPage'
 import { ProfilePage } from '../features/profile/ProfilePage'
 import { TestPage } from '../features/test/TestPage'
 
@@ -20,7 +21,6 @@ import { ButtonAppBar } from './ButtonAppBar'
 import { store } from './store'
 
 const App = () => {
-  console.log('app')
   const Status = useAppSelector(state => state.appStatus.appStatus)
   const initialized = useAppSelector(state => state.appStatus.isInitialized)
 
@@ -53,6 +53,7 @@ const App = () => {
             <Route path={'/newPassInput/:token'} element={<NewPassInputPage />} />
             {/*<Route path={'/checkEmail'} element={<CheckEmailPage email={''} />} />*/}
             <Route path={'/profile'} element={<ProfilePage />} />
+            <Route path={'/cardsPage'} element={<CardsPage />} />
             <Route path={'/404'} element={<h1>404: PAGE NOT FOUND</h1>} />
             <Route path={'*'} element={<Navigate to={'/404'} />} />
           </Routes>
