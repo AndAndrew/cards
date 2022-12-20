@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 
 import DeleteOutline from '@mui/icons-material/DeleteOutline'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined'
+import { InputLabel, NativeSelect } from '@mui/material'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import Paper from '@mui/material/Paper'
@@ -12,21 +13,26 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
+import ReactPaginate from 'react-paginate'
 
-import { useAppDispatch, useAppSelector } from '../../common/hooks/react-redux-hooks'
-import { CardsPage } from '../cardsPage/CardsPage'
+import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
+import { CardsPage } from '../../cardsPage/CardsPage'
+import { getCardPacks } from '../cardPacksReducer'
 
-import { getCardPacks } from './cardPacksReducer'
+import style from './CardPacksPage.module.css'
 
 export const CardPacksPage = () => {
   const [packId, setPackId] = useState('')
+  const [pageNumber, setPageNumber] = useState(1)
+  const [pageCount, setPageCount] = useState(10)
 
   const dispatch = useAppDispatch()
   const packs = useAppSelector(state => state.packs.cardPacks)
+  const cardPacksTotalCount = useAppSelector(state => state.packs.cardPacksTotalCount)
 
   useEffect(() => {
-    dispatch(getCardPacks(undefined, 1, 15))
-  }, [])
+    dispatch(getCardPacks(undefined, pageNumber, pageCount))
+  }, [pageNumber, pageCount])
 
   const onNameButtonClick = (id: string) => {
     setPackId(id)
@@ -43,6 +49,14 @@ export const CardPacksPage = () => {
 
   if (packId !== '') {
     return <CardsPage packId={packId} />
+  }
+
+  const handlePageClick = (data: { selected: number }) => {
+    setPageNumber(data.selected + 1)
+  }
+
+  const handlePageCountChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setPageCount(+e.target.value)
   }
 
   return (
@@ -86,6 +100,28 @@ export const CardPacksPage = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <div className={style.PaginationContainer}>
+        <ReactPaginate
+          pageCount={Math.ceil(cardPacksTotalCount / pageCount)}
+          nextLabel={'>'}
+          breakLabel={'...'}
+          previousLabel={'<'}
+          containerClassName={style.paginationBttns}
+          disabledClassName={style.paginationDisabled}
+          activeClassName={style.paginationActive}
+          onPageChange={handlePageClick}
+        />
+        <div className={style.SelectContainer}>
+          Show
+          <NativeSelect onChange={handlePageCountChange} sx={{ margin: '5px' }} defaultValue={10}>
+            <option value={10}>10</option>
+            <option value={15}>15</option>
+            <option value={50}>50</option>
+            <option value={100}>100</option>
+          </NativeSelect>
+          Cards per page
+        </div>
+      </div>
     </div>
   )
 }
