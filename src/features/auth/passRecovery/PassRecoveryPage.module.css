@@ -1,23 +1,23 @@
 .form {
-    width: 90%;
-    min-height: 520px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    flex-direction: column;
+  width: 90%;
+  min-height: 520px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  flex-direction: column;
 }
 
 .title {
-    font-family: 'Montserrat';
-    font-weight: 600;
-    font-size: 26px;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-size: 26px;
 }
 
 .rememberPass {
-    padding-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 .loginIn {
-    font-weight: 500;
+  font-weight: 500;
 }

@@ -10,17 +10,19 @@ import {
   TableRow,
 } from '@mui/material'
 
-import { CardType } from '../../api/cards-api'
 import { useAppDispatch, useAppSelector } from '../../common/hooks/react-redux-hooks'
 
 import { getCards } from './cardsReducer'
 
-export const CardsPage = () => {
+type PropsType = {
+  packId: string
+}
+export const CardsPage = (props: PropsType) => {
   const dispatch = useAppDispatch()
-  const cards = useAppSelector(state => state.cardsPack.cards)
+  const cards = useAppSelector(state => state.cards.cards)
 
   useEffect(() => {
-    dispatch(getCards('639dc06eea4807000491a3d2'))
+    dispatch(getCards(props.packId))
   }, [])
 
   return (

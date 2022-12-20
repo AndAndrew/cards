@@ -19,7 +19,7 @@ export const PassRecoveryPage = () => {
   const dispatch = useAppDispatch()
 
   if (isLoggedIn) {
-    return <Navigate to={'/cards/#/profile'} />
+    return <Navigate to={'/profile'} />
   }
 
   const SendInstruction = () => {

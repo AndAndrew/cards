@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { useParams } from 'react-router-dom'
 
 export const instance = axios.create({
   baseURL: 'https://neko-back.herokuapp.com/2.0/',
@@ -8,16 +9,26 @@ export const instance = axios.create({
 
   withCredentials: true,
 })
-
 export const testApi = {
   testPing(data: PingDataType) {
     return instance.post<PingResponseType>('/ping', data)
   },
 }
 export const cardsApi = {
-  getPacks(packId?: string) {
-    return packId ? instance.get(`/cards/pack?user_id=${packId}`) : instance.get('/cards/pack')
+  getPacks(packsUserId?: string, page?: number, pageCount?: number) {
+    return axios
+      .create({
+        baseURL: 'https://neko-back.herokuapp.com/2.0/',
+        withCredentials: true,
+        params: {
+          packsUserId,
+          page,
+          pageCount,
+        },
+      })
+      .get('cards/pack')
   },
+
   getCardPack(cardsPackId: string) {
     return instance.get<CardsPackType>(`/cards/card?cardsPack_id=${cardsPackId}`)
   },
@@ -106,7 +117,27 @@ export type CreateNewPasswordType = {
   password: string
   resetPasswordToken: string | undefined
 }
-type CardsPackType = {
+
+export type PacksType = {
+  cardPacks: Array<PackType>
+  cardPacksTotalCount: number
+  // количество колод
+  maxCardsCount: number
+  minCardsCount: number
+  page: number // выбранная страница
+  pageCount: number
+}
+export type PackType = {
+  _id: string
+  user_id: string
+  name: string
+  cardsCount: number
+  created: string
+  updated: string
+  user_name: string
+}
+
+export type CardsPackType = {
   cards: Array<CardType>
   cardsTotalCount: number
   maxGrade: number
@@ -115,7 +146,6 @@ type CardsPackType = {
   pageCount: number
   packUserId: string
 }
-
 export type CardType = {
   answer: string
   question: string
