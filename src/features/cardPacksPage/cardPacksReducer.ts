@@ -14,9 +14,9 @@ const initialState = {
 type InitialStateType = typeof initialState
 export type CardPacksActionsType =
   | ReturnType<typeof setCardPacks>
-  | ReturnType<typeof addPack>
-  | ReturnType<typeof deletePack>
-  | ReturnType<typeof editPack>
+  | ReturnType<typeof addPackAC>
+  | ReturnType<typeof deletePackAC>
+  | ReturnType<typeof editPackAC>
 
 export const cardPacksReducer = (
   state: InitialStateType = initialState,
@@ -43,9 +43,9 @@ export const cardPacksReducer = (
 
 export const setCardPacks = (packs: Array<PackType>) =>
   ({ type: 'PACKS/SET_PACKS', packs } as const)
-export const addPack = (pack: PackType) => ({ type: 'PACKS/ADD_PACK', pack } as const)
-export const deletePack = (packId: string) => ({ type: 'PACKS/DELETE_PACK', packId } as const)
-export const editPack = (pack: PackType) => ({ type: 'PACKS/EDIT_PACK', pack } as const)
+export const addPackAC = (pack: PackType) => ({ type: 'PACKS/ADD_PACK', pack } as const)
+export const deletePackAC = (packId: string) => ({ type: 'PACKS/DELETE_PACK', packId } as const)
+export const editPackAC = (pack: PackType) => ({ type: 'PACKS/EDIT_PACK', pack } as const)
 
 export const getCardPacks =
   (id?: string, page?: number, pageCount?: number): AppThunk =>
@@ -56,30 +56,30 @@ export const getCardPacks =
       dispatch(setAppStatus('idle'))
     })
   }
-export const addCardPack =
+export const addPack =
   (name?: string, deckCover?: string, isPrivate?: boolean): AppThunk =>
   dispatch => {
     dispatch(setAppStatus('loading'))
     cardsApi.addPack(name, deckCover, isPrivate).then(res => {
-      dispatch(addPack(res.data.newCardsPack))
+      dispatch(addPackAC(res.data.newCardsPack))
       dispatch(setAppStatus('idle'))
     })
   }
-export const deleteCardPack =
+export const deletePack =
   (packId: string): AppThunk =>
   dispatch => {
     dispatch(setAppStatus('loading'))
     cardsApi.deletePack(packId).then(res => {
-      dispatch(deletePack(res.data.deletedCardsPack._id))
+      dispatch(deletePackAC(res.data.deletedCardsPack._id))
       dispatch(setAppStatus('idle'))
     })
   }
-export const editCardPack =
+export const editPack =
   <T>(packId: string, value: T): AppThunk =>
   dispatch => {
     dispatch(setAppStatus('loading'))
     cardsApi.editPack<T>(packId, value).then(res => {
-      dispatch(editPack(res.data.updatedCardsPack))
+      dispatch(editPackAC(res.data.updatedCardsPack))
       dispatch(setAppStatus('idle'))
     })
   }

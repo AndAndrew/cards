@@ -15,7 +15,7 @@ import TableRow from '@mui/material/TableRow'
 import { useAppDispatch, useAppSelector } from '../../common/hooks/react-redux-hooks'
 import { CardsPage } from '../cardsPage/CardsPage'
 
-import { addCardPack, deleteCardPack, editCardPack, getCardPacks } from './cardPacksReducer'
+import { addPack, deletePack, editPack, getCardPacks } from './cardPacksReducer'
 
 export const CardPacksPage = () => {
   const [packId, setPackId] = useState('')
@@ -33,14 +33,14 @@ export const CardPacksPage = () => {
   const learnFromPack = (packId: string) => {
     console.log('learn')
   }
-  const editPack = (packId: string) => {
-    dispatch(editCardPack<{ name: string }>(packId, { name: 'updated name' }))
+  const editButtonHandler = (packId: string) => {
+    dispatch(editPack<{ name: string }>(packId, { name: 'updated name' }))
   }
-  const deletePack = (packId: string) => {
-    dispatch(deleteCardPack(packId))
+  const deleteButtonHandler = (packId: string) => {
+    dispatch(deletePack(packId))
   }
-  const addPack = () => {
-    dispatch(addCardPack('New pack', '', false))
+  const addButtonHandler = () => {
+    dispatch(addPack('New pack', '', false))
   }
 
   if (packId !== '') {
@@ -49,7 +49,7 @@ export const CardPacksPage = () => {
 
   return (
     <div>
-      <button onClick={addPack}>add pack</button>
+      <button onClick={addButtonHandler}>add pack</button>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -75,10 +75,10 @@ export const CardPacksPage = () => {
                     <IconButton onClick={() => learnFromPack(pack._id)}>
                       <SchoolOutlinedIcon />
                     </IconButton>
-                    <IconButton onClick={() => editPack(pack._id)}>
+                    <IconButton onClick={() => editButtonHandler(pack._id)}>
                       <DriveFileRenameOutlineIcon />
                     </IconButton>
-                    <IconButton onClick={() => deletePack(pack._id)}>
+                    <IconButton onClick={() => deleteButtonHandler(pack._id)}>
                       <DeleteOutline />
                     </IconButton>
                   </div>
