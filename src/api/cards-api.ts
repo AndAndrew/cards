@@ -41,9 +41,32 @@ export const cardsApi = {
     return instance.put('cards/pack', { cardsPack: { _id: packId, ...value } })
   },
 
-  getCards(cardsPackId: string) {
-    return instance.get<CardsPackType>(`/cards/card?cardsPack_id=${cardsPackId}`)
+  getCards(cardsPack_id: string, page?: number, pageCount?: number) {
+    return axios
+      .create({
+        baseURL: 'https://neko-back.herokuapp.com/2.0/',
+        withCredentials: true,
+        params: {
+          cardsPack_id,
+          page,
+          pageCount,
+        },
+      })
+      .get<CardsPackType>('cards/card')
   },
+
+  addCard(cardsPack_id: string, question?: string, answer?: string) {
+    return instance.post('cards/card', {
+      card: { cardsPack_id: cardsPack_id, question: question, answer: answer },
+    })
+  },
+  deleteCard(cardId: string) {
+    return instance.delete(`/cards/card?id=${cardId}`)
+  },
+  editCard<T>(cardId: string, data: T) {
+    return instance.put('cards/card', { card: { _id: cardId, ...data } })
+  },
+
   changeProfileData(data: ProfileDataType) {
     return instance.put<{ updatedUser: ProfileDataType; error?: string }>('/auth/me', data)
   },
