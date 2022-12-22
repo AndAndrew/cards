@@ -12,7 +12,10 @@ const initialState = {
 }
 
 type InitialStateType = typeof initialState
-export type CardPacksActionsType = ReturnType<typeof setCardPacks> | ReturnType<typeof addPack>
+export type CardPacksActionsType =
+  | ReturnType<typeof setCardPacks>
+  | ReturnType<typeof addPack>
+  | ReturnType<typeof deletePack>
 
 export const cardPacksReducer = (
   state: InitialStateType = initialState,
@@ -23,6 +26,8 @@ export const cardPacksReducer = (
       return { ...state, cardPacks: [...action.packs] }
     case 'PACKS/ADD_PACK':
       return { ...state, cardPacks: [action.pack, ...state.cardPacks] }
+    case 'PACKS/DELETE_PACK':
+      return { ...state, cardPacks: state.cardPacks.filter(pack => pack._id !== action.packId) }
     default:
       return state
   }
@@ -31,6 +36,7 @@ export const cardPacksReducer = (
 export const setCardPacks = (packs: Array<PackType>) =>
   ({ type: 'PACKS/SET_PACKS', packs } as const)
 export const addPack = (pack: PackType) => ({ type: 'PACKS/ADD_PACK', pack } as const)
+export const deletePack = (packId: string) => ({ type: 'PACKS/DELETE_PACK', packId } as const)
 
 export const getCardPacks =
   (id?: string, page?: number, pageCount?: number): AppThunk =>
@@ -41,14 +47,22 @@ export const getCardPacks =
       dispatch(setAppStatus('idle'))
     })
   }
-
 export const addCardPack =
   (name?: string, deckCover?: string, isPrivate?: boolean): AppThunk =>
   dispatch => {
     dispatch(setAppStatus('loading'))
     cardsApi.addPack(name, deckCover, isPrivate).then(res => {
-      console.log(res)
       dispatch(addPack(res.data.newCardsPack))
+      dispatch(setAppStatus('idle'))
+    })
+  }
+export const deleteCardPack =
+  (packId: string): AppThunk =>
+  dispatch => {
+    dispatch(setAppStatus('loading'))
+    cardsApi.deletePack(packId).then(res => {
+      console.log(res)
+      dispatch(deletePack(res.data.deletedCardsPack._id))
       dispatch(setAppStatus('idle'))
     })
   }

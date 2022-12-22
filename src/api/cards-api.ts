@@ -32,6 +32,9 @@ export const cardsApi = {
   addPack(name?: string, deckCover?: string, isPrivate?: boolean) {
     return instance.post('cards/pack', { cardsPack: { name, deckCover, isPrivate } })
   },
+  deletePack(packId: string) {
+    return instance.delete(`/cards/pack?id=${packId}`)
+  },
 
   getCards(cardsPackId: string) {
     return instance.get<CardsPackType>(`/cards/card?cardsPack_id=${cardsPackId}`)

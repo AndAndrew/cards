@@ -16,7 +16,7 @@ import TableRow from '@mui/material/TableRow'
 import { useAppDispatch, useAppSelector } from '../../common/hooks/react-redux-hooks'
 import { CardsPage } from '../cardsPage/CardsPage'
 
-import { addCardPack, getCardPacks } from './cardPacksReducer'
+import { addCardPack, deleteCardPack, getCardPacks } from './cardPacksReducer'
 
 export const CardPacksPage = () => {
   const [packId, setPackId] = useState('')
@@ -38,7 +38,7 @@ export const CardPacksPage = () => {
     console.log('edit')
   }
   const deletePack = (packId: string) => {
-    console.log('delete')
+    dispatch(deleteCardPack(packId))
   }
   const addPack = () => {
     dispatch(addCardPack('New pack', '', false))
