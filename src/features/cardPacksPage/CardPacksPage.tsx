@@ -16,7 +16,7 @@ import TableRow from '@mui/material/TableRow'
 import { useAppDispatch, useAppSelector } from '../../common/hooks/react-redux-hooks'
 import { CardsPage } from '../cardsPage/CardsPage'
 
-import { getCardPacks } from './cardPacksReducer'
+import { addCardPack, getCardPacks } from './cardPacksReducer'
 
 export const CardPacksPage = () => {
   const [packId, setPackId] = useState('')
@@ -28,17 +28,20 @@ export const CardPacksPage = () => {
     dispatch(getCardPacks(undefined, 1, 15))
   }, [])
 
-  const onNameButtonClick = (id: string) => {
+  const segueToPack = (id: string) => {
     setPackId(id)
   }
-  const onLearnButtonClick = (packId: string) => {
+  const learnFromPack = (packId: string) => {
     console.log('learn')
   }
-  const onEditButtonClick = (packId: string) => {
+  const editPack = (packId: string) => {
     console.log('edit')
   }
-  const onDeleteButtonClick = (packId: string) => {
+  const deletePack = (packId: string) => {
     console.log('delete')
+  }
+  const addPack = () => {
+    dispatch(addCardPack('New pack', '', false))
   }
 
   if (packId !== '') {
@@ -47,7 +50,7 @@ export const CardPacksPage = () => {
 
   return (
     <div>
-      <Button variant={'contained'}>add pack</Button>
+      <button onClick={addPack}>add pack</button>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -63,20 +66,20 @@ export const CardPacksPage = () => {
             {packs.map(pack => (
               <TableRow key={pack._id}>
                 <TableCell component="th" scope="row">
-                  <button onClick={() => onNameButtonClick(pack._id)}>{pack.name}</button>
+                  <button onClick={() => segueToPack(pack._id)}>{pack.name}</button>
                 </TableCell>
                 <TableCell align="center">{pack.cardsCount}</TableCell>
                 <TableCell align="center">{pack.updated}</TableCell>
                 <TableCell align="center">{pack.user_name}</TableCell>
                 <TableCell align={'center'}>
                   <div>
-                    <IconButton onClick={() => onLearnButtonClick(pack._id)}>
+                    <IconButton onClick={() => learnFromPack(pack._id)}>
                       <SchoolOutlinedIcon />
                     </IconButton>
-                    <IconButton onClick={() => onEditButtonClick(pack._id)}>
+                    <IconButton onClick={() => editPack(pack._id)}>
                       <DriveFileRenameOutlineIcon />
                     </IconButton>
-                    <IconButton onClick={() => onDeleteButtonClick(pack._id)}>
+                    <IconButton onClick={() => deletePack(pack._id)}>
                       <DeleteOutline />
                     </IconButton>
                   </div>

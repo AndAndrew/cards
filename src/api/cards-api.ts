@@ -29,7 +29,11 @@ export const cardsApi = {
       .get('cards/pack')
   },
 
-  getCardPack(cardsPackId: string) {
+  addPack(name?: string, deckCover?: string, isPrivate?: boolean) {
+    return instance.post('cards/pack', { cardsPack: { name, deckCover, isPrivate } })
+  },
+
+  getCards(cardsPackId: string) {
     return instance.get<CardsPackType>(`/cards/card?cardsPack_id=${cardsPackId}`)
   },
   changeProfileData(data: ProfileDataType) {
@@ -146,6 +150,7 @@ export type CardsPackType = {
   pageCount: number
   packUserId: string
 }
+
 export type CardType = {
   answer: string
   question: string

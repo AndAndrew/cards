@@ -28,7 +28,7 @@ export const getCards =
   (id: string): AppThunk =>
   dispatch => {
     dispatch(setAppStatus('loading'))
-    cardsApi.getCardPack(id).then(res => {
+    cardsApi.getCards(id).then(res => {
       dispatch(setCardsPack(res.data.cards))
       dispatch(setAppStatus('idle'))
     })
