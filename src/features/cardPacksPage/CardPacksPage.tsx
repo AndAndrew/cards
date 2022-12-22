@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import DeleteOutline from '@mui/icons-material/DeleteOutline'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined'
-import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
@@ -16,7 +15,7 @@ import TableRow from '@mui/material/TableRow'
 import { useAppDispatch, useAppSelector } from '../../common/hooks/react-redux-hooks'
 import { CardsPage } from '../cardsPage/CardsPage'
 
-import { addCardPack, deleteCardPack, getCardPacks } from './cardPacksReducer'
+import { addCardPack, deleteCardPack, editCardPack, getCardPacks } from './cardPacksReducer'
 
 export const CardPacksPage = () => {
   const [packId, setPackId] = useState('')
@@ -35,7 +34,7 @@ export const CardPacksPage = () => {
     console.log('learn')
   }
   const editPack = (packId: string) => {
-    console.log('edit')
+    dispatch(editCardPack<{ name: string }>(packId, { name: 'updated name' }))
   }
   const deletePack = (packId: string) => {
     dispatch(deleteCardPack(packId))
