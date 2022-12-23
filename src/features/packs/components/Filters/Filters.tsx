@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Search } from '../../../../common/components/search/Search'
 import { useAppSelector } from '../../../../common/hooks/react-redux-hooks'
-import { setPackNameAC } from '../../cardPacksReducer'
+import { setPackNameAC } from '../../packsReducer'
 import { DropFilters } from '../DropFilters/DropFilters'
 import s from '../Filters/Filters.module.css'
 import { SliderNumberOfCards } from '../SliderNumberOfCards/SliderNumberOfCards'

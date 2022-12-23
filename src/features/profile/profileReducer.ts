@@ -1,4 +1,4 @@
-import { cardsApi, ProfileDataType } from '../../api/cards-api'
+import { authApi, ProfileDataType } from '../../api/auth-api'
 import { AppRootStateType, AppThunk } from '../../app/store'
 
 const initialState = {
@@ -48,7 +48,7 @@ export const ChangeProfileTC =
       ...data,
     }
 
-    cardsApi.changeProfileData(ApiModel).then(res => {
+    authApi.changeProfileData(ApiModel).then(res => {
       console.log(res)
       dispatch(profileAC(res.data.updatedUser))
     })

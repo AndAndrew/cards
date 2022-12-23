@@ -23,7 +23,7 @@ const initialState = {
 
 type InitialStateType = typeof initialState
 
-export const cardPacksReducer = (
+export const packsReducer = (
   state: InitialStateType = initialState,
   action: CardPacksActionsType
 ): InitialStateType => {

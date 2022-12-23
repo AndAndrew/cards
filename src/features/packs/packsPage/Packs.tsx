@@ -16,11 +16,9 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import ReactPaginate from 'react-paginate'
 
-import { useAppDispatch, useAppSelector } from '../../common/hooks/react-redux-hooks'
-import { me } from '../auth/authReducer'
-import { CardsPage } from '../cardsPage/CardsPage'
-
-import style from './CardPacksPage.module.css'
+import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
+import { Cards } from '../../cards/cardsPage/Cards'
+import Filters from '../components/Filters/Filters'
 import {
   setPacksDataTC,
   setPacksPageCountAC,
@@ -29,11 +27,11 @@ import {
   addPack,
   deletePack,
   editPack,
-} from './cardPacksReducer'
-import styles from './CardsPackPage.module.css'
-import Filters from './components/Filters/Filters'
+} from '../packsReducer'
 
-export const CardPacksPage = () => {
+import style from './Packs.module.css'
+
+export const Packs = () => {
   const [packId, setPackId] = useState('')
 
   const dispatch = useAppDispatch()
@@ -90,7 +88,7 @@ export const CardPacksPage = () => {
   }
 
   if (packId !== '') {
-    return <CardsPage packId={packId} />
+    return <Cards packId={packId} />
   }
 
   const handlePageClick = (data: { selected: number }) => {
@@ -106,9 +104,9 @@ export const CardPacksPage = () => {
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.titleBlock}>
-        <div className={styles.title}>Packs list</div>
+    <div className={style.container}>
+      <div className={style.titleBlock}>
+        <div className={style.title}>Packs list</div>
         <Button
           style={{
             fontFamily: 'Montserrat',
@@ -161,7 +159,7 @@ export const CardPacksPage = () => {
                 <StyledTableRow key={pack._id}>
                   <StyledTableCell component="th" scope="row">
                     <button
-                      className={styles.tableNameButton}
+                      className={style.tableNameButton}
                       onClick={() => segueToPack(pack._id)}
                     >
                       {pack.name}
@@ -171,7 +169,7 @@ export const CardPacksPage = () => {
                   <StyledTableCell align="center">{pack.updated}</StyledTableCell>
                   <StyledTableCell align="center">{pack.user_name}</StyledTableCell>
                   <StyledTableCell align={'center'}>
-                    <div className={styles.tableIconButtonsBlock}>
+                    <div className={style.tableIconButtonsBlock}>
                       <IconButton onClick={() => learnFromPack(pack._id)}>
                         <SchoolOutlinedIcon />
                       </IconButton>
@@ -217,245 +215,4 @@ export const CardPacksPage = () => {
       </div>
     </div>
   )
-}
-
-{
-  /*<Filters />*/
-}
-{
-  /*<Button variant={'contained'}>add pack</Button>*/
-}
-{
-  /*<TableContainer component={Paper}>*/
-}
-{
-  /*  <Table sx={{ minWidth: 650 }} aria-label="simple table">*/
-}
-{
-  /*    <TableHead>*/
-}
-{
-  /*      <TableRow>*/
-}
-{
-  /*        <TableCell*/
-}
-{
-  /*          onClick={*/
-}
-{
-  /*            sortPacks === '0name' ? () => handleSort('1name') : () => handleSort('0name')*/
-}
-{
-  /*          }*/
-}
-{
-  /*          sx={{ cursor: 'pointer' }}*/
-}
-{
-  /*        >*/
-}
-{
-  /*          Name*/
-}
-{
-  /*        </TableCell>*/
-}
-{
-  /*        <TableCell align="center">Cards</TableCell>*/
-}
-{
-  /*        <TableCell*/
-}
-{
-  /*          onClick={*/
-}
-{
-  /*            sortPacks === '0updated'*/
-}
-{
-  /*              ? () => handleSort('1updated')*/
-}
-{
-  /*              : () => handleSort('0updated')*/
-}
-{
-  /*          }*/
-}
-{
-  /*          sx={{ cursor: 'pointer' }}*/
-}
-{
-  /*          align="center"*/
-}
-{
-  /*        >*/
-}
-{
-  /*          Last updated*/
-}
-{
-  /*        </TableCell>*/
-}
-{
-  /*        <TableCell align="center">Created by</TableCell>*/
-}
-{
-  /*        <TableCell align="center">Actions</TableCell>*/
-}
-{
-  /*      </TableRow>*/
-}
-{
-  /*    </TableHead>*/
-}
-{
-  /*    <TableBody>*/
-}
-{
-  /*{packs.map(pack => (*/
-}
-{
-  /*  <TableRow key={pack._id}>*/
-}
-{
-  /*    <TableCell component="th" scope="row">*/
-}
-{
-  /*      <button onClick={() => {}}>{pack.name}</button>*/
-}
-{
-  /*    </TableCell>*/
-}
-{
-  /*    <TableCell align="center">{pack.cardsCount}</TableCell>*/
-}
-{
-  /*    <TableCell align="center">{pack.updated}</TableCell>*/
-}
-{
-  /*    <TableCell align="center">{pack.user_name}</TableCell>*/
-}
-{
-  /*    <TableCell align={'center'}>*/
-}
-{
-  /*      <div>*/
-}
-{
-  /*        <IconButton onClick={() => {}}>*/
-}
-{
-  /*          <SchoolOutlinedIcon />*/
-}
-{
-  /*        </IconButton>*/
-}
-{
-  /*        <IconButton onClick={() => {}}>*/
-}
-{
-  /*            <DriveFileRenameOutlineIcon />*/
-}
-{
-  /*          </IconButton>*/
-}
-{
-  /*          <IconButton onClick={() => {}}>*/
-}
-{
-  /*            <DeleteOutline />*/
-}
-{
-  /*          </IconButton>*/
-}
-{
-  /*        </div>*/
-}
-{
-  /*      </TableCell>*/
-}
-{
-  /*    </TableRow>*/
-}
-{
-  /*  ))}*/
-}
-{
-  /*</TableBody>*/
-}
-{
-  /*  </Table>*/
-}
-{
-  /*</TableContainer>*/
-}
-{
-  /*<div className={style.PaginationContainer}>*/
-}
-{
-  /*  <ReactPaginate*/
-}
-{
-  /*    pageCount={Math.ceil(cardPacksTotalCount / pageCount)}*/
-}
-{
-  /*    nextLabel={'>'}*/
-}
-{
-  /*    breakLabel={'...'}*/
-}
-{
-  /*    previousLabel={'<'}*/
-}
-{
-  /*    containerClassName={style.paginationBttns}*/
-}
-{
-  /*    disabledClassName={style.paginationDisabled}*/
-}
-{
-  /*    activeClassName={style.paginationActive}*/
-}
-{
-  /*    onPageChange={handlePageClick}*/
-}
-{
-  /*  />*/
-}
-{
-  /*  <div className={style.SelectContainer}>*/
-}
-{
-  /*    Show*/
-}
-{
-  /*    <NativeSelect onChange={handlePageCountChange} sx={{ margin: '5px' }} defaultValue={10}>*/
-}
-{
-  /*      <option value={10}>10</option>*/
-}
-{
-  /*      <option value={15}>15</option>*/
-}
-{
-  /*      <option value={50}>50</option>*/
-}
-{
-  /*      <option value={100}>100</option>*/
-}
-{
-  /*    </NativeSelect>*/
-}
-{
-  /*    Cards per page*/
-}
-{
-  /*  </div>*/
-}
-{
-  /*</div>*/
-}
-{
-  /*</div>*/
 }

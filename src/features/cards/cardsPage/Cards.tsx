@@ -11,14 +11,13 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 
-import { useAppDispatch, useAppSelector } from '../../common/hooks/react-redux-hooks'
-
-import { addCard, deleteCard, editCard, getCards } from './cardsReducer'
+import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
+import { addCard, deleteCard, editCard, getCards } from '../cardsReducer'
 
 type PropsType = {
   packId: string
 }
-export const CardsPage = (props: PropsType) => {
+export const Cards = (props: PropsType) => {
   const dispatch = useAppDispatch()
   const cards = useAppSelector(state => state.cards.cards)
 

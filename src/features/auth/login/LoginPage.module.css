@@ -33,3 +33,12 @@
 .error {
   color: red;
 }
+
+.passwordInputContainer {
+    position: relative;
+}
+.EyeIconPosition {
+    position: absolute !important;
+    top: 9px;
+    left: 360px;
+}

@@ -3,16 +3,16 @@ import React from 'react'
 import { Button } from '@mui/material'
 import { Navigate } from 'react-router-dom'
 
-import { EditableSpan } from '../../common/components/EditableSpan/EditableSpan'
-import { Title } from '../../common/components/title/Title'
-import { useAppDispatch, useAppSelector } from '../../common/hooks/react-redux-hooks'
-import { logOutTC } from '../auth/authReducer'
+import { EditableSpan } from '../../../common/components/EditableSpan/EditableSpan'
+import { Title } from '../../../common/components/title/Title'
+import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
+import style from '../../../common/styles/common.container.module.css'
+import { logOutTC } from '../../auth/authReducer'
+import { ChangeProfileTC } from '../profileReducer'
 
-import style from './../../common/styles/common.container.module.css'
 import s from './Profile.module.css'
-import { ChangeProfileTC } from './profileReducer'
 
-export const ProfilePage = () => {
+export const Profile = () => {
   const dispatch = useAppDispatch()
   const ActualEmail = useAppSelector(state => state.profile.email)
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
