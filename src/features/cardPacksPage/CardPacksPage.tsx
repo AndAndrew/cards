@@ -3,7 +3,7 @@ import React, { ChangeEvent, useEffect, useState } from 'react'
 import DeleteOutline from '@mui/icons-material/DeleteOutline'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined'
-import { InputLabel, NativeSelect } from '@mui/material'
+import { NativeSelect } from '@mui/material'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import Paper from '@mui/material/Paper'
@@ -15,18 +15,13 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import ReactPaginate from 'react-paginate'
 
-import { Search } from '../../common/components/search/Search'
 import { useAppDispatch, useAppSelector } from '../../common/hooks/react-redux-hooks'
 import { CardsPage } from '../cardsPage/CardsPage'
 
 import style from './CardPacksPage.module.css'
-import { DropFilters } from './components/DropFilters/DropFilters'
 import Filters from './components/Filters/Filters'
-import { SliderNumberOfCards } from './components/SliderNumberOfCards/SliderNumberOfCards'
-import ToggleMyOrAll from './components/ToggleMyOrAll/ToggleMyOrAll'
 import {
   setPacksDataTC,
-  setPackNameAC,
   setPacksPageCountAC,
   setPacksPageNumberAC,
 } from './reducer/cardPacksReducer'

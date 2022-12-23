@@ -6,7 +6,6 @@ import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 
 import { AppActionsType } from '../../../app/store'
-import { setPacksDataTC } from '../../../features/cardPacksPage/reducer/cardPacksReducer'
 import { useAppDispatch, useDebounce } from '../../hooks/react-redux-hooks'
 
 import s from './Search.module.css'
@@ -42,6 +41,7 @@ export const Search = memo(({ action, search }: SearchPropsType) => {
         color="primary"
         variant="outlined"
         value={searchValue}
+        className={s.searchInput}
         onChange={onChangeTextSearch}
         InputProps={{
           startAdornment: (

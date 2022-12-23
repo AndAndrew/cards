@@ -1,11 +1,4 @@
-.search p {
-    margin-top: 28px;
-    margin-bottom: 8px;
-
-    font-size: 14px;
-    font-weight: 500;
+.searchInput {
+    min-width: 413px;
 }
 
-.search div {
-    height: 36px;
-}

@@ -2,8 +2,8 @@ import { cardsApi, PackType, ParamsPacksType } from '../../../api/cards-api'
 import { setAppStatus } from '../../../app/appReducer'
 import { AppThunk } from '../../../app/store'
 
-const DEFAULT_MAX_CARDS_COUNT = 110
-const DEFAULT_MIN_CARDS_COUNT = 0
+export const DEFAULT_MAX_CARDS_COUNT = 110
+export const DEFAULT_MIN_CARDS_COUNT = 0
 
 const initialState = {
   cardPacks: [] as Array<PackType>,
@@ -18,7 +18,7 @@ const initialState = {
   sortPacks: '',
   user_id: '',
   search: '',
-  minMaxCardsCount: [0, DEFAULT_MAX_CARDS_COUNT],
+  minMaxCardsCount: [DEFAULT_MIN_CARDS_COUNT, DEFAULT_MAX_CARDS_COUNT],
 }
 
 export const cardPacksReducer = (
