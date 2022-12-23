@@ -10,7 +10,7 @@ import {
   setPackNameAC,
   setSearchAC,
   setUserIdAC,
-} from '../../reducer/cardPacksReducer'
+} from '../../cardPacksReducer'
 
 import s from './DropFilters.module.css'
 

@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography'
 
 import s from '../../../../common/components/search/Search.module.css'
 import { useAppDispatch, useAppSelector } from '../../../../common/hooks/react-redux-hooks'
-import { setUserIdAC } from '../../reducer/cardPacksReducer'
+import { setUserIdAC } from '../../cardPacksReducer'
 
 import style from './ToggleMyOrAll.module.css'
 

@@ -1,6 +1,6 @@
-import { cardsApi, PackType, ParamsPacksType } from '../../../api/cards-api'
-import { setAppStatus } from '../../../app/appReducer'
-import { AppThunk } from '../../../app/store'
+import { cardsApi, PackType, ParamsPacksType } from '../../api/cards-api'
+import { setAppStatus } from '../../app/appReducer'
+import { AppThunk } from '../../app/store'
 
 export const DEFAULT_MAX_CARDS_COUNT = 110
 export const DEFAULT_MIN_CARDS_COUNT = 0

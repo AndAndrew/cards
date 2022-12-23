@@ -25,7 +25,7 @@ import {
   setPacksPageCountAC,
   setPacksPageNumberAC,
   setSortPacksAC,
-} from './reducer/cardPacksReducer'
+} from './cardPacksReducer'
 
 export const CardPacksPage = () => {
   const [packId, setPackId] = useState('')
