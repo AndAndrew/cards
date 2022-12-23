@@ -122,10 +122,10 @@ export const Packs = () => {
           Add new pack
         </Button>
       </div>
-      <div className={styles.filterBlock}>
+      <div className={style.filterBlock}>
         <Filters />
       </div>
-      <div className={styles.table}>
+      <div className={style.table}>
         <TableContainer sx={{ maxHeight: 490 }} component={Paper}>
           <Table aria-label="simple table">
             <TableHead>
@@ -158,10 +158,7 @@ export const Packs = () => {
               {packs.map(pack => (
                 <StyledTableRow key={pack._id}>
                   <StyledTableCell component="th" scope="row">
-                    <button
-                      className={style.tableNameButton}
-                      onClick={() => segueToPack(pack._id)}
-                    >
+                    <button className={style.tableNameButton} onClick={() => segueToPack(pack._id)}>
                       {pack.name}
                     </button>
                   </StyledTableCell>

@@ -81,7 +81,7 @@
 }
 
 .filterBlock {
-    padding: 10px;
+    min-width: 1200px;
 }
 
 .table {
