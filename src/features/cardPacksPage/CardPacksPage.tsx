@@ -3,7 +3,7 @@ import React, { ChangeEvent, useEffect, useState } from 'react'
 import DeleteOutline from '@mui/icons-material/DeleteOutline'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined'
-import { NativeSelect } from '@mui/material'
+import { NativeSelect, TableSortLabel } from '@mui/material'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import Paper from '@mui/material/Paper'
@@ -16,19 +16,19 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import ReactPaginate from 'react-paginate'
 
+import { CardsPackType, PackType } from '../../api/cards-api'
 import { useAppDispatch, useAppSelector } from '../../common/hooks/react-redux-hooks'
-import { me } from '../auth/authReducer'
 import { CardsPage } from '../cardsPage/CardsPage'
 
 import style from './CardPacksPage.module.css'
 import {
+  addPack,
+  deletePack,
+  editPack,
   setPacksDataTC,
   setPacksPageCountAC,
   setPacksPageNumberAC,
   setSortPacksAC,
-  addPack,
-  deletePack,
-  editPack,
 } from './cardPacksReducer'
 import styles from './CardsPackPage.module.css'
 import Filters from './components/Filters/Filters'
@@ -48,8 +48,10 @@ export const CardPacksPage = () => {
   const minMaxCardsCount = useAppSelector(state => state.packs.minMaxCardsCount)
   const search = useAppSelector(state => state.packs.search)
 
+  const [orderDirection, setOrderDirection] = useState<'asc' | 'desc' | undefined>('asc')
+
   useEffect(() => {
-    dispatch(setPacksDataTC())
+    dispatch(setPacksDataTC({}))
   }, [page, pageCount, packName, sortPacks, search, userId, minMaxCardsCount])
 
   const segueToPack = (id: string) => {
@@ -105,6 +107,21 @@ export const CardPacksPage = () => {
     dispatch(setSortPacksAC(sort))
   }
 
+  const sortArray = (packs: Array<PackType>, orderBy: 'asc' | 'desc' | undefined) => {
+    switch (orderBy) {
+      case 'asc':
+      default:
+        return dispatch(setPacksDataTC({ sortPacks: '1updated' }))
+      case 'desc':
+        return dispatch(setPacksDataTC({ sortPacks: '0updated' }))
+    }
+  }
+
+  const handleSortRequest = () => {
+    sortArray(packs, orderDirection)
+    setOrderDirection(orderDirection === 'asc' ? 'desc' : 'asc')
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.titleBlock}>
@@ -132,7 +149,11 @@ export const CardPacksPage = () => {
               <TableRow>
                 <StyledTableCell align="center">Name</StyledTableCell>
                 <StyledTableCell align="center">Cards</StyledTableCell>
-                <StyledTableCell align="center">Last updated</StyledTableCell>
+                <StyledTableCell onClick={handleSortRequest} align="center">
+                  <TableSortLabel direction={orderDirection} active={true}>
+                    Last Updated
+                  </TableSortLabel>
+                </StyledTableCell>
                 <StyledTableCell align="center">Created by</StyledTableCell>
                 <StyledTableCell align="center">Actions</StyledTableCell>
               </TableRow>

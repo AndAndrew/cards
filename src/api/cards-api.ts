@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
 
 export const instance = axios.create({
   baseURL: 'https://neko-back.herokuapp.com/2.0/',
@@ -16,12 +15,7 @@ export const testApi = {
 }
 export const cardsApi = {
   getPacksData(params?: ParamsPacksType) {
-    return axios
-      .create({
-        baseURL: 'https://neko-back.herokuapp.com/2.0/',
-        withCredentials: true,
-      })
-      .get('cards/pack', { params })
+    return instance.get('cards/pack', { params })
   },
 
   addPack(name?: string, deckCover?: string, isPrivate?: boolean) {
@@ -36,7 +30,7 @@ export const cardsApi = {
     return instance.put('cards/pack', { cardsPack: { _id: packId, ...value } })
   },
 
-  getCards(cardsPack_id: string, page?: number, pageCount?: number) {
+  getCards(cardsPack_id: string, page?: number, pageCount?: number, sortPacks?: string) {
     return axios
       .create({
         baseURL: 'https://neko-back.herokuapp.com/2.0/',
@@ -45,6 +39,7 @@ export const cardsApi = {
           cardsPack_id,
           page,
           pageCount,
+          sortPacks,
         },
       })
       .get<CardsPackType>('cards/card')
