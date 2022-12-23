@@ -46,7 +46,7 @@ export const getCards =
     dispatch(setAppStatus('loading'))
     cardsApi.getCards(id, page, pageCount).then(res => {
       dispatch(setCardsPack(res.data.cards))
-      dispatch(setAppStatus('idle'))
+      dispatch(setAppStatus('successes'))
     })
   }
 

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 
 import DeleteOutline from '@mui/icons-material/DeleteOutline'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
+import { Button } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
@@ -13,6 +14,7 @@ import TableRow from '@mui/material/TableRow'
 
 import { useAppDispatch, useAppSelector } from '../../common/hooks/react-redux-hooks'
 
+import styles from './Cards.module.css'
 import { addCard, deleteCard, editCard, getCards } from './cardsReducer'
 
 type PropsType = {
@@ -38,9 +40,24 @@ export const CardsPage = (props: PropsType) => {
   }
 
   return (
-    <div>
-      <span>My Pack</span>
-      <button onClick={addButtonHandler}>add card</button>
+    <div className={styles.container}>
+      <div className={styles.titleBlock}>
+        <div className={styles.title}>My Pack</div>
+        <Button
+          style={{
+            fontFamily: 'Montserrat',
+            fontWeight: '500',
+            borderRadius: '20px',
+            fontSize: '16px',
+            textTransform: 'capitalize',
+          }}
+          variant={'contained'}
+          color={'primary'}
+          onClick={addButtonHandler}
+        >
+          add card
+        </Button>
+      </div>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>

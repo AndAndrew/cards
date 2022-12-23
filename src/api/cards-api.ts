@@ -174,6 +174,7 @@ export type PackType = {
 
 export type CardsPackType = {
   cards: Array<CardType>
+  packName: string
   cardsTotalCount: number
   maxGrade: number
   minGrade: number
