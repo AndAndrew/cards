@@ -1,0 +1,53 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+
+    width: 80%;
+    margin: 0 auto;
+}
+
+.titleBlock {
+    padding: 50px 0 40px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title {
+    font-family: 'Montserrat';
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 27px;
+}
+
+.filterBlock {
+    padding: 10px;
+}
+
+.table {
+    padding: 10px 0;
+    width: 100%;
+}
+
+.tableNameButton {
+    background-color: rgba(255,255,255, 0);
+    border: 0;
+    font-family: 'Montserrat';
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+}
+
+.tableNameButton:hover {
+    color: #7c8385;
+}
+
+.tableIconButtonsBlock {
+    display: flex;
+    justify-content: space-between;
+}

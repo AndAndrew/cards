@@ -13,6 +13,7 @@ import { profileAC, showProfileEmailAC } from '../profile/profileReducer'
 
 const InitialState = {
   isLoggedIn: false as boolean,
+  profileName: '' as string,
   error: null as string | null,
   isMessageSent: false as boolean,
   isNewPasswordCorrect: false as boolean,
@@ -21,6 +22,7 @@ const InitialState = {
 
 export type AuthActionsType =
   | ReturnType<typeof setIsLoggedInAC>
+  | ReturnType<typeof setProfileNameAC>
   | ReturnType<typeof setError>
   | ReturnType<typeof isMessagesentAC>
   | ReturnType<typeof isNewPasswordCorrectAC>
@@ -30,6 +32,8 @@ export const authReducer = (state: typeof InitialState = InitialState, action: A
   switch (action.type) {
     case 'LOGIN/SET-IS-LOGGED-IN':
       return { ...state, isLoggedIn: action.value }
+    case 'LOGIN/SET-PROFILE-NAME':
+      return { ...state, profileName: action.name }
     case 'IS-MESSAGE-SENT':
       return { ...state, isMessageSent: action.value }
     case 'IS-NEW-PASSWORD-CORRECT':
@@ -48,6 +52,13 @@ export const setIsLoggedInAC = (value: boolean) => {
     value,
   } as const
 }
+const setProfileNameAC = (name: string) => {
+  return {
+    type: 'LOGIN/SET-PROFILE-NAME',
+    name,
+  } as const
+}
+
 export const setError = (message: null | string) => {
   return {
     type: 'LOGIN/SET-ERROR',
@@ -90,6 +101,13 @@ export const LoginTC =
         dispatch(setError(error.message))
       })
   }
+export const me = (): AppThunk => dispatch => {
+  dispatch(setAppStatus('loading'))
+  cardsApi.me().then(res => {
+    dispatch(setProfileNameAC(res.data.name))
+    dispatch(setAppStatus('successes'))
+  })
+}
 export const logOutTC = (): AppThunk => dispatch => {
   dispatch(setAppStatus('loading'))
   cardsApi.logOut().then(res => {
