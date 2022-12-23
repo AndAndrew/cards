@@ -5,6 +5,7 @@ const initialState = {
   name: '' as string,
   avatar: '' as string,
   email: '' as string,
+  _id: '' as string,
 }
 
 export type ProfileActionsType =
@@ -35,6 +36,7 @@ export const showProfileEmailAC = (email: string) => {
 type ChangeProfileModelType = {
   name?: string
   avatar?: string
+  _id?: string
 }
 export const ChangeProfileTC =
   (data: ChangeProfileModelType): AppThunk =>
