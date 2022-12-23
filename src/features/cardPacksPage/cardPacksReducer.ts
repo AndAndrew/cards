@@ -22,11 +22,6 @@ const initialState = {
 }
 
 type InitialStateType = typeof initialState
-export type CardPacksActionsType =
-  | ReturnType<typeof setCardPacks>
-  | ReturnType<typeof addPackAC>
-  | ReturnType<typeof deletePackAC>
-  | ReturnType<typeof editPackAC>
 
 export const cardPacksReducer = (
   state: InitialStateType = initialState,
@@ -129,19 +124,11 @@ export const setPacksDataTC = (): AppThunk => (dispatch, getState) => {
   dispatch(setAppStatus('loading'))
   cardsApi.getPacksData(params).then(res => {
     dispatch(setPacksDataAC(res.data))
-    console.log(res.data)
+    dispatch(setCardPacksAC(res.data.cardPacks))
     dispatch(setAppStatus('idle'))
   })
 }
-export const getCardPacks =
-  (id?: string, page?: number, pageCount?: number): AppThunk =>
-  dispatch => {
-    dispatch(setAppStatus('loading'))
-    cardsApi.getPacks(id, page, pageCount).then(res => {
-      dispatch(setCardPacks(res.data.cardPacks))
-      dispatch(setAppStatus('idle'))
-    })
-  }
+
 export const addPack =
   (name?: string, deckCover?: string, isPrivate?: boolean): AppThunk =>
   dispatch => {
@@ -170,7 +157,6 @@ export const editPack =
     })
   }
 
-type InitialStateType = typeof initialState
 type setCardPacksACType = ReturnType<typeof setCardPacksAC>
 type setPacksTotalCountACType = ReturnType<typeof setPacksTotalCountAC>
 type setPacksPageCountACType = ReturnType<typeof setPacksPageCountAC>
@@ -181,6 +167,7 @@ type setUserIdACType = ReturnType<typeof setUserIdAC>
 type setMinMaxCardsCountACType = ReturnType<typeof setMinMaxCardsCountAC>
 type setSearchACType = ReturnType<typeof setSearchAC>
 type setSortPacksACType = ReturnType<typeof setSortPacksAC>
+
 export type CardPacksActionsType =
   | setCardPacksACType
   | setPacksTotalCountACType
@@ -192,3 +179,7 @@ export type CardPacksActionsType =
   | setMinMaxCardsCountACType
   | setSearchACType
   | setSortPacksACType
+  | ReturnType<typeof setCardPacksAC>
+  | ReturnType<typeof addPackAC>
+  | ReturnType<typeof deletePackAC>
+  | ReturnType<typeof editPackAC>

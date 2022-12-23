@@ -8,7 +8,7 @@ import {
   useAppSelector,
   useDebounce,
 } from '../../../../common/hooks/react-redux-hooks'
-import { setMinMaxCardsCountAC } from '../../reducer/cardPacksReducer'
+import { setMinMaxCardsCountAC } from '../../cardPacksReducer'
 
 import s from './SliderNumberOfCards.module.css'
 

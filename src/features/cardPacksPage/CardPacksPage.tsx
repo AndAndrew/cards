@@ -21,15 +21,17 @@ import { me } from '../auth/authReducer'
 import { CardsPage } from '../cardsPage/CardsPage'
 
 import style from './CardPacksPage.module.css'
-import Filters from './components/Filters/Filters'
 import {
   setPacksDataTC,
   setPacksPageCountAC,
   setPacksPageNumberAC,
   setSortPacksAC,
+  addPack,
+  deletePack,
+  editPack,
 } from './cardPacksReducer'
-import { addPack, deletePack, editPack, getCardPacks } from './cardPacksReducer'
 import styles from './CardsPackPage.module.css'
+import Filters from './components/Filters/Filters'
 
 export const CardPacksPage = () => {
   const [packId, setPackId] = useState('')
@@ -47,9 +49,6 @@ export const CardPacksPage = () => {
   const search = useAppSelector(state => state.packs.search)
 
   useEffect(() => {
-    dispatch(me())
-    dispatch(getCardPacks(undefined, 1, 15))
-  }, [])
     dispatch(setPacksDataTC())
   }, [page, pageCount, packName, sortPacks, search, userId, minMaxCardsCount])
 
@@ -175,7 +174,6 @@ export const CardPacksPage = () => {
           </Table>
         </TableContainer>
       </div>
-    <div>
       <Filters />
       <Button variant={'contained'}>add pack</Button>
       <TableContainer component={Paper}>
@@ -210,20 +208,20 @@ export const CardPacksPage = () => {
             {packs.map(pack => (
               <TableRow key={pack._id}>
                 <TableCell component="th" scope="row">
-                  <button onClick={() => onNameButtonClick(pack._id)}>{pack.name}</button>
+                  <button onClick={() => {}}>{pack.name}</button>
                 </TableCell>
                 <TableCell align="center">{pack.cardsCount}</TableCell>
                 <TableCell align="center">{pack.updated}</TableCell>
                 <TableCell align="center">{pack.user_name}</TableCell>
                 <TableCell align={'center'}>
                   <div>
-                    <IconButton onClick={() => onLearnButtonClick(pack._id)}>
+                    <IconButton onClick={() => {}}>
                       <SchoolOutlinedIcon />
                     </IconButton>
-                    <IconButton onClick={() => onEditButtonClick(pack._id)}>
+                    <IconButton onClick={() => {}}>
                       <DriveFileRenameOutlineIcon />
                     </IconButton>
-                    <IconButton onClick={() => onDeleteButtonClick(pack._id)}>
+                    <IconButton onClick={() => {}}>
                       <DeleteOutline />
                     </IconButton>
                   </div>
