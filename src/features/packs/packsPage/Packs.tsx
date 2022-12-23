@@ -46,6 +46,8 @@ export const Packs = () => {
   const minMaxCardsCount = useAppSelector(state => state.packs.minMaxCardsCount)
   const search = useAppSelector(state => state.packs.search)
 
+  const [orderDirection, setOrderDirection] = useState<'asc' | 'desc' | undefined>('asc')
+
   useEffect(() => {
     dispatch(setPacksDataTC())
   }, [page, pageCount, packName, sortPacks, search, userId, minMaxCardsCount])
@@ -88,7 +90,7 @@ export const Packs = () => {
   }
 
   if (packId !== '') {
-    return <Cards packId={packId} />
+    return <CardsPage packId={packId} />
   }
 
   const handlePageClick = (data: { selected: number }) => {
@@ -101,6 +103,21 @@ export const Packs = () => {
 
   const handleSort = (sort: string) => {
     dispatch(setSortPacksAC(sort))
+  }
+
+  const sortArray = (packs: Array<PackType>, orderBy: 'asc' | 'desc' | undefined) => {
+    switch (orderBy) {
+      case 'asc':
+      default:
+        return dispatch(setPacksDataTC({ sortPacks: '1updated' }))
+      case 'desc':
+        return dispatch(setPacksDataTC({ sortPacks: '0updated' }))
+    }
+  }
+
+  const handleSortRequest = () => {
+    sortArray(packs, orderDirection)
+    setOrderDirection(orderDirection === 'asc' ? 'desc' : 'asc')
   }
 
   return (

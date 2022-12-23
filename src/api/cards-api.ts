@@ -17,7 +17,7 @@ export const cardsApi = {
   editPack<T>(packId: string, value: T) {
     return instance.put('cards/pack', { cardsPack: { _id: packId, ...value } })
   },
-  getCards(cardsPack_id: string, page?: number, pageCount?: number) {
+  getCards(cardsPack_id: string, page?: number, pageCount?: number, sortPacks?: string) {
     return axios
       .create({
         baseURL: 'https://neko-back.herokuapp.com/2.0/',
@@ -26,6 +26,7 @@ export const cardsApi = {
           cardsPack_id,
           page,
           pageCount,
+          sortPacks,
         },
       })
       .get<CardsPackType>('cards/card')
