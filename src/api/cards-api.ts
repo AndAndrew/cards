@@ -15,18 +15,13 @@ export const testApi = {
   },
 }
 export const cardsApi = {
-  getPacks(packsUserId?: string, page?: number, pageCount?: number) {
+  getPacksData(params?: ParamsPacksType) {
     return axios
       .create({
         baseURL: 'https://neko-back.herokuapp.com/2.0/',
         withCredentials: true,
-        params: {
-          packsUserId,
-          page,
-          pageCount,
-        },
       })
-      .get('cards/pack')
+      .get('cards/pack', { params })
   },
 
   getCardPack(cardsPackId: string) {
@@ -56,6 +51,17 @@ export const cardsApi = {
       data
     )
   },
+}
+
+export type ParamsPacksType = {
+  page?: number
+  pageCount?: number
+  packName?: string
+  min?: number
+  max?: number
+  sortPacks?: string
+  user_id?: string
+  block?: boolean
 }
 
 type RegisterResponseType = {

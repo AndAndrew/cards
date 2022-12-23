@@ -40,7 +40,7 @@ export const isInitializedTC = (): AppThunk => dispatch => {
     .me()
     .then(res => {
       dispatch(setIsLoggedInAC(true))
-      dispatch(profileAC({ name: res.data.name, avatar: '' }))
+      dispatch(profileAC({ name: res.data.name, avatar: '', _id: res.data._id }))
 
       dispatch(showProfileEmailAC(res.data.email))
     })

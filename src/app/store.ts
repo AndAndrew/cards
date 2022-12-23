@@ -2,7 +2,10 @@ import { applyMiddleware, combineReducers, legacy_createStore as createStore } f
 import thunk, { ThunkAction, ThunkDispatch } from 'redux-thunk'
 
 import { AuthActionsType, authReducer } from '../features/auth/authReducer'
-import { CardPacksActionsType, cardPacksReducer } from '../features/cardPacksPage/cardPacksReducer'
+import {
+  CardPacksActionsType,
+  cardPacksReducer,
+} from '../features/cardPacksPage/reducer/cardPacksReducer'
 import { CardsActionsType, cardsReducer } from '../features/cardsPage/cardsReducer'
 import { ProfileActionsType, profileReducer } from '../features/profile/profileReducer'
 import { TestActionsType, testReducer } from '../features/test/testReducer'

@@ -15,24 +15,39 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import ReactPaginate from 'react-paginate'
 
-import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
-import { CardsPage } from '../../cardsPage/CardsPage'
-import { getCardPacks } from '../cardPacksReducer'
+import { Search } from '../../common/components/search/Search'
+import { useAppDispatch, useAppSelector } from '../../common/hooks/react-redux-hooks'
+import { CardsPage } from '../cardsPage/CardsPage'
 
 import style from './CardPacksPage.module.css'
+import { DropFilters } from './components/DropFilters/DropFilters'
+import Filters from './components/Filters/Filters'
+import { SliderNumberOfCards } from './components/SliderNumberOfCards/SliderNumberOfCards'
+import ToggleMyOrAll from './components/ToggleMyOrAll/ToggleMyOrAll'
+import {
+  setPacksDataTC,
+  setPackNameAC,
+  setPacksPageCountAC,
+  setPacksPageNumberAC,
+} from './reducer/cardPacksReducer'
 
 export const CardPacksPage = () => {
   const [packId, setPackId] = useState('')
-  const [pageNumber, setPageNumber] = useState(1)
-  const [pageCount, setPageCount] = useState(10)
 
   const dispatch = useAppDispatch()
+  const page = useAppSelector(state => state.packs.page)
   const packs = useAppSelector(state => state.packs.cardPacks)
   const cardPacksTotalCount = useAppSelector(state => state.packs.cardPacksTotalCount)
+  const pageCount = useAppSelector(state => state.packs.pageCount)
+  const packName = useAppSelector(state => state.packs.packName)
+  const sortPacks = useAppSelector(state => state.packs.sortPacks)
+  const userId = useAppSelector(state => state.packs.user_id)
+  const minMaxCardsCount = useAppSelector(state => state.packs.minMaxCardsCount)
+  const search = useAppSelector(state => state.packs.search)
 
   useEffect(() => {
-    dispatch(getCardPacks(undefined, pageNumber, pageCount))
-  }, [pageNumber, pageCount])
+    dispatch(setPacksDataTC())
+  }, [page, pageCount, packName, sortPacks, search, userId, minMaxCardsCount])
 
   const onNameButtonClick = (id: string) => {
     setPackId(id)
@@ -52,15 +67,16 @@ export const CardPacksPage = () => {
   }
 
   const handlePageClick = (data: { selected: number }) => {
-    setPageNumber(data.selected + 1)
+    dispatch(setPacksPageNumberAC(data.selected + 1))
   }
 
   const handlePageCountChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setPageCount(+e.target.value)
+    dispatch(setPacksPageCountAC(+e.target.value))
   }
 
   return (
     <div>
+      <Filters />
       <Button variant={'contained'}>add pack</Button>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
