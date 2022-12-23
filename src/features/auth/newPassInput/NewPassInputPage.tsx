@@ -4,7 +4,7 @@ import { Button, TextField } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { CreateNewPasswordType } from '../../../api/cards-api'
+import { CreateNewPasswordType } from '../../../api/auth-api'
 import { AppRootStateType } from '../../../app/store'
 import { useAppDispatch } from '../../../common/hooks/react-redux-hooks'
 import { NewPasswordTC } from '../authReducer'

@@ -1,4 +1,4 @@
-import { PingDataType, testApi } from '../../api/cards-api'
+import { PingDataType, testApi } from '../../api/test-api'
 import { setAppStatus } from '../../app/appReducer'
 import { AppThunk } from '../../app/store'
 

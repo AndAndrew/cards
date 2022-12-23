@@ -3,13 +3,12 @@ import React from 'react'
 import { Button } from '@mui/material'
 import { useSelector } from 'react-redux'
 
-import { AppRootStateType } from '../../app/store'
-import { useAppDispatch } from '../../common/hooks/react-redux-hooks'
+import { AppRootStateType } from '../../../app/store'
+import { useAppDispatch } from '../../../common/hooks/react-redux-hooks'
+import style from '../../../common/styles/common.container.module.css'
+import { testTC } from '../testReducer'
 
-import style from './../../common/styles/common.container.module.css'
-import { testTC } from './testReducer'
-
-export const TestPage = () => {
+export const Test = () => {
   const dispatch = useAppDispatch()
   const ping = useSelector<AppRootStateType, number>(state => state.test.currentPing)
 

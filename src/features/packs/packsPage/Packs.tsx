@@ -16,11 +16,9 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import ReactPaginate from 'react-paginate'
 
-import { useAppDispatch, useAppSelector } from '../../common/hooks/react-redux-hooks'
-import { me } from '../auth/authReducer'
-import { CardsPage } from '../cardsPage/CardsPage'
-
-import style from './CardPacksPage.module.css'
+import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
+import { Cards } from '../../cards/cardsPage/Cards'
+import Filters from '../components/Filters/Filters'
 import {
   setPacksDataTC,
   setPacksPageCountAC,
@@ -29,11 +27,11 @@ import {
   addPack,
   deletePack,
   editPack,
-} from './cardPacksReducer'
-import styles from './CardsPackPage.module.css'
-import Filters from './components/Filters/Filters'
+} from '../packsReducer'
 
-export const CardPacksPage = () => {
+import style from './Packs.module.css'
+
+export const Packs = () => {
   const [packId, setPackId] = useState('')
 
   const dispatch = useAppDispatch()
@@ -90,7 +88,7 @@ export const CardPacksPage = () => {
   }
 
   if (packId !== '') {
-    return <CardsPage packId={packId} />
+    return <Cards packId={packId} />
   }
 
   const handlePageClick = (data: { selected: number }) => {
@@ -106,9 +104,9 @@ export const CardPacksPage = () => {
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.titleBlock}>
-        <div className={styles.title}>Packs list</div>
+    <div className={style.container}>
+      <div className={style.titleBlock}>
+        <div className={style.title}>Packs list</div>
         <Button
           style={{
             fontFamily: 'Montserrat',
@@ -124,8 +122,8 @@ export const CardPacksPage = () => {
           Add new pack
         </Button>
       </div>
-      <div className={styles.filterBlock}></div>
-      <div className={styles.table}>
+      <div className={style.filterBlock}></div>
+      <div className={style.table}>
         <TableContainer sx={{ maxHeight: 490 }} component={Paper}>
           <Table aria-label="simple table">
             <TableHead>
@@ -141,10 +139,7 @@ export const CardPacksPage = () => {
               {packs.map(pack => (
                 <StyledTableRow key={pack._id}>
                   <StyledTableCell component="th" scope="row">
-                    <button
-                      className={styles.tableNameButton}
-                      onClick={() => segueToPack(pack._id)}
-                    >
+                    <button className={style.tableNameButton} onClick={() => segueToPack(pack._id)}>
                       {pack.name}
                     </button>
                   </StyledTableCell>
@@ -152,7 +147,7 @@ export const CardPacksPage = () => {
                   <StyledTableCell align="center">{pack.updated}</StyledTableCell>
                   <StyledTableCell align="center">{pack.user_name}</StyledTableCell>
                   <StyledTableCell align={'center'}>
-                    <div className={styles.tableIconButtonsBlock}>
+                    <div className={style.tableIconButtonsBlock}>
                       <IconButton onClick={() => learnFromPack(pack._id)}>
                         <SchoolOutlinedIcon />
                       </IconButton>
