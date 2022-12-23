@@ -24,6 +24,7 @@ import {
   setPacksDataTC,
   setPacksPageCountAC,
   setPacksPageNumberAC,
+  setSortPacksAC,
 } from './reducer/cardPacksReducer'
 
 export const CardPacksPage = () => {
@@ -69,6 +70,10 @@ export const CardPacksPage = () => {
     dispatch(setPacksPageCountAC(+e.target.value))
   }
 
+  const handleSort = (sort: string) => {
+    dispatch(setSortPacksAC(sort))
+  }
+
   return (
     <div>
       <Filters />
@@ -77,9 +82,26 @@ export const CardPacksPage = () => {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Name</TableCell>
+              <TableCell
+                onClick={
+                  sortPacks === '0name' ? () => handleSort('1name') : () => handleSort('0name')
+                }
+                sx={{ cursor: 'pointer' }}
+              >
+                Name
+              </TableCell>
               <TableCell align="center">Cards</TableCell>
-              <TableCell align="center">Last updated</TableCell>
+              <TableCell
+                onClick={
+                  sortPacks === '0updated'
+                    ? () => handleSort('1updated')
+                    : () => handleSort('0updated')
+                }
+                sx={{ cursor: 'pointer' }}
+                align="center"
+              >
+                Last updated
+              </TableCell>
               <TableCell align="center">Created by</TableCell>
               <TableCell align="center">Actions</TableCell>
             </TableRow>

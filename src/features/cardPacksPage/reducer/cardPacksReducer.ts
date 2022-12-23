@@ -10,8 +10,8 @@ const initialState = {
   page: 1,
   pageCount: 10,
   cardPacksTotalCount: 0,
-  minCardsCount: 0,
-  maxCardsCount: 110,
+  minCardsCount: DEFAULT_MIN_CARDS_COUNT,
+  maxCardsCount: DEFAULT_MAX_CARDS_COUNT,
   token: '',
   tokenDeathTime: 0,
   packName: '',
@@ -47,6 +47,8 @@ export const cardPacksReducer = (
       return { ...state, minMaxCardsCount: action.minMaxCardsCount }
     case 'PACKS/SET-SEARCH':
       return { ...state, search: action.search }
+    case 'PACKS/SET-SORT-PACKS':
+      return { ...state, sortPacks: action.sortPacks }
     default:
       return state
   }
@@ -87,6 +89,9 @@ export const setMinMaxCardsCountAC = (minMaxCardsCount: number[]) =>
 
 export const setSearchAC = (search: string) => ({ type: 'PACKS/SET-SEARCH', search } as const)
 
+export const setSortPacksAC = (sortPacks: string) =>
+  ({ type: 'PACKS/SET-SORT-PACKS', sortPacks } as const)
+
 export const setPacksDataTC = (): AppThunk => (dispatch, getState) => {
   const { pageCount, page, minMaxCardsCount, packName, sortPacks, user_id } = getState().packs
 
@@ -118,6 +123,7 @@ type setPackNameACType = ReturnType<typeof setPackNameAC>
 type setUserIdACType = ReturnType<typeof setUserIdAC>
 type setMinMaxCardsCountACType = ReturnType<typeof setMinMaxCardsCountAC>
 type setSearchACType = ReturnType<typeof setSearchAC>
+type setSortPacksACType = ReturnType<typeof setSortPacksAC>
 export type CardPacksActionsType =
   | setCardPacksACType
   | setPacksTotalCountACType
@@ -128,3 +134,4 @@ export type CardPacksActionsType =
   | setUserIdACType
   | setMinMaxCardsCountACType
   | setSearchACType
+  | setSortPacksACType
