@@ -3,7 +3,7 @@ import React, { ChangeEvent, useEffect, useState } from 'react'
 import DeleteOutline from '@mui/icons-material/DeleteOutline'
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined'
-import { NativeSelect } from '@mui/material'
+import { NativeSelect, TableSortLabel } from '@mui/material'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import Paper from '@mui/material/Paper'
@@ -16,6 +16,7 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import ReactPaginate from 'react-paginate'
 
+import { PackType } from '../../../api/cards-api'
 import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
 import { Cards } from '../../cards/cardsPage/Cards'
 import Filters from '../components/Filters/Filters'
@@ -49,7 +50,7 @@ export const Packs = () => {
   const [orderDirection, setOrderDirection] = useState<'asc' | 'desc' | undefined>('asc')
 
   useEffect(() => {
-    dispatch(setPacksDataTC())
+    dispatch(setPacksDataTC({}))
   }, [page, pageCount, packName, sortPacks, search, userId, minMaxCardsCount])
 
   const segueToPack = (id: string) => {
@@ -90,7 +91,7 @@ export const Packs = () => {
   }
 
   if (packId !== '') {
-    return <CardsPage packId={packId} />
+    return <Cards packId={packId} />
   }
 
   const handlePageClick = (data: { selected: number }) => {
@@ -99,10 +100,6 @@ export const Packs = () => {
 
   const handlePageCountChange = (e: ChangeEvent<HTMLSelectElement>) => {
     dispatch(setPacksPageCountAC(+e.target.value))
-  }
-
-  const handleSort = (sort: string) => {
-    dispatch(setSortPacksAC(sort))
   }
 
   const sortArray = (packs: Array<PackType>, orderBy: 'asc' | 'desc' | undefined) => {
@@ -147,25 +144,12 @@ export const Packs = () => {
           <Table aria-label="simple table">
             <TableHead>
               <TableRow>
-                <StyledTableCell
-                  align="center"
-                  onClick={
-                    sortPacks === '0name' ? () => handleSort('1name') : () => handleSort('0name')
-                  }
-                  sx={{ cursor: 'pointer' }}
-                >
-                  Name
-                </StyledTableCell>
+                <StyledTableCell sx={{ width: '200px' }}>Name</StyledTableCell>
                 <StyledTableCell align="center">Cards</StyledTableCell>
-                <StyledTableCell
-                  align="center"
-                  onClick={
-                    sortPacks === '0updated'
-                      ? () => handleSort('1updated')
-                      : () => handleSort('0updated')
-                  }
-                >
-                  Last updated
+                <StyledTableCell onClick={handleSortRequest} align="center">
+                  <TableSortLabel direction={orderDirection} active={true}>
+                    Last Updated
+                  </TableSortLabel>
                 </StyledTableCell>
                 <StyledTableCell align="center">Created by</StyledTableCell>
                 <StyledTableCell align="center">Actions</StyledTableCell>
