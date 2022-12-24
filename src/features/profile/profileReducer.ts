@@ -1,10 +1,11 @@
-import { cardsApi, ProfileDataType } from '../../api/cards-api'
+import { authApi, ProfileDataType } from '../../api/auth-api'
 import { AppRootStateType, AppThunk } from '../../app/store'
 
 const initialState = {
   name: '' as string,
   avatar: '' as string,
   email: '' as string,
+  _id: '' as string,
 }
 
 export type ProfileActionsType =
@@ -35,6 +36,7 @@ export const showProfileEmailAC = (email: string) => {
 type ChangeProfileModelType = {
   name?: string
   avatar?: string
+  _id?: string
 }
 export const ChangeProfileTC =
   (data: ChangeProfileModelType): AppThunk =>
@@ -46,7 +48,7 @@ export const ChangeProfileTC =
       ...data,
     }
 
-    cardsApi.changeProfileData(ApiModel).then(res => {
+    authApi.changeProfileData(ApiModel).then(res => {
       console.log(res)
       dispatch(profileAC(res.data.updatedUser))
     })

@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 
+import { VisibilityOff } from '@material-ui/icons'
+import Visibility from '@material-ui/icons/Visibility'
 import {
   Button,
   Checkbox,
@@ -7,6 +9,7 @@ import {
   FormControlLabel,
   FormGroup,
   FormLabel,
+  IconButton,
   TextField,
 } from '@mui/material'
 import { useFormik } from 'formik'
@@ -14,11 +17,12 @@ import { Navigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
 import commonStyles from '../../../common/styles/common.container.module.css'
-import { LoginTC, setError } from '../authReducer'
+import { LoginTC } from '../authReducer'
 
 import styles from './LoginPage.module.css'
 
 export const LoginPage = () => {
+  const [showPasswordInput, setShowPasswordInput] = useState(false)
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
   const error = useAppSelector(state => state.auth.error)
   const dispatch = useAppDispatch()
@@ -30,23 +34,23 @@ export const LoginPage = () => {
   }
   const formik = useFormik({
     initialValues: {
-      email: '',
-      password: '',
+      email: 'platonoff9168@gmail.com',
+      password: 'hellokitty',
       rememberMe: false,
     },
     validate: values => {
       const errors: FormikErrorType = {}
 
-      if (error) {
-        dispatch(setError(null))
-      }
-      if (!values.email) {
-        errors.email = 'Email is required'
+      if (!values.email && formik.touched.email) {
+        errors.email = 'Required'
       } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = 'Invalid email address'
+        errors.email = `Invalid email`
       }
+
       if (!values.password) {
-        errors.password = 'Password is required'
+        errors.password = 'Required'
+      } else if (values.password.length < 8) {
+        errors.password = 'Invalid password'
       }
 
       return errors
@@ -59,6 +63,10 @@ export const LoginPage = () => {
 
   if (isLoggedIn) {
     return <Navigate to={'/packsPage'} />
+  }
+
+  const handleClickShowPasswordInputOne = () => {
+    setShowPasswordInput(!showPasswordInput)
   }
 
   return (
@@ -77,7 +85,25 @@ export const LoginPage = () => {
               Sign in
             </FormLabel>
             <FormGroup>
-              {!formik.errors.email ? (
+              <TextField
+                sx={{
+                  '& .MuiInputLabel-root': { fontFamily: 'Montserrat', fontWeight: '400' },
+                  '& .MuiInputLabel-root.Mui-focused': {
+                    fontFamily: 'Montserrat',
+                    fontWeight: '400',
+                  },
+                  '& .MuiInputBase-root': {
+                    '& input': { fontFamily: 'Montserrat', fontWeight: '500' },
+                  },
+                }}
+                error={formik.touched.email && formik.errors.email !== undefined}
+                {...formik.getFieldProps('email')}
+                id="email"
+                label="Email"
+                helperText={formik.touched.email ? formik.errors.email : ''}
+                variant="standard"
+              />
+              <div className={styles.passwordInputContainer}>
                 <TextField
                   sx={{
                     '& .MuiInputLabel-root': { fontFamily: 'Montserrat', fontWeight: '400' },
@@ -88,66 +114,26 @@ export const LoginPage = () => {
                     '& .MuiInputBase-root': {
                       '& input': { fontFamily: 'Montserrat', fontWeight: '500' },
                     },
+                    width: '100%',
                   }}
-                  variant="standard"
-                  label="Email"
-                  {...formik.getFieldProps('email')}
-                />
-              ) : (
-                <TextField
-                  error
-                  sx={{
-                    '& .MuiInputLabel-root': { fontFamily: 'Montserrat', fontWeight: '400' },
-                    '& .MuiInputLabel-root.Mui-focused': {
-                      fontFamily: 'Montserrat',
-                      fontWeight: '400',
-                    },
-                    '& .MuiInputBase-root': {
-                      '& input': { fontFamily: 'Montserrat', fontWeight: '500' },
-                    },
-                  }}
-                  variant="standard"
-                  label="Error"
-                  {...formik.getFieldProps('email')}
-                  helperText={formik.errors.email}
-                />
-              )}
-              {!formik.errors.password ? (
-                <TextField
-                  sx={{
-                    '& .MuiInputLabel-root': { fontFamily: 'Montserrat', fontWeight: '400' },
-                    '& .MuiInputLabel-root.Mui-focused': {
-                      fontFamily: 'Montserrat',
-                      fontWeight: '400',
-                    },
-                    '& .MuiInputBase-root': {
-                      '& input': { fontFamily: 'Montserrat', fontWeight: '500' },
-                    },
-                  }}
-                  variant="standard"
-                  type="password"
+                  error={formik.touched.password && formik.errors.password !== undefined}
+                  {...formik.getFieldProps('password')}
+                  type={showPasswordInput ? 'text' : 'password'}
+                  id="password"
                   label="Password"
-                  {...formik.getFieldProps('password')}
-                />
-              ) : (
-                <TextField
-                  error
-                  sx={{
-                    '& .MuiInputLabel-root': { fontFamily: 'Montserrat', fontWeight: '400' },
-                    '& .MuiInputLabel-root.Mui-focused': {
-                      fontFamily: 'Montserrat',
-                      fontWeight: '400',
-                    },
-                    '& .MuiInputBase-root': {
-                      '& input': { fontFamily: 'Montserrat', fontWeight: '500' },
-                    },
-                  }}
+                  helperText={formik.touched.password ? formik.errors.password : ''}
                   variant="standard"
-                  label="Error"
-                  {...formik.getFieldProps('password')}
-                  helperText={formik.errors.password}
                 />
-              )}
+                <IconButton
+                  className={styles.EyeIconPosition}
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPasswordInputOne}
+                  onMouseDown={() => {}}
+                  edge="end"
+                >
+                  {showPasswordInput ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </div>
               <FormControlLabel
                 sx={{
                   '& .MuiFormControlLabel-label': { fontFamily: 'Montserrat', fontWeight: '500' },

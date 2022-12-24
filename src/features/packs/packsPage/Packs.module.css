@@ -1,0 +1,107 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    width: 80%;
+    margin: 0 auto;
+}
+
+.titleBlock {
+    padding: 50px 0 40px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title {
+    font-family: 'Montserrat', serif;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 27px;
+}
+
+.filterBlock {
+    width: 100%;
+    padding: 0 20px;
+}
+
+.table {
+    padding: 10px 0;
+    width: 100%;
+}
+
+.tableNameButton {
+    background-color: rgba(255,255,255, 0);
+    border: 0;
+    font-family: 'Montserrat', serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+}
+
+.tableNameButton:hover {
+    color: #7c8385;
+}
+
+.tableIconButtonsBlock {
+    display: flex;
+    justify-content: space-between;
+}
+
+.PaginationContainer {
+    margin-top: 36px;
+    margin-bottom: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.SelectPages {
+    margin-left: 5px;
+    padding: 2px;
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 2px;
+}
+
+.paginationBttns {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.paginationBttns a {
+    margin: 6px;
+    padding: 6px 11px 6px 11px;
+    border-radius: 2px;
+    display: inline-block;
+    color: black;
+    cursor: pointer;
+    background-color: white;
+    text-align: center;
+}
+
+.paginationBttns a:hover {
+    color: black;
+    background: #f5f5f5;
+}
+
+.paginationActive a{
+    color: white;
+    background-color: #366EFF;
+}
+
+.paginationActive a:hover{
+    color: white;
+    background-color: #366EFF;
+}
+
+.paginationDisabled a {
+    visibility: collapse;
+}
+
+.SelectContainer {
+    margin-left: 30px;
+}

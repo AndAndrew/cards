@@ -19,7 +19,7 @@ export const cardsReducer = (
 ): InitialStateType => {
   switch (action.type) {
     case 'CARDS/SET_CARDS_PACK':
-      return { ...state, cards: [...state.cards, ...action.cards] }
+      return { cards: [...action.cards] }
     case 'CARDS/ADD_CARD':
       return { ...state, cards: [action.card, ...state.cards] }
     case 'CARDS/DELETE_CARD':

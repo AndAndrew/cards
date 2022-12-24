@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    width: 80%;
+    margin: 0 auto;
+}
+
+.backButton {
+    padding: 15px 0;
+    max-width: 200px;
+    display: flex;
+    justify-content: left;
+    background-color: rgba(255,255,255, 0);
+    border: 0;
+    font-family: 'Montserrat', serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.backButton:hover {
+    color: #7c8385;
+}
+
+.titleBlock {
+    padding: 50px 0 40px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title {
+    font-family: 'Montserrat', serif;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 27px;
+}
+
+.table {
+    padding: 10px 0;
+    width: 100%;
+}

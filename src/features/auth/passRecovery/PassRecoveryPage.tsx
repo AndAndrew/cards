@@ -3,7 +3,7 @@ import React, { ChangeEvent, useState } from 'react'
 import { Button, TextField } from '@mui/material'
 import { Navigate } from 'react-router-dom'
 
-import { RecoveryPasswordType } from '../../../api/cards-api'
+import { RecoveryPasswordType } from '../../../api/auth-api'
 import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
 import { passwordRecoveryTC } from '../authReducer'
 import { CheckEmailPage } from '../CheckEmalPage/CheckEmailPage'

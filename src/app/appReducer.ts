@@ -1,4 +1,4 @@
-import { cardsApi } from '../api/cards-api'
+import { authApi } from '../api/auth-api'
 import { setIsLoggedInAC } from '../features/auth/authReducer'
 import { profileAC, showProfileEmailAC } from '../features/profile/profileReducer'
 
@@ -36,11 +36,11 @@ export const isInitializedAC = (value: boolean) => {
 }
 export const isInitializedTC = (): AppThunk => dispatch => {
   dispatch(setAppStatus('loading'))
-  cardsApi
+  authApi
     .me()
     .then(res => {
       dispatch(setIsLoggedInAC(true))
-      dispatch(profileAC({ name: res.data.name, avatar: '' }))
+      dispatch(profileAC({ name: res.data.name, avatar: '', _id: res.data._id }))
 
       dispatch(showProfileEmailAC(res.data.email))
     })

@@ -1,19 +1,17 @@
-import { Dispatch } from 'redux'
-
 import {
-  cardsApi,
+  authApi,
   CreateNewPasswordType,
   LoginDataType,
   RecoveryPasswordType,
   RegisterDataType,
-} from '../../api/cards-api'
+} from '../../api/auth-api'
 import { setAppStatus } from '../../app/appReducer'
 import { AppThunk } from '../../app/store'
 import { profileAC, showProfileEmailAC } from '../profile/profileReducer'
 
 const InitialState = {
   isLoggedIn: false as boolean,
-  profileName: '' as string,
+  name: '' as string,
   error: null as string | null,
   isMessageSent: false as boolean,
   isNewPasswordCorrect: false as boolean,
@@ -87,31 +85,35 @@ export const LoginTC =
   (data: LoginDataType): AppThunk =>
   dispatch => {
     dispatch(setAppStatus('loading'))
-    cardsApi
+    authApi
       .login(data)
       .then(res => {
-        console.log(res + 'res data login')
+        console.log(res)
         dispatch(setIsLoggedInAC(true))
-        dispatch(setAppStatus('successes'))
         dispatch(showProfileEmailAC(res.data.email))
         dispatch(profileAC({ name: res.data.name, avatar: '' }))
       })
       .catch(error => {
-        console.log(error.message)
         dispatch(setError(error.message))
+      })
+      .finally(() => {
+        dispatch(setAppStatus('successes'))
       })
   }
 export const me = (): AppThunk => dispatch => {
   dispatch(setAppStatus('loading'))
-  cardsApi.me().then(res => {
-    dispatch(setProfileNameAC(res.data.name))
-    dispatch(setAppStatus('successes'))
-  })
+  authApi
+    .me()
+    .then(res => {
+      dispatch(setProfileNameAC(res.data.name))
+    })
+    .finally(() => {
+      dispatch(setAppStatus('successes'))
+    })
 }
 export const logOutTC = (): AppThunk => dispatch => {
   dispatch(setAppStatus('loading'))
-  cardsApi.logOut().then(res => {
-    console.log(res.data)
+  authApi.logOut().then(res => {
     dispatch(setIsLoggedInAC(false))
     dispatch(setAppStatus('successes'))
   })
@@ -119,28 +121,28 @@ export const logOutTC = (): AppThunk => dispatch => {
 export const passwordRecoveryTC =
   (data: RecoveryPasswordType): AppThunk =>
   dispatch => {
-    cardsApi.recoveryPassword(data).then(res => {
+    authApi.recoveryPassword(data).then(res => {
       dispatch(isMessagesentAC(true))
-      console.log(res)
     })
   }
 export const NewPasswordTC =
   (data: CreateNewPasswordType): AppThunk =>
   dispatch => {
-    cardsApi.createNewPassword(data).then(res => {
+    authApi.createNewPassword(data).then(res => {
       dispatch(isNewPasswordCorrectAC(true))
       res.data
     })
   }
 
-export const registerTC = (data: RegisterDataType) => (dispatch: Dispatch) => {
-  cardsApi
-    .register(data)
-    .then(res => {
-      dispatch(setIsRegisteredAC(true))
-    })
-    .catch(error => {
-      console.log(error.message)
-      dispatch(setError(error.message))
-    })
-}
+export const registerTC =
+  (data: RegisterDataType): AppThunk =>
+  dispatch => {
+    authApi
+      .register(data)
+      .then(res => {
+        dispatch(setIsRegisteredAC(true))
+      })
+      .catch(error => {
+        dispatch(setError(error.message))
+      })
+  }
