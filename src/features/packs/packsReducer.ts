@@ -109,11 +109,11 @@ export const setSortPacksAC = (sortPacks: string) =>
   ({ type: 'PACKS/SET-SORT-PACKS', sortPacks } as const)
 
 export const setPacksDataTC =
-  (paramus: ParamsPacksType): AppThunk =>
+  (params: ParamsPacksType): AppThunk =>
   (dispatch, getState) => {
     const { pageCount, page, minMaxCardsCount, packName, sortPacks, user_id } = getState().packs
 
-    const params: ParamsPacksType = {
+    const sortData: ParamsPacksType = {
       page,
       pageCount,
       packName,
@@ -121,11 +121,11 @@ export const setPacksDataTC =
       max: minMaxCardsCount[1],
       sortPacks,
       user_id,
-      ...paramus,
+      ...params,
     }
 
     dispatch(setAppStatus('loading'))
-    cardsApi.getPacksData(params).then(res => {
+    cardsApi.getPacksData(sortData).then(res => {
       dispatch(setPacksDataAC(res.data))
       dispatch(setCardPacksAC(res.data.cardPacks))
       console.log(res.data)

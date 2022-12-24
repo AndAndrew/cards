@@ -48,6 +48,12 @@ export const Packs = () => {
   const search = useAppSelector(state => state.packs.search)
 
   const [orderDirection, setOrderDirection] = useState<'asc' | 'desc' | undefined>('asc')
+  const [orderNameDirection, setOrderNameDirection] = useState<'asc' | 'desc' | undefined>('asc')
+  const [orderCreatorDirection, setOrderCreatorDirection] = useState<'asc' | 'desc' | undefined>(
+    'asc'
+  )
+
+  console.log(orderDirection, orderNameDirection, orderCreatorDirection)
 
   useEffect(() => {
     dispatch(setPacksDataTC({}))
@@ -102,19 +108,33 @@ export const Packs = () => {
     dispatch(setPacksPageCountAC(+e.target.value))
   }
 
-  const sortArray = (packs: Array<PackType>, orderBy: 'asc' | 'desc' | undefined) => {
+  const sortArray = (orderBy: 'asc' | 'desc' | undefined, sortParams: string) => {
     switch (orderBy) {
       case 'asc':
       default:
-        return dispatch(setPacksDataTC({ sortPacks: '1updated' }))
+        return dispatch(setPacksDataTC({ sortPacks: '1' + sortParams }))
       case 'desc':
-        return dispatch(setPacksDataTC({ sortPacks: '0updated' }))
+        return dispatch(setPacksDataTC({ sortPacks: '0' + sortParams }))
     }
   }
 
-  const handleSortRequest = () => {
-    sortArray(packs, orderDirection)
-    setOrderDirection(orderDirection === 'asc' ? 'desc' : 'asc')
+  const handleSortRequest = (sortParams: string) => {
+    switch (sortParams) {
+      case 'name':
+        setOrderNameDirection(orderNameDirection === 'asc' ? 'desc' : 'asc')
+
+        return sortArray(orderNameDirection, sortParams)
+
+      case 'updated':
+        sortArray(orderDirection, sortParams)
+
+        return setOrderDirection(orderDirection === 'asc' ? 'desc' : 'asc')
+
+      case 'user_name':
+        setOrderCreatorDirection(orderCreatorDirection === 'asc' ? 'desc' : 'asc')
+
+        return sortArray(orderCreatorDirection, sortParams)
+    }
   }
 
   return (
@@ -144,14 +164,22 @@ export const Packs = () => {
           <Table aria-label="simple table">
             <TableHead>
               <TableRow>
-                <StyledTableCell sx={{ width: '200px' }}>Name</StyledTableCell>
+                <StyledTableCell onClick={() => handleSortRequest('name')} sx={{ width: '200px' }}>
+                  <TableSortLabel direction={orderNameDirection} active={true}>
+                    Name
+                  </TableSortLabel>
+                </StyledTableCell>
                 <StyledTableCell align="center">Cards</StyledTableCell>
-                <StyledTableCell onClick={handleSortRequest} align="center">
+                <StyledTableCell onClick={() => handleSortRequest('updated')} align="center">
                   <TableSortLabel direction={orderDirection} active={true}>
                     Last Updated
                   </TableSortLabel>
                 </StyledTableCell>
-                <StyledTableCell align="center">Created by</StyledTableCell>
+                <StyledTableCell onClick={() => handleSortRequest('user_name')} align="center">
+                  <TableSortLabel direction={orderCreatorDirection} active={true}>
+                    Created by
+                  </TableSortLabel>
+                </StyledTableCell>
                 <StyledTableCell align="center">Actions</StyledTableCell>
               </TableRow>
             </TableHead>
@@ -178,6 +206,7 @@ export const Packs = () => {
                       )}
                       {isMyPack(pack.user_name) && (
                         <IconButton onClick={() => deleteButtonHandler(pack._id)}>
+                          asdasd
                           <DeleteOutline />
                         </IconButton>
                       )}
