@@ -1,10 +1,12 @@
 import React, { memo, useEffect, useState } from 'react'
 
-import { ToggleButton, ToggleButtonGroup } from '@mui/material'
+import ToggleButton from '@mui/material/ToggleButton'
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import Typography from '@mui/material/Typography'
 
 import s from '../../../../common/components/search/Search.module.css'
 import { useAppDispatch, useAppSelector } from '../../../../common/hooks/react-redux-hooks'
+import { titleStyle } from '../../../../common/styles/fontStyles'
 import { setUserIdAC } from '../../packsReducer'
 
 import style from './ToggleMyOrAll.module.css'
@@ -34,7 +36,9 @@ const ToggleMyOrAll = memo(() => {
 
   return (
     <div className={s.search}>
-      <Typography component="p">Show packs cards</Typography>
+      <Typography component="p" style={titleStyle}>
+        Show packs cards
+      </Typography>
       <ToggleButtonGroup color="primary" value={alignment} exclusive onChange={handleChange}>
         <ToggleButton className={style.button} value="My">
           My

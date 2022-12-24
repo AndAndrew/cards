@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography'
 
 import { AppActionsType } from '../../../app/store'
 import { useAppDispatch, useDebounce } from '../../hooks/react-redux-hooks'
+import { titleStyle } from '../../styles/fontStyles'
 
 import s from './Search.module.css'
 
@@ -33,7 +34,9 @@ export const Search = memo(({ action, search }: SearchPropsType) => {
 
   return (
     <div className={s.search}>
-      <Typography component="p">Search</Typography>
+      <Typography component="p" style={titleStyle}>
+        Search
+      </Typography>
       <TextField
         fullWidth
         placeholder="Provide your text"
