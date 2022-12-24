@@ -1,34 +1,16 @@
 import React, { ChangeEvent, useEffect, useState } from 'react'
 
-import DeleteOutline from '@mui/icons-material/DeleteOutline'
-import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
-import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined'
-import { NativeSelect, TableSortLabel } from '@mui/material'
 import Button from '@mui/material/Button'
-import IconButton from '@mui/material/IconButton'
-import Paper from '@mui/material/Paper'
-import { styled } from '@mui/material/styles'
-import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
-import TableCell, { tableCellClasses } from '@mui/material/TableCell'
-import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
-import TableRow from '@mui/material/TableRow'
+import NativeSelect from '@mui/material/NativeSelect'
 import ReactPaginate from 'react-paginate'
 
 import { PackType } from '../../../api/cards-api'
 import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
+import { buttonFontStyle } from '../../../common/styles/fontStyles'
 import { Cards } from '../../cards/cardsPage/Cards'
 import Filters from '../components/Filters/Filters'
-import {
-  setPacksDataTC,
-  setPacksPageCountAC,
-  setPacksPageNumberAC,
-  setSortPacksAC,
-  addPack,
-  deletePack,
-  editPack,
-} from '../packsReducer'
+import { setPacksDataTC, setPacksPageCountAC, setPacksPageNumberAC, addPack } from '../packsReducer'
+import { PacksTable } from '../packsTable/PacksTable'
 
 import style from './Packs.module.css'
 
@@ -38,7 +20,6 @@ export const Packs = () => {
   const dispatch = useAppDispatch()
   const page = useAppSelector(state => state.packs.page)
   const packs = useAppSelector(state => state.packs.cardPacks)
-  const profileName = useAppSelector(state => state.auth.profileName)
   const cardPacksTotalCount = useAppSelector(state => state.packs.cardPacksTotalCount)
   const pageCount = useAppSelector(state => state.packs.pageCount)
   const packName = useAppSelector(state => state.packs.packName)
@@ -48,52 +29,12 @@ export const Packs = () => {
   const search = useAppSelector(state => state.packs.search)
 
   const [orderDirection, setOrderDirection] = useState<'asc' | 'desc' | undefined>('asc')
-  const [orderNameDirection, setOrderNameDirection] = useState<'asc' | 'desc' | undefined>('asc')
-  const [orderCreatorDirection, setOrderCreatorDirection] = useState<'asc' | 'desc' | undefined>(
-    'asc'
-  )
-
-  console.log(orderDirection, orderNameDirection, orderCreatorDirection)
 
   useEffect(() => {
     dispatch(setPacksDataTC({}))
   }, [page, pageCount, packName, sortPacks, search, userId, minMaxCardsCount])
-
-  const segueToPack = (id: string) => {
-    setPackId(id)
-  }
-  const learnFromPack = (packId: string) => {
-    console.log('learn')
-  }
-  const editButtonHandler = (packId: string) => {
-    dispatch(editPack<{ name: string }>(packId, { name: 'updated name' }))
-  }
-  const deleteButtonHandler = (packId: string) => {
-    dispatch(deletePack(packId))
-  }
   const addButtonHandler = () => {
     dispatch(addPack('New pack', '', false))
-  }
-
-  const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: '#EFEFEF',
-      color: theme.palette.common.black,
-    },
-    [`&.${tableCellClasses.body}`]: {
-      fontFamily: 'Montserrat',
-      fontWeight: 400,
-      fontSize: 14,
-    },
-  }))
-
-  const StyledTableRow = styled(TableRow)(({ theme }) => ({
-    '&:nth-of-type(odd)': {
-      backgroundColor: '#FAFAFA',
-    },
-  }))
-  const isMyPack = (name: string) => {
-    return name === profileName
   }
 
   if (packId !== '') {
@@ -108,33 +49,19 @@ export const Packs = () => {
     dispatch(setPacksPageCountAC(+e.target.value))
   }
 
-  const sortArray = (orderBy: 'asc' | 'desc' | undefined, sortParams: string) => {
+  const sortArray = (packs: Array<PackType>, orderBy: 'asc' | 'desc' | undefined) => {
     switch (orderBy) {
       case 'asc':
       default:
-        return dispatch(setPacksDataTC({ sortPacks: '1' + sortParams }))
+        return dispatch(setPacksDataTC({ sortPacks: '1updated' }))
       case 'desc':
-        return dispatch(setPacksDataTC({ sortPacks: '0' + sortParams }))
+        return dispatch(setPacksDataTC({ sortPacks: '0updated' }))
     }
   }
 
-  const handleSortRequest = (sortParams: string) => {
-    switch (sortParams) {
-      case 'name':
-        setOrderNameDirection(orderNameDirection === 'asc' ? 'desc' : 'asc')
-
-        return sortArray(orderNameDirection, sortParams)
-
-      case 'updated':
-        sortArray(orderDirection, sortParams)
-
-        return setOrderDirection(orderDirection === 'asc' ? 'desc' : 'asc')
-
-      case 'user_name':
-        setOrderCreatorDirection(orderCreatorDirection === 'asc' ? 'desc' : 'asc')
-
-        return sortArray(orderCreatorDirection, sortParams)
-    }
+  const handleSortRequest = () => {
+    sortArray(packs, orderDirection)
+    setOrderDirection(orderDirection === 'asc' ? 'desc' : 'asc')
   }
 
   return (
@@ -142,14 +69,8 @@ export const Packs = () => {
       <div className={style.titleBlock}>
         <div className={style.title}>Packs list</div>
         <Button
-          style={{
-            fontFamily: 'Montserrat',
-            fontWeight: '500',
-            borderRadius: '20px',
-            fontSize: '16px',
-            textTransform: 'capitalize',
-          }}
           variant={'contained'}
+          style={buttonFontStyle}
           color={'primary'}
           onClick={addButtonHandler}
         >
@@ -160,63 +81,11 @@ export const Packs = () => {
         <Filters />
       </div>
       <div className={style.table}>
-        <TableContainer sx={{ maxHeight: 490 }} component={Paper}>
-          <Table aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <StyledTableCell onClick={() => handleSortRequest('name')} sx={{ width: '200px' }}>
-                  <TableSortLabel direction={orderNameDirection} active={true}>
-                    Name
-                  </TableSortLabel>
-                </StyledTableCell>
-                <StyledTableCell align="center">Cards</StyledTableCell>
-                <StyledTableCell onClick={() => handleSortRequest('updated')} align="center">
-                  <TableSortLabel direction={orderDirection} active={true}>
-                    Last Updated
-                  </TableSortLabel>
-                </StyledTableCell>
-                <StyledTableCell onClick={() => handleSortRequest('user_name')} align="center">
-                  <TableSortLabel direction={orderCreatorDirection} active={true}>
-                    Created by
-                  </TableSortLabel>
-                </StyledTableCell>
-                <StyledTableCell align="center">Actions</StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {packs.map(pack => (
-                <StyledTableRow key={pack._id}>
-                  <StyledTableCell component="th" scope="row">
-                    <button className={style.tableNameButton} onClick={() => segueToPack(pack._id)}>
-                      {pack.name}
-                    </button>
-                  </StyledTableCell>
-                  <StyledTableCell align="center">{pack.cardsCount}</StyledTableCell>
-                  <StyledTableCell align="center">{pack.updated}</StyledTableCell>
-                  <StyledTableCell align="center">{pack.user_name}</StyledTableCell>
-                  <StyledTableCell align={'center'}>
-                    <div className={style.tableIconButtonsBlock}>
-                      <IconButton onClick={() => learnFromPack(pack._id)}>
-                        <SchoolOutlinedIcon />
-                      </IconButton>
-                      {isMyPack(pack.user_name) && (
-                        <IconButton onClick={() => editButtonHandler(pack._id)}>
-                          <DriveFileRenameOutlineIcon />
-                        </IconButton>
-                      )}
-                      {isMyPack(pack.user_name) && (
-                        <IconButton onClick={() => deleteButtonHandler(pack._id)}>
-                          asdasd
-                          <DeleteOutline />
-                        </IconButton>
-                      )}
-                    </div>
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <PacksTable
+          orderDirection={orderDirection}
+          handleSortRequest={handleSortRequest}
+          setPackId={setPackId}
+        />
         <div className={style.PaginationContainer}>
           <ReactPaginate
             pageCount={Math.ceil(cardPacksTotalCount / pageCount)}

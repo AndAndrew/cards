@@ -1,6 +1,7 @@
 import React, { memo, SyntheticEvent, useEffect, useState } from 'react'
 
-import { Box, Slider } from '@mui/material'
+import Box from '@mui/material/Box'
+import Slider from '@mui/material/Slider'
 import Typography from '@mui/material/Typography'
 
 import {
@@ -8,6 +9,7 @@ import {
   useAppSelector,
   useDebounce,
 } from '../../../../common/hooks/react-redux-hooks'
+import { titleStyle } from '../../../../common/styles/fontStyles'
 import { setMinMaxCardsCountAC } from '../../packsReducer'
 
 import s from './SliderNumberOfCards.module.css'
@@ -35,7 +37,9 @@ export const SliderNumberOfCards = memo(() => {
 
   return (
     <div>
-      <Typography component="p">Number of Cards</Typography>
+      <Typography component="p" style={titleStyle}>
+        Number of Cards
+      </Typography>
       <div className={s.container}>
         <div className={s.numberContainer}>{selectedCount[0]}</div>
 

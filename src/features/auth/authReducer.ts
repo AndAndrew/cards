@@ -11,7 +11,7 @@ import { profileAC, showProfileEmailAC } from '../profile/profileReducer'
 
 const InitialState = {
   isLoggedIn: false as boolean,
-  profileName: '' as string,
+  name: '' as string,
   error: null as string | null,
   isMessageSent: false as boolean,
   isNewPasswordCorrect: false as boolean,
@@ -88,21 +88,28 @@ export const LoginTC =
     authApi
       .login(data)
       .then(res => {
+        console.log(res)
         dispatch(setIsLoggedInAC(true))
-        dispatch(setAppStatus('successes'))
         dispatch(showProfileEmailAC(res.data.email))
         dispatch(profileAC({ name: res.data.name, avatar: '' }))
       })
       .catch(error => {
         dispatch(setError(error.message))
       })
+      .finally(() => {
+        dispatch(setAppStatus('successes'))
+      })
   }
 export const me = (): AppThunk => dispatch => {
   dispatch(setAppStatus('loading'))
-  authApi.me().then(res => {
-    dispatch(setProfileNameAC(res.data.name))
-    dispatch(setAppStatus('successes'))
-  })
+  authApi
+    .me()
+    .then(res => {
+      dispatch(setProfileNameAC(res.data.name))
+    })
+    .finally(() => {
+      dispatch(setAppStatus('successes'))
+    })
 }
 export const logOutTC = (): AppThunk => dispatch => {
   dispatch(setAppStatus('loading'))
