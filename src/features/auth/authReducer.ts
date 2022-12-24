@@ -16,6 +16,7 @@ const InitialState = {
   isMessageSent: false as boolean,
   isNewPasswordCorrect: false as boolean,
   registered: false as boolean,
+  profileName: '' as string,
 }
 
 export type AuthActionsType =

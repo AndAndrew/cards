@@ -143,6 +143,7 @@ export const addPack =
       dispatch(setAppStatus('idle'))
     })
   }
+
 export const deletePack =
   (packId: string): AppThunk =>
   dispatch => {
