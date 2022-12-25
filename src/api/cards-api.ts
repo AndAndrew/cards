@@ -6,9 +6,9 @@ export const cardsApi = {
   getPacksData(params?: ParamsPacksType) {
     return instance.get('cards/pack', { params })
   },
-  addPack(name?: string, deckCover?: string, isPrivate?: boolean) {
+  addPack(data: AddPackType) {
     return instance.post('cards/pack', {
-      cardsPack: { name: name, deckCover: deckCover, private: isPrivate },
+      cardsPack: data,
     })
   },
   deletePack(packId: string) {
@@ -42,6 +42,11 @@ export const cardsApi = {
   editCard<T>(cardId: string, data: T) {
     return instance.put('cards/card', { card: { _id: cardId, ...data } })
   },
+}
+export type AddPackType = {
+  name?: string | null
+  deckCover?: string
+  isPrivate?: boolean
 }
 
 export type ParamsPacksType = {

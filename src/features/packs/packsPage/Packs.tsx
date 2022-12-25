@@ -16,18 +16,19 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import ReactPaginate from 'react-paginate'
 
-import { PackType } from '../../../api/cards-api'
+import { AddPackType } from '../../../api/cards-api'
+import { AddModal } from '../../../common/components/modals/addModal/AddModal'
+import { BasicModal } from '../../../common/components/modals/basicModal/BasicModal'
 import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
 import { Cards } from '../../cards/cardsPage/Cards'
 import Filters from '../components/Filters/Filters'
 import {
-  setPacksDataTC,
-  setPacksPageCountAC,
-  setPacksPageNumberAC,
-  setSortPacksAC,
   addPack,
   deletePack,
   editPack,
+  setPacksDataTC,
+  setPacksPageCountAC,
+  setPacksPageNumberAC,
 } from '../packsReducer'
 
 import style from './Packs.module.css'
@@ -46,7 +47,6 @@ export const Packs = () => {
   const userId = useAppSelector(state => state.packs.user_id)
   const minMaxCardsCount = useAppSelector(state => state.packs.minMaxCardsCount)
   const search = useAppSelector(state => state.packs.search)
-
   const [orderDirection, setOrderDirection] = useState<'asc' | 'desc' | undefined>('asc')
   const [orderNameDirection, setOrderNameDirection] = useState<'asc' | 'desc' | undefined>('asc')
   const [orderCreatorDirection, setOrderCreatorDirection] = useState<'asc' | 'desc' | undefined>(
@@ -71,8 +71,8 @@ export const Packs = () => {
   const deleteButtonHandler = (packId: string) => {
     dispatch(deletePack(packId))
   }
-  const addButtonHandler = () => {
-    dispatch(addPack('New pack', '', false))
+  const addPackHandler = (data: AddPackType) => {
+    dispatch(addPack(data))
   }
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -141,20 +141,7 @@ export const Packs = () => {
     <div className={style.container}>
       <div className={style.titleBlock}>
         <div className={style.title}>Packs list</div>
-        <Button
-          style={{
-            fontFamily: 'Montserrat',
-            fontWeight: '500',
-            borderRadius: '20px',
-            fontSize: '16px',
-            textTransform: 'capitalize',
-          }}
-          variant={'contained'}
-          color={'primary'}
-          onClick={addButtonHandler}
-        >
-          Add new pack
-        </Button>
+        <AddModal addPackHandler={addPackHandler} />
       </div>
       <div className={style.filterBlock}>
         <Filters />

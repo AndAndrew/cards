@@ -1,4 +1,4 @@
-import { cardsApi, PackType, ParamsPacksType } from '../../api/cards-api'
+import { AddPackType, cardsApi, PackType, ParamsPacksType } from '../../api/cards-api'
 import { setAppStatus } from '../../app/appReducer'
 import { AppThunk } from '../../app/store'
 
@@ -135,10 +135,10 @@ export const setPacksDataTC =
   }
 
 export const addPack =
-  (name?: string, deckCover?: string, isPrivate?: boolean): AppThunk =>
+  (data: AddPackType): AppThunk =>
   dispatch => {
     dispatch(setAppStatus('loading'))
-    cardsApi.addPack(name, deckCover, isPrivate).then(res => {
+    cardsApi.addPack(data).then(res => {
       dispatch(addPackAC(res.data.newCardsPack))
       dispatch(setAppStatus('idle'))
     })

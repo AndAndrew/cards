@@ -1,0 +1,25 @@
+.modal {
+    height: 350px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+
+}
+
+.modalInput {
+    text-align: center;
+
+}
+
+.modalTitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.modalButtons {
+    display: flex;
+    justify-content: space-between;
+}
