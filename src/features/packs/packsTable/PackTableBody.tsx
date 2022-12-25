@@ -5,27 +5,25 @@ import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutli
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined'
 import IconButton from '@mui/material/IconButton'
 import TableBody from '@mui/material/TableBody'
+import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
 import { StyledTableCell, StyledTableRow } from '../../../common/styles/styledTableElements'
 import style from '../packsPage/Packs.module.css'
 import { deletePack, editPack } from '../packsReducer'
 
-type PropsType = {
-  setPackId: (id: string) => void
-}
-
-export const PackTableBody = (props: PropsType) => {
+export const PackTableBody = () => {
   const dispatch = useAppDispatch()
   const profileName = useAppSelector(state => state.profile.name)
   const packs = useAppSelector(state => state.packs.cardPacks)
-
-  const segueToPack = (id: string) => {
-    props.setPackId(id)
-  }
+  const navigate = useNavigate()
 
   const isMyPack = (name: string) => {
     return name === profileName
+  }
+
+  const onNameButtonClick = (packId: string) => {
+    navigate(`/cardsPage/${packId}`)
   }
 
   const learnFromPack = (packId: string) => {
@@ -43,7 +41,7 @@ export const PackTableBody = (props: PropsType) => {
       {packs.map(pack => (
         <StyledTableRow key={pack._id}>
           <StyledTableCell align="center">
-            <button className={style.tableNameButton} onClick={() => segueToPack(pack._id)}>
+            <button className={style.tableNameButton} onClick={() => onNameButtonClick(pack._id)}>
               {pack.name}
             </button>
           </StyledTableCell>

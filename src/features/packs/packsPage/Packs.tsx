@@ -3,8 +3,9 @@ import React, { ChangeEvent, useEffect, useState } from 'react'
 import Button from '@mui/material/Button'
 import NativeSelect from '@mui/material/NativeSelect'
 import ReactPaginate from 'react-paginate'
+import { useNavigate } from 'react-router-dom'
 
-import { PackType } from '../../../api/cards-api'
+import { PacksPackType } from '../../../api/cards-api'
 import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
 import { buttonFontStyle } from '../../../common/styles/fontStyles'
 import { Cards } from '../../cards/cardsPage/Cards'
@@ -15,8 +16,6 @@ import { PacksTable } from '../packsTable/PacksTable'
 import style from './Packs.module.css'
 
 export const Packs = () => {
-  const [packId, setPackId] = useState('')
-
   const dispatch = useAppDispatch()
   const page = useAppSelector(state => state.packs.page)
   const packs = useAppSelector(state => state.packs.cardPacks)
@@ -37,10 +36,6 @@ export const Packs = () => {
     dispatch(addPack('New pack', '', false))
   }
 
-  if (packId !== '') {
-    return <Cards packId={packId} setPackId={setPackId} />
-  }
-
   const handlePageClick = (data: { selected: number }) => {
     dispatch(setPacksPageNumberAC(data.selected + 1))
   }
@@ -49,7 +44,7 @@ export const Packs = () => {
     dispatch(setPacksPageCountAC(+e.target.value))
   }
 
-  const sortArray = (packs: Array<PackType>, orderBy: 'asc' | 'desc' | undefined) => {
+  const sortArray = (packs: Array<PacksPackType>, orderBy: 'asc' | 'desc' | undefined) => {
     switch (orderBy) {
       case 'asc':
       default:
@@ -81,11 +76,7 @@ export const Packs = () => {
         <Filters />
       </div>
       <div className={style.table}>
-        <PacksTable
-          orderDirection={orderDirection}
-          handleSortRequest={handleSortRequest}
-          setPackId={setPackId}
-        />
+        <PacksTable orderDirection={orderDirection} handleSortRequest={handleSortRequest} />
         <div className={style.PaginationContainer}>
           <ReactPaginate
             pageCount={Math.ceil(cardPacksTotalCount / pageCount)}
