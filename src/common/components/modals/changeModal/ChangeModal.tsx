@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useState } from 'react'
 
+import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
 import { Button, Checkbox, FormControlLabel, TextField } from '@mui/material'
 
 import { AddPackType } from '../../../../api/cards-api'
@@ -7,41 +8,43 @@ import { BasicModal } from '../basicModal/BasicModal'
 
 import style from './../style/Modal.module.css'
 
-type AddModalPropsType = {
-  addPackHandler: (data: AddPackType) => void
+type ChangeModalPropsType = {
+  editButtonHandler: (data: AddPackType) => void
+  packId: string
+  name: string
 }
 
-export const AddModal = (props: AddModalPropsType) => {
-  const [packName, SetPackName] = useState<string>('')
+export const ChangeModal = (props: ChangeModalPropsType) => {
+  const [packName, SetPackName] = useState(props.name)
   const [checked, setChecked] = useState(false)
 
-  const createPackName = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+  const createNewPackName = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     SetPackName(e.currentTarget.value)
   }
   const isChecked = () => {
     setChecked(!checked)
   }
-  const AddNewPack = () => {
-    const data: AddPackType = {
+  const changePackName = () => {
+    const data = {
+      _id: props.packId,
       name: packName,
-      deckCover: '',
       isPrivate: checked,
     }
 
-    props.addPackHandler(data)
+    props.editButtonHandler(data)
     SetPackName('')
   }
 
   return (
-    <BasicModal>
+    <BasicModal icon={<DriveFileRenameOutlineIcon />}>
       <div className={style.modal}>
         <div className={style.modalTitle}>
-          <h1> Add new Pack </h1>
+          <h1> Change Pack Name </h1>
           <Button>x</Button>
         </div>
         <TextField
           value={packName}
-          onChange={createPackName}
+          onChange={createNewPackName}
           label="Name Pack"
           variant="outlined"
         />
@@ -55,7 +58,7 @@ export const AddModal = (props: AddModalPropsType) => {
         </div>
         <div className={style.modalButtons}>
           <Button>cancel</Button>
-          <Button onClick={AddNewPack}>save</Button>
+          <Button onClick={changePackName}>save</Button>
         </div>
       </div>
     </BasicModal>

@@ -3,8 +3,10 @@ import { log } from 'util'
 import * as React from 'react'
 import { ReactNode } from 'react'
 
+import DeleteOutline from '@mui/icons-material/DeleteOutline'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
+import IconButton from '@mui/material/IconButton'
 import Modal from '@mui/material/Modal'
 import Typography from '@mui/material/Typography'
 
@@ -22,6 +24,7 @@ const style = {
 
 type PropsType = {
   children: ReactNode
+  icon?: JSX.Element
 }
 
 export const BasicModal = (props: PropsType) => {
@@ -33,20 +36,24 @@ export const BasicModal = (props: PropsType) => {
 
   return (
     <div>
-      <Button
-        onClick={handleOpen}
-        style={{
-          fontFamily: 'Montserrat',
-          fontWeight: '500',
-          borderRadius: '20px',
-          fontSize: '16px',
-          textTransform: 'capitalize',
-        }}
-        variant={'contained'}
-        color={'primary'}
-      >
-        Add New Pack
-      </Button>
+      {props.icon ? (
+        <IconButton onClick={handleOpen}>{props.icon}</IconButton>
+      ) : (
+        <Button
+          onClick={handleOpen}
+          style={{
+            fontFamily: 'Montserrat',
+            fontWeight: '500',
+            borderRadius: '20px',
+            fontSize: '16px',
+            textTransform: 'capitalize',
+          }}
+          variant={'contained'}
+          color={'primary'}
+        >
+          Add New Pack
+        </Button>
+      )}
       <Modal open={open} onClose={handleClose}>
         <Box sx={style}>{props.children}</Box>
       </Modal>

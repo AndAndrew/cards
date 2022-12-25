@@ -93,6 +93,7 @@ export const LoginTC =
         dispatch(setIsLoggedInAC(true))
         dispatch(showProfileEmailAC(res.data.email))
         dispatch(profileAC({ name: res.data.name, avatar: '' }))
+        dispatch(setProfileNameAC(res.data.name))
       })
       .catch(error => {
         dispatch(setError(error.message))

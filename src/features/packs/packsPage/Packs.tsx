@@ -19,6 +19,7 @@ import ReactPaginate from 'react-paginate'
 import { AddPackType } from '../../../api/cards-api'
 import { AddModal } from '../../../common/components/modals/addModal/AddModal'
 import { BasicModal } from '../../../common/components/modals/basicModal/BasicModal'
+import { ChangeModal } from '../../../common/components/modals/changeModal/ChangeModal'
 import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
 import { Cards } from '../../cards/cardsPage/Cards'
 import Filters from '../components/Filters/Filters'
@@ -53,8 +54,6 @@ export const Packs = () => {
     'asc'
   )
 
-  console.log(orderDirection, orderNameDirection, orderCreatorDirection)
-
   useEffect(() => {
     dispatch(setPacksDataTC({}))
   }, [page, pageCount, packName, sortPacks, search, userId, minMaxCardsCount])
@@ -65,8 +64,8 @@ export const Packs = () => {
   const learnFromPack = (packId: string) => {
     console.log('learn')
   }
-  const editButtonHandler = (packId: string) => {
-    dispatch(editPack<{ name: string }>(packId, { name: 'updated name' }))
+  const editButtonHandler = (data: AddPackType) => {
+    dispatch(editPack(packId, data))
   }
   const deleteButtonHandler = (packId: string) => {
     dispatch(deletePack(packId))
@@ -186,17 +185,15 @@ export const Packs = () => {
                       <IconButton onClick={() => learnFromPack(pack._id)}>
                         <SchoolOutlinedIcon />
                       </IconButton>
-                      {isMyPack(pack.user_name) && (
-                        <IconButton onClick={() => editButtonHandler(pack._id)}>
-                          <DriveFileRenameOutlineIcon />
-                        </IconButton>
-                      )}
-                      {isMyPack(pack.user_name) && (
-                        <IconButton onClick={() => deleteButtonHandler(pack._id)}>
-                          asdasd
-                          <DeleteOutline />
-                        </IconButton>
-                      )}
+                      <ChangeModal
+                        editButtonHandler={editButtonHandler}
+                        name={pack.name}
+                        packId={pack._id}
+                      />
+
+                      <IconButton onClick={() => deleteButtonHandler(pack._id)}>
+                        <DeleteOutline />
+                      </IconButton>
                     </div>
                   </StyledTableCell>
                 </StyledTableRow>
