@@ -31,9 +31,9 @@ export const cardsApi = {
       })
       .get<CardsPackType>('cards/card')
   },
-  addCard(cardsPack_id: string, question?: string, answer?: string) {
+  addCard(data: CardType) {
     return instance.post('cards/card', {
-      card: { cardsPack_id: cardsPack_id, question: question, answer: answer },
+      card: { ...data },
     })
   },
   deleteCard(cardId: string) {
@@ -93,10 +93,10 @@ export type CardType = {
   answer: string
   question: string
   cardsPack_id: string
-  grade: number
-  shots: number
-  user_id: string
-  created: string
-  updated: string
-  _id: string
+  grade?: number
+  shots?: number
+  user_id?: string
+  created?: string
+  updated?: string
+  _id?: string
 }

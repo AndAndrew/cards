@@ -51,10 +51,11 @@ export const getCards =
   }
 
 export const addCard =
-  (cardsPack_id: string, question?: string, answer?: string): AppThunk =>
+  (data: CardType): AppThunk =>
   dispatch => {
     dispatch(setAppStatus('loading'))
-    cardsApi.addCard(cardsPack_id, question, answer).then(res => {
+    cardsApi.addCard(data).then(res => {
+      console.log(res)
       dispatch(addCardAC(res.data.newCard))
       dispatch(setAppStatus('idle'))
     })

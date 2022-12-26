@@ -11,7 +11,8 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 
-import { AddModal } from '../../../common/components/modals/addModal/AddModal'
+import { CardType } from '../../../api/cards-api'
+import { AddCardsModal } from '../../../common/components/modals/addCardsModal/AddCardsModal'
 import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
 import { addCard, deleteCard, editCard, getCards } from '../cardsReducer'
 
@@ -26,8 +27,8 @@ export const Cards = (props: PropsType) => {
     dispatch(getCards(props.packId, 1, 10))
   }, [])
 
-  const addCardHandler = () => {
-    dispatch(addCard(props.packId, 'question', 'answer'))
+  const addCardHandler = (data: CardType) => {
+    dispatch(addCard(data))
   }
 
   const editButtonHandler = (cardId: string) => {
@@ -40,7 +41,7 @@ export const Cards = (props: PropsType) => {
   return (
     <div>
       <span>My Pack</span>
-      <AddModal addCardHandler={addCardHandler} />
+      <AddCardsModal addCardHandler={addCardHandler} packId={props.packId} />
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>

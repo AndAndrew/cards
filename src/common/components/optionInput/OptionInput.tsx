@@ -3,7 +3,7 @@ import * as React from 'react'
 import Autocomplete from '@mui/material/Autocomplete'
 import TextField from '@mui/material/TextField'
 
-const options = ['Option 1', 'Option 2']
+const options = ['Text', 'Picture']
 
 export default function ControllableStates() {
   const [value, setValue] = React.useState<string | null>(options[0])
@@ -11,9 +11,6 @@ export default function ControllableStates() {
 
   return (
     <div>
-      <div>{`value: ${value !== null ? `'${value}'` : 'null'}`}</div>
-      <div>{`inputValue: '${inputValue}'`}</div>
-      <br />
       <Autocomplete
         value={value}
         onChange={(event: any, newValue: string | null) => {

@@ -8,7 +8,7 @@ import { BasicModal } from '../basicModal/BasicModal'
 import style from './../style/Modal.module.css'
 
 type AddModalPropsType = {
-  addPackHandler?: (data: AddPackType) => void
+  addPackHandler: (data: AddPackType) => void
 }
 
 export const AddModal = (props: AddModalPropsType) => {
