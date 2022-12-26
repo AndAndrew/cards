@@ -13,6 +13,7 @@ import TableRow from '@mui/material/TableRow'
 
 import { CardType } from '../../../api/cards-api'
 import { AddCardsModal } from '../../../common/components/modals/addCardsModal/AddCardsModal'
+import { DeleteCardModal } from '../../../common/components/modals/deleteCartModal/DeleteCardModal'
 import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
 import { addCard, deleteCard, editCard, getCards } from '../cardsReducer'
 
@@ -55,7 +56,7 @@ export const Cards = (props: PropsType) => {
           </TableHead>
           <TableBody>
             {cards.map(card => (
-              <TableRow key={card._id}>
+              <TableRow key={card.cardsPack_id}>
                 <TableCell component="th" scope="row">
                   {card.question}
                 </TableCell>
@@ -66,9 +67,10 @@ export const Cards = (props: PropsType) => {
                   <IconButton onClick={() => editButtonHandler(card._id)}>
                     <DriveFileRenameOutlineIcon />
                   </IconButton>
-                  <IconButton onClick={() => deleteButtonHandler(card._id)}>
+                  <DeleteCardModal deleteButtonHandler={deleteButtonHandler} cardId={card._id} />
+                  {/* <IconButton onClick={() => deleteButtonHandler(card._id)}>
                     <DeleteOutline />
-                  </IconButton>
+                  </IconButton>*/}
                 </TableCell>
               </TableRow>
             ))}

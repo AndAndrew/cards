@@ -24,7 +24,6 @@ export const AddCardsModal = (props: AddModalPropsType) => {
     SetAnswer(e.currentTarget.value)
   }
 
-  console.log(question, answer)
   const AddNewCard = () => {
     const data = {
       cardsPack_id: props.packId,
@@ -41,7 +40,7 @@ export const AddCardsModal = (props: AddModalPropsType) => {
     <BasicModal>
       <div className={style.modal}>
         <div className={style.modalTitle}>
-          <h2> Add new Pack </h2>
+          <h2> Edit Card </h2>
           <Button>x</Button>
         </div>
         <ControllableStates />
