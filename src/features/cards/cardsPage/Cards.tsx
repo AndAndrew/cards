@@ -1,8 +1,5 @@
 import React, { useEffect } from 'react'
 
-import DeleteOutline from '@mui/icons-material/DeleteOutline'
-import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
-import IconButton from '@mui/material/IconButton'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -11,8 +8,9 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 
-import { CardType } from '../../../api/cards-api'
+import { CardEditType, CardType } from '../../../api/cards-api'
 import { AddCardsModal } from '../../../common/components/modals/addCardsModal/AddCardsModal'
+import { ChangeCardModal } from '../../../common/components/modals/changeCardModal/ChangeCardModal'
 import { DeleteCardModal } from '../../../common/components/modals/deleteCartModal/DeleteCardModal'
 import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
 import { addCard, deleteCard, editCard, getCards } from '../cardsReducer'
@@ -32,8 +30,8 @@ export const Cards = (props: PropsType) => {
     dispatch(addCard(data))
   }
 
-  const editButtonHandler = (cardId: string) => {
-    dispatch(editCard(cardId, { question: 'new' }))
+  const editCardHandler = (data: CardEditType) => {
+    dispatch(editCard(data))
   }
   const deleteButtonHandler = (id: string) => {
     dispatch(deleteCard(id))
@@ -64,13 +62,17 @@ export const Cards = (props: PropsType) => {
                 <TableCell align="center">{card.updated}</TableCell>
                 <TableCell align="center">{card.grade}</TableCell>
                 <TableCell align="center">
-                  <IconButton onClick={() => editButtonHandler(card._id)}>
-                    <DriveFileRenameOutlineIcon />
-                  </IconButton>
-                  <DeleteCardModal deleteButtonHandler={deleteButtonHandler} cardId={card._id} />
-                  {/* <IconButton onClick={() => deleteButtonHandler(card._id)}>
-                    <DeleteOutline />
-                  </IconButton>*/}
+                  <ChangeCardModal
+                    editCardHandler={editCardHandler}
+                    answer={card.answer}
+                    question={card.question}
+                    cardId={card._id}
+                  />
+                  <DeleteCardModal
+                    deleteButtonHandler={deleteButtonHandler}
+                    question={card.question}
+                    cardId={card._id}
+                  />
                 </TableCell>
               </TableRow>
             ))}

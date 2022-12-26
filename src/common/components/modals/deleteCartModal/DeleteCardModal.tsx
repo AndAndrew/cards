@@ -10,6 +10,7 @@ import style from '../style/Modal.module.css'
 type DeleteModalPropsType = {
   cardId: string
   deleteButtonHandler: (cardId: string) => void
+  question: string
 }
 
 export const DeleteCardModal = (props: DeleteModalPropsType) => {
@@ -25,7 +26,7 @@ export const DeleteCardModal = (props: DeleteModalPropsType) => {
           <Button>x</Button>
         </div>
         <div>
-          Do you really want to remove <b>hh</b>? <div>All cards will be deleted</div>
+          Do you really want to remove <b>{props.question}</b>? <div>All cards will be deleted</div>
         </div>
         <div className={style.modalButtons}>
           <Button>cancel</Button>

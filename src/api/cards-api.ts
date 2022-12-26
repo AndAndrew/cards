@@ -39,8 +39,8 @@ export const cardsApi = {
   deleteCard(cardId: string) {
     return instance.delete(`/cards/card?id=${cardId}`)
   },
-  editCard<T>(cardId: string, data: T) {
-    return instance.put('cards/card', { card: { _id: cardId, ...data } })
+  editCard(data: CardEditType) {
+    return instance.put('cards/card', data)
   },
 }
 export type AddPackType = {
@@ -99,4 +99,7 @@ export type CardType = {
   created?: string
   updated?: string
   _id?: string
+}
+export type CardEditType = {
+  card: CardType
 }
