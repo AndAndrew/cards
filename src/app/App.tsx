@@ -12,6 +12,7 @@ import { LoginPage } from '../features/auth/login/LoginPage'
 import { NewPassInputPage } from '../features/auth/newPassInput/NewPassInputPage'
 import { PassRecoveryPage } from '../features/auth/passRecovery/PassRecoveryPage'
 import { RegisterPage } from '../features/auth/register/RegisterPage'
+import { Cards } from '../features/cards/cardsPage/Cards'
 import { Packs } from '../features/packs/packsPage/Packs'
 import { Profile } from '../features/profile/profilePage/Profile'
 import { Test } from '../features/test/testPage/Test'
@@ -53,6 +54,9 @@ const App = () => {
             <Route path={'/newPassInput/:token'} element={<NewPassInputPage />} />
             <Route path={'/profile'} element={<Profile />} />
             <Route path={'/packsPage'} element={<Packs />} />
+            <Route path={'/cardsPage'}>
+              <Route path={':packId'} element={<Cards />} />
+            </Route>
             <Route path={'/404'} element={<h1>404: PAGE NOT FOUND</h1>} />
             <Route path={'*'} element={<Navigate to={'/404'} />} />
           </Routes>

@@ -1,4 +1,4 @@
-import { AddPackType, cardsApi, PackType, ParamsPacksType } from '../../api/cards-api'
+import { AddPackType, cardsApi, PacksPackType, ParamsPacksType } from '../../api/cards-api'
 import { setAppStatus } from '../../app/appReducer'
 import { AppThunk } from '../../app/store'
 
@@ -6,7 +6,7 @@ export const DEFAULT_MAX_CARDS_COUNT = 110
 export const DEFAULT_MIN_CARDS_COUNT = 0
 
 const initialState = {
-  cardPacks: [] as Array<PackType>,
+  cardPacks: [] as Array<PacksPackType>,
   page: 1,
   pageCount: 10,
   cardPacksTotalCount: 0,
@@ -67,7 +67,7 @@ export const packsReducer = (
   }
 }
 export type PackDataResponseType = {
-  cardPacks?: PackType[]
+  cardPacks?: PacksPackType[]
   page: number
   pageCount: number
   cardPacksTotalCount: number
@@ -80,11 +80,11 @@ export type PackDataResponseType = {
 export const setPacksDataAC = (data: PackDataResponseType) =>
   ({ type: 'PACKS/SET-PACKS-DATA', data } as const)
 
-export const setCardPacksAC = (packs: Array<PackType>) =>
+export const setCardPacksAC = (packs: Array<PacksPackType>) =>
   ({ type: 'PACKS/SET_PACKS', packs } as const)
-export const addPackAC = (pack: PackType) => ({ type: 'PACKS/ADD_PACK', pack } as const)
+export const addPackAC = (pack: PacksPackType) => ({ type: 'PACKS/ADD_PACK', pack } as const)
 export const deletePackAC = (packId: string) => ({ type: 'PACKS/DELETE_PACK', packId } as const)
-export const editPackAC = (pack: PackType) => ({ type: 'PACKS/EDIT_PACK', pack } as const)
+export const editPackAC = (pack: PacksPackType) => ({ type: 'PACKS/EDIT_PACK', pack } as const)
 
 export const setPacksTotalCountAC = (packsTotalCount: number) =>
   ({ type: 'PACKS/SET_PACKS_TOTAL_COUNT', packsTotalCount } as const)

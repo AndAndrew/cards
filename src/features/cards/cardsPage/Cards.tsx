@@ -1,78 +1,83 @@
 import React, { useEffect } from 'react'
 
-import DeleteOutline from '@mui/icons-material/DeleteOutline'
-import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
-import IconButton from '@mui/material/IconButton'
-import Paper from '@mui/material/Paper'
-import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
-import TableCell from '@mui/material/TableCell'
-import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
-import TableRow from '@mui/material/TableRow'
+import ArrowBackIosNewOutlined from '@mui/icons-material/ArrowBackIosNewOutlined'
+import Button from '@mui/material/Button'
+import Icon from '@mui/material/Icon'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
-import { addCard, deleteCard, editCard, getCards } from '../cardsReducer'
+import { buttonFontStyle } from '../../../common/styles/fontStyles'
+import style from '../cardsPage/Cards.module.css'
+import { addCard, getCards, resetToDefault } from '../cardsReducer'
 
-type PropsType = {
-  packId: string
-}
-export const Cards = (props: PropsType) => {
+import { CardsTable } from './CardsTable'
+import { EmptyPackPage } from './components/EmptyPackPage'
+
+export const Cards = () => {
   const dispatch = useAppDispatch()
-  const cards = useAppSelector(state => state.cards.cards)
+  const profileId = useAppSelector(state => state.profile._id)
+  const cardPack = useAppSelector(state => state.cardPack)
+  const appStatus = useAppSelector(state => state.appStatus.appStatus)
+  const navigate = useNavigate()
+  const { packId } = useParams()
 
   useEffect(() => {
-    dispatch(getCards(props.packId, 1, 10))
+    dispatch(getCards(packId ? packId : '', 1, 10))
   }, [])
 
-  const addButtonHandler = () => {
-    dispatch(addCard(props.packId, 'question', 'answer'))
+  const getTitles = (): { packTitle: string; buttonTitle: string } => {
+    return cardPack.packUserId === profileId
+      ? { packTitle: 'My Pack', buttonTitle: 'Add new card' }
+      : { packTitle: "Friend's pack", buttonTitle: 'Learn to pack' }
   }
 
-  const editButtonHandler = (cardId: string) => {
-    dispatch(editCard(cardId, { question: 'new' }))
+  const addNewCard = () => {
+    const id = packId ? packId : ''
+
+    dispatch(addCard(id, 'question', 'answer'))
   }
-  const deleteButtonHandler = (id: string) => {
-    dispatch(deleteCard(id))
+
+  const onBackButtonClick = () => {
+    dispatch(resetToDefault())
+    navigate('/packsPage')
+  }
+
+  const isLoading = appStatus === 'loading'
+
+  if (isLoading) {
+    return <></>
+  }
+
+  if (cardPack.cards.length === 0) {
+    return (
+      <EmptyPackPage
+        packTitle={getTitles().packTitle}
+        buttonTitle={getTitles().buttonTitle}
+        addButtonHandler={addNewCard}
+      />
+    )
   }
 
   return (
-    <div>
-      <span>My Pack</span>
-      <button onClick={addButtonHandler}>add card</button>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Question</TableCell>
-              <TableCell align="center">Answer</TableCell>
-              <TableCell align="center">Last updated</TableCell>
-              <TableCell align="center">Grade</TableCell>
-              <TableCell align="center"></TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {cards.map(card => (
-              <TableRow key={card._id}>
-                <TableCell component="th" scope="row">
-                  {card.question}
-                </TableCell>
-                <TableCell align="center">{card.answer}</TableCell>
-                <TableCell align="center">{card.updated}</TableCell>
-                <TableCell align="center">{card.grade}</TableCell>
-                <TableCell align="center">
-                  <IconButton onClick={() => editButtonHandler(card._id)}>
-                    <DriveFileRenameOutlineIcon />
-                  </IconButton>
-                  <IconButton onClick={() => deleteButtonHandler(card._id)}>
-                    <DeleteOutline />
-                  </IconButton>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+    <div className={style.container}>
+      <button className={style.backButton} onClick={onBackButtonClick}>
+        <Icon>
+          <ArrowBackIosNewOutlined />
+        </Icon>
+        <span>Back to Packs List</span>
+      </button>
+      <div className={style.titleBlock}>
+        <div className={style.title}>{getTitles().packTitle}</div>
+        <Button
+          variant={'contained'}
+          style={buttonFontStyle}
+          color={'primary'}
+          onClick={addNewCard}
+        >
+          {getTitles().buttonTitle}
+        </Button>
+      </div>
+      <CardsTable />
     </div>
   )
 }

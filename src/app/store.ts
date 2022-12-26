@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
   test: testReducer,
   appStatus: appReducer,
   packs: packsReducer,
-  cards: cardsReducer,
+  cardPack: cardsReducer,
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunk))

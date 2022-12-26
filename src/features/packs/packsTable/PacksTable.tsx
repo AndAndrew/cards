@@ -14,7 +14,6 @@ import { PackTableBody } from './PackTableBody'
 type PropsType = {
   orderDirection: 'asc' | 'desc' | undefined
   handleSortRequest: () => void
-  setPackId: Dispatch<React.SetStateAction<string>>
 }
 export const PacksTable = (props: PropsType) => {
   return (
@@ -35,7 +34,7 @@ export const PacksTable = (props: PropsType) => {
             <StyledTableCell align="center">Actions</StyledTableCell>
           </TableRow>
         </TableHead>
-        <PackTableBody setPackId={props.setPackId} />
+        <PackTableBody />
       </Table>
     </TableContainer>
   )

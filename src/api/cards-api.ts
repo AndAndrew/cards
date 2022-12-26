@@ -60,16 +60,7 @@ export type ParamsPacksType = {
   block?: boolean
 }
 
-export type PacksType = {
-  cardPacks: Array<PackType>
-  cardPacksTotalCount: number // количество колод
-  maxCardsCount: number
-  minCardsCount: number
-  page: number // выбранная страница
-  pageCount: number
-}
-
-export type PackType = {
+export type PacksPackType = {
   _id: string
   user_id: string
   name: string
@@ -81,6 +72,7 @@ export type PackType = {
 
 export type CardsPackType = {
   cards: Array<CardType>
+  packName: string
   cardsTotalCount: number
   maxGrade: number
   minGrade: number
