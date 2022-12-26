@@ -159,6 +159,7 @@ export const editPack =
     dispatch(setAppStatus('loading'))
     cardsApi.editPack<T>(packId, value).then(res => {
       dispatch(editPackAC(res.data.updatedCardsPack))
+      console.log(res.data.updatedCardsPack)
       dispatch(setAppStatus('idle'))
     })
   }

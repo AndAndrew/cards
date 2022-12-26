@@ -39,19 +39,19 @@ export const AddModal = (props: AddModalPropsType) => {
           <h2> Add new Pack </h2>
           <Button>x</Button>
         </div>
+        <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={}
+            sx={{ width: 300 }}
+            renderInput={(params) => <TextField {...params} label="Movie" />}
+        />
         <TextField
           value={packName}
           onChange={createPackName}
           label="Name Pack"
           variant="outlined"
         />
-        <div className={style.modalInput}>
-          <FormControlLabel
-            value="end"
-            control={<Checkbox onChange={isChecked} checked={checked} />}
-            label="Private Pack"
-            labelPlacement="end"
-          />
         </div>
         <div className={style.modalButtons}>
           <Button>cancel</Button>

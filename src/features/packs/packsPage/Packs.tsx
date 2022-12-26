@@ -20,6 +20,7 @@ import { AddPackType } from '../../../api/cards-api'
 import { AddModal } from '../../../common/components/modals/addModal/AddModal'
 import { BasicModal } from '../../../common/components/modals/basicModal/BasicModal'
 import { ChangeModal } from '../../../common/components/modals/changeModal/ChangeModal'
+import { DeleteModal } from '../../../common/components/modals/deleteModal/DeleteModal'
 import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
 import { Cards } from '../../cards/cardsPage/Cards'
 import Filters from '../components/Filters/Filters'
@@ -190,10 +191,14 @@ export const Packs = () => {
                         name={pack.name}
                         packId={pack._id}
                       />
-
-                      <IconButton onClick={() => deleteButtonHandler(pack._id)}>
-                        <DeleteOutline />
-                      </IconButton>
+                      <DeleteModal
+                        name={pack.name}
+                        packId={pack._id}
+                        deleteButtonHandler={deleteButtonHandler}
+                      />
+                      {/*<IconButton onClick={() => deleteButtonHandler(pack._id)}>*/}
+                      {/*  <DeleteOutline />*/}
+                      {/*</IconButton>*/}
                     </div>
                   </StyledTableCell>
                 </StyledTableRow>
