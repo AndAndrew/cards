@@ -56,7 +56,6 @@ export const getCards =
   dispatch => {
     dispatch(setAppStatus('loading'))
     cardsApi.getCards(id, page, pageCount).then(res => {
-      console.log(res)
       dispatch(setCardsPack(res.data))
 
       dispatch(setAppStatus('successes'))
@@ -69,7 +68,7 @@ export const addCard =
     dispatch(setAppStatus('loading'))
     cardsApi.addCard(cardsPack_id, question, answer).then(res => {
       dispatch(addCardAC(res.data.newCard))
-      dispatch(setAppStatus('idle'))
+      dispatch(setAppStatus('successes'))
     })
   }
 export const deleteCard =
@@ -78,7 +77,7 @@ export const deleteCard =
     dispatch(setAppStatus('loading'))
     cardsApi.deleteCard(cardId).then(res => {
       dispatch(deleteCardAC(cardId))
-      dispatch(setAppStatus('idle'))
+      dispatch(setAppStatus('successes'))
     })
   }
 export const editCard =
@@ -87,6 +86,6 @@ export const editCard =
     dispatch(setAppStatus('loading'))
     cardsApi.editCard<T>(cardId, value).then(res => {
       dispatch(editCardAC(res.data.updatedCard))
-      dispatch(setAppStatus('idle'))
+      dispatch(setAppStatus('successes'))
     })
   }

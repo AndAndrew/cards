@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import ArrowBackIosNewOutlined from '@mui/icons-material/ArrowBackIosNewOutlined'
 import Button from '@mui/material/Button'
@@ -26,13 +26,9 @@ export const Cards = () => {
   }, [])
 
   const getTitles = (): { packTitle: string; buttonTitle: string } => {
-    if (isLoading) {
-      return { packTitle: 'Pack', buttonTitle: '' }
-    } else {
-      return cardPack.packUserId === profileId
-        ? { packTitle: 'My Pack', buttonTitle: 'Add new card' }
-        : { packTitle: "Friend's pack", buttonTitle: 'Learn to card' }
-    }
+    return cardPack.packUserId === profileId
+      ? { packTitle: 'My Pack', buttonTitle: 'Add new card' }
+      : { packTitle: "Friend's pack", buttonTitle: 'Learn to pack' }
   }
 
   const addNewCard = () => {
@@ -47,6 +43,10 @@ export const Cards = () => {
   }
 
   const isLoading = appStatus === 'loading'
+
+  if (isLoading) {
+    return <></>
+  }
 
   if (cardPack.cards.length === 0) {
     return (
@@ -67,7 +67,7 @@ export const Cards = () => {
         <span>Back to Packs List</span>
       </button>
       <div className={style.titleBlock}>
-        {!isLoading && <div className={style.title}>{getTitles().packTitle}</div>}
+        <div className={style.title}>{getTitles().packTitle}</div>
         <Button
           variant={'contained'}
           style={buttonFontStyle}

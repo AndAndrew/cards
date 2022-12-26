@@ -12,6 +12,7 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 
 import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
+import { StyledTableCell, StyledTableRow } from '../../../common/styles/styledTableElements'
 import { deleteCard, editCard } from '../cardsReducer'
 
 export const CardsTable = () => {
@@ -29,24 +30,24 @@ export const CardsTable = () => {
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
-          <TableRow>
-            <TableCell>Question</TableCell>
-            <TableCell align="center">Answer</TableCell>
-            <TableCell align="center">Last updated</TableCell>
-            <TableCell align="center">Grade</TableCell>
-            {cardPack.packUserId === profileId && <TableCell align="center"></TableCell>}
-          </TableRow>
+          <StyledTableRow>
+            <StyledTableCell>Question</StyledTableCell>
+            <StyledTableCell align="center">Answer</StyledTableCell>
+            <StyledTableCell align="center">Last updated</StyledTableCell>
+            <StyledTableCell align="center">Grade</StyledTableCell>
+            <StyledTableCell align="center"></StyledTableCell>
+          </StyledTableRow>
         </TableHead>
         <TableBody>
           {cardPack.cards.map(card => (
-            <TableRow key={card._id}>
-              <TableCell component="th" scope="row">
+            <StyledTableRow key={card._id}>
+              <StyledTableCell component="th" scope="row">
                 {card.question}
-              </TableCell>
-              <TableCell align="center">{card.answer}</TableCell>
-              <TableCell align="center">{card.updated}</TableCell>
-              <TableCell align="center">{card.grade}</TableCell>
-              <TableCell align="center">
+              </StyledTableCell>
+              <StyledTableCell align="center">{card.answer}</StyledTableCell>
+              <StyledTableCell align="center">{card.updated}</StyledTableCell>
+              <StyledTableCell align="center">{card.grade}</StyledTableCell>
+              <StyledTableCell align="center">
                 {cardPack.packUserId === profileId && (
                   <IconButton onClick={() => editButtonHandler(card._id)}>
                     <DriveFileRenameOutlineIcon />
@@ -57,8 +58,8 @@ export const CardsTable = () => {
                     <DeleteOutline />
                   </IconButton>
                 )}
-              </TableCell>
-            </TableRow>
+              </StyledTableCell>
+            </StyledTableRow>
           ))}
         </TableBody>
       </Table>
