@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    width: 80%;
+    margin: 0 auto;
+}
+
+.backButton {
+    padding: 15px 0;
+    max-width: 200px;
+    display: flex;
+    justify-content: left;
+    background-color: rgba(255,255,255, 0);
+    border: 0;
+    font-family: 'Montserrat', serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.title {
+    padding: 50px 0 40px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Montserrat', serif;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 27px;
+}
+
+.emptyMessageBlock {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 40vh;
+}
+
+.message {
+    padding: 20px;
+}

@@ -5,14 +5,15 @@ import Button from '@mui/material/Button'
 import Icon from '@mui/material/Icon'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppDispatch } from '../../../../common/hooks/react-redux-hooks'
-import { buttonFontStyle } from '../../../../common/styles/fontStyles'
-import { resetToDefault } from '../../cardsReducer'
-import style from '../Cards.module.css'
+import { useAppDispatch } from '../../../../../common/hooks/react-redux-hooks'
+import { buttonFontStyle } from '../../../../../common/styles/fontStyles'
+import { resetToDefault } from '../../../cardsReducer'
+
+import style from './EmptyPackPage.module.css'
 
 type PropsType = {
   packTitle: string
-  buttonTitle: string
+  isMyPack: boolean
   addButtonHandler: () => void
 }
 export const EmptyPackPage = (props: PropsType) => {
@@ -31,17 +32,22 @@ export const EmptyPackPage = (props: PropsType) => {
         </Icon>
         <span>Back to Packs List</span>
       </button>
-      <div className={style.titleBlock}>
-        <div className={style.title}>{props.packTitle}</div>
-        <Button
-          variant={'contained'}
-          style={buttonFontStyle}
-          color={'primary'}
-          onClick={props.addButtonHandler}
-        >
-          {props.buttonTitle}
-        </Button>
-      </div>
+      <div className={style.title}>{props.packTitle}</div>
+      {props.isMyPack && (
+        <div className={style.emptyMessageBlock}>
+          <div className={style.message}>
+            This pack is empty. Click add new card to fill this pack
+          </div>
+          <Button
+            variant={'contained'}
+            style={buttonFontStyle}
+            color={'primary'}
+            onClick={props.addButtonHandler}
+          >
+            Add new pack
+          </Button>
+        </div>
+      )}
     </div>
   )
 }

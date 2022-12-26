@@ -10,8 +10,8 @@ import { buttonFontStyle } from '../../../common/styles/fontStyles'
 import style from '../cardsPage/Cards.module.css'
 import { addCard, getCards, resetToDefault } from '../cardsReducer'
 
-import { CardsTable } from './CardsTable'
-import { EmptyPackPage } from './components/EmptyPackPage'
+import { CardsTable } from './cardsTable/CardsTable'
+import { EmptyPackPage } from './components/EmptyPackPage/EmptyPackPage'
 
 export const Cards = () => {
   const dispatch = useAppDispatch()
@@ -25,8 +25,9 @@ export const Cards = () => {
     dispatch(getCards(packId ? packId : '', 1, 10))
   }, [])
 
+  const isMyPack = cardPack.packUserId === profileId
   const getTitles = (): { packTitle: string; buttonTitle: string } => {
-    return cardPack.packUserId === profileId
+    return isMyPack
       ? { packTitle: 'My Pack', buttonTitle: 'Add new card' }
       : { packTitle: "Friend's pack", buttonTitle: 'Learn to pack' }
   }
@@ -52,7 +53,7 @@ export const Cards = () => {
     return (
       <EmptyPackPage
         packTitle={getTitles().packTitle}
-        buttonTitle={getTitles().buttonTitle}
+        isMyPack={isMyPack}
         addButtonHandler={addNewCard}
       />
     )

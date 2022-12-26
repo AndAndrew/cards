@@ -11,9 +11,9 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 
-import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
-import { StyledTableCell, StyledTableRow } from '../../../common/styles/styledTableElements'
-import { deleteCard, editCard } from '../cardsReducer'
+import { useAppDispatch, useAppSelector } from '../../../../common/hooks/react-redux-hooks'
+import { StyledTableCell, StyledTableRow } from '../../../../common/styles/styledTableElements'
+import { deleteCard, editCard } from '../../cardsReducer'
 
 export const CardsTable = () => {
   const dispatch = useAppDispatch()
