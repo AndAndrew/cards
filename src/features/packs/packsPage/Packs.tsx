@@ -190,15 +190,13 @@ export const Packs = () => {
                         editButtonHandler={editButtonHandler}
                         name={pack.name}
                         packId={pack._id}
+                        isPrivate={pack.private}
                       />
                       <DeleteModal
                         name={pack.name}
                         packId={pack._id}
                         deleteButtonHandler={deleteButtonHandler}
                       />
-                      {/*<IconButton onClick={() => deleteButtonHandler(pack._id)}>*/}
-                      {/*  <DeleteOutline />*/}
-                      {/*</IconButton>*/}
                     </div>
                   </StyledTableCell>
                 </StyledTableRow>

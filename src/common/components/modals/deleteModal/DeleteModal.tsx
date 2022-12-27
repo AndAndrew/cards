@@ -1,8 +1,8 @@
 import React from 'react'
 
 import DeleteOutline from '@mui/icons-material/DeleteOutline'
-import { Button, Checkbox, FormControlLabel, TextField } from '@mui/material'
 
+import { DeleteModalDescription } from '../../DeleteModalDescription/DeleteModalDescription'
 import { BasicModal } from '../basicModal/BasicModal'
 import style from '../style/Modal.module.css'
 
@@ -20,17 +20,13 @@ export const DeleteModal = (props: DeleteModalPropsType) => {
   return (
     <BasicModal
       icon={<DeleteOutline />}
-      buttonTitle={'delete'}
+      buttonTitle={'Delete'}
       title={'Delete Pack'}
-      color={'secondary'}
+      color={'error'}
       callback={deletePackHandler}
     >
       <div className={style.modal}>
-        <div className={style.modalTitle}></div>
-        <div>
-          Do you really want to remove <b>{props.name}</b>? <div>All cards will be deleted</div>
-        </div>
-        <div className={style.modalButtons}></div>
+        <DeleteModalDescription text={props.name} />
       </div>
     </BasicModal>
   )

@@ -12,11 +12,12 @@ type ChangeModalPropsType = {
   editButtonHandler: (data: AddPackType) => void
   packId: string
   name: string
+  isPrivate: boolean
 }
 
 export const ChangeModal = (props: ChangeModalPropsType) => {
   const [packName, SetPackName] = useState(props.name)
-  const [checked, setChecked] = useState(false)
+  const [checked, setChecked] = useState(props.isPrivate)
 
   const createNewPackName = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     SetPackName(e.currentTarget.value)
@@ -41,7 +42,7 @@ export const ChangeModal = (props: ChangeModalPropsType) => {
       callback={changePackName}
       icon={<DriveFileRenameOutlineIcon />}
       buttonTitle={'save'}
-      color={'error'}
+      color={'primary'}
     >
       <div className={style.modal}>
         <div className={style.modalTitle}></div>

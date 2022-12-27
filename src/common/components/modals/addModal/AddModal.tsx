@@ -25,7 +25,7 @@ export const AddModal = (props: AddModalPropsType) => {
     const data: AddPackType = {
       name: packName,
       deckCover: '',
-      isPrivate: checked,
+      private: checked,
     }
 
     props.addPackHandler(data)
@@ -33,7 +33,12 @@ export const AddModal = (props: AddModalPropsType) => {
   }
 
   return (
-    <BasicModal title={' Add new Pack'} buttonTitle={'save'} callback={AddNewPack}>
+    <BasicModal
+      color={'primary'}
+      title={' Add new Pack'}
+      buttonTitle={'save'}
+      callback={AddNewPack}
+    >
       <div className={style.modal}>
         <TextField
           value={packName}
