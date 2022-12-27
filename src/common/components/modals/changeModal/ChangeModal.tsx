@@ -36,12 +36,15 @@ export const ChangeModal = (props: ChangeModalPropsType) => {
   }
 
   return (
-    <BasicModal icon={<DriveFileRenameOutlineIcon />}>
+    <BasicModal
+      title={'Change Pack Name'}
+      callback={changePackName}
+      icon={<DriveFileRenameOutlineIcon />}
+      buttonTitle={'save'}
+      color={'error'}
+    >
       <div className={style.modal}>
-        <div className={style.modalTitle}>
-          <h2> Change Pack Name </h2>
-          <Button>x</Button>
-        </div>
+        <div className={style.modalTitle}></div>
         <TextField
           value={packName}
           onChange={createNewPackName}
@@ -56,12 +59,7 @@ export const ChangeModal = (props: ChangeModalPropsType) => {
             labelPlacement="end"
           />
         </div>
-        <div className={style.modalButtons}>
-          <Button>cancel</Button>
-          <Button color={'primary'} variant={'contained'} onClick={changePackName}>
-            save
-          </Button>
-        </div>
+        <div className={style.modalButtons}></div>
       </div>
     </BasicModal>
   )

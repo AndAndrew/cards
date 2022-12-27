@@ -18,21 +18,19 @@ export const DeleteModal = (props: DeleteModalPropsType) => {
   }
 
   return (
-    <BasicModal icon={<DeleteOutline />}>
+    <BasicModal
+      icon={<DeleteOutline />}
+      buttonTitle={'delete'}
+      title={'Delete Pack'}
+      color={'secondary'}
+      callback={deletePackHandler}
+    >
       <div className={style.modal}>
-        <div className={style.modalTitle}>
-          <h2> Delete Pack</h2>
-          <Button>x</Button>
-        </div>
+        <div className={style.modalTitle}></div>
         <div>
           Do you really want to remove <b>{props.name}</b>? <div>All cards will be deleted</div>
         </div>
-        <div className={style.modalButtons}>
-          <Button>cancel</Button>
-          <Button color={'error'} variant={'contained'} onClick={deletePackHandler}>
-            delete
-          </Button>
-        </div>
+        <div className={style.modalButtons}></div>
       </div>
     </BasicModal>
   )

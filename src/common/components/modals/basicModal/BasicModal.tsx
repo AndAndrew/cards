@@ -1,14 +1,10 @@
-import { log } from 'util'
-
 import * as React from 'react'
 import { ReactNode } from 'react'
 
-import DeleteOutline from '@mui/icons-material/DeleteOutline'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import Modal from '@mui/material/Modal'
-import Typography from '@mui/material/Typography'
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -25,6 +21,10 @@ const style = {
 type PropsType = {
   children: ReactNode
   icon?: JSX.Element
+  title?: string
+  callback?: () => void
+  buttonTitle: string
+  color: 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning' | undefined
 }
 
 export const BasicModal = (props: PropsType) => {
@@ -32,6 +32,11 @@ export const BasicModal = (props: PropsType) => {
   const handleOpen = () => setOpen(true)
   const handleClose = () => {
     setOpen(false)
+  }
+
+  const functionCallback = () => {
+    props.callback && props.callback()
+    handleClose()
   }
 
   return (
@@ -55,8 +60,30 @@ export const BasicModal = (props: PropsType) => {
         </Button>
       )}
       <Modal open={open} onClose={handleClose}>
-        <Box sx={style}>{props.children}</Box>
+        <Box sx={style}>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <h2> {props.title} </h2>
+            <Button onClick={handleClose}>x</Button>
+          </div>
+          {props.children}
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Button onClick={handleClose}>cancel</Button>
+            <ButtonSave color={props.color} callback={functionCallback} title={props.buttonTitle} />
+          </div>
+        </Box>
       </Modal>
     </div>
+  )
+}
+
+const ButtonSave = (props: {
+  color: 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning' | undefined
+  title: string
+  callback: () => void
+}) => {
+  return (
+    <Button color={props.color} variant={'contained'} onClick={props.callback}>
+      {props.title}
+    </Button>
   )
 }

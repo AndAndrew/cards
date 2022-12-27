@@ -29,6 +29,7 @@ export const AddCardsModal = (props: AddModalPropsType) => {
       cardsPack_id: props.packId,
       question: question,
       answer: answer,
+      _id: '',
     }
 
     props.addCardHandler(data)

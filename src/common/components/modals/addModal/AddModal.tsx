@@ -33,12 +33,8 @@ export const AddModal = (props: AddModalPropsType) => {
   }
 
   return (
-    <BasicModal>
+    <BasicModal title={' Add new Pack'} buttonTitle={'save'} callback={AddNewPack}>
       <div className={style.modal}>
-        <div className={style.modalTitle}>
-          <h2> Add new Pack </h2>
-          <Button>x</Button>
-        </div>
         <TextField
           value={packName}
           onChange={createPackName}
@@ -52,12 +48,6 @@ export const AddModal = (props: AddModalPropsType) => {
             label="Private Pack"
             labelPlacement="end"
           />
-        </div>
-        <div className={style.modalButtons}>
-          <Button>cancel</Button>
-          <Button color={'primary'} variant={'contained'} onClick={AddNewPack}>
-            save
-          </Button>
         </div>
       </div>
     </BasicModal>

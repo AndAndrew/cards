@@ -28,7 +28,7 @@ export const ChangeCardModal = (props: ChangeModalPropsType) => {
   }
 
   const AddNewCard = () => {
-    const data = {
+    const data: CardEditType = {
       card: {
         _id: props.cardId,
         question: question,
