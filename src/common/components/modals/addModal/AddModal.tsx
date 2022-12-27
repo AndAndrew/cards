@@ -2,7 +2,7 @@ import React, { ChangeEvent, useState } from 'react'
 
 import { Button, Checkbox, FormControlLabel, TextField } from '@mui/material'
 
-import { AddPackType } from '../../../../api/cards-api'
+import { AddPackType, CardType } from '../../../../api/cards-api'
 import { BasicModal } from '../basicModal/BasicModal'
 
 import style from './../style/Modal.module.css'
@@ -36,7 +36,7 @@ export const AddModal = (props: AddModalPropsType) => {
     <BasicModal>
       <div className={style.modal}>
         <div className={style.modalTitle}>
-          <h1> Add new Pack </h1>
+          <h2> Add new Pack </h2>
           <Button>x</Button>
         </div>
         <TextField
@@ -55,7 +55,9 @@ export const AddModal = (props: AddModalPropsType) => {
         </div>
         <div className={style.modalButtons}>
           <Button>cancel</Button>
-          <Button onClick={AddNewPack}>save</Button>
+          <Button color={'primary'} variant={'contained'} onClick={AddNewPack}>
+            save
+          </Button>
         </div>
       </div>
     </BasicModal>

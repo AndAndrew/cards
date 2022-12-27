@@ -1,12 +1,13 @@
 import React from 'react'
 
-import DeleteOutline from '@mui/icons-material/DeleteOutline'
-import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined'
 import IconButton from '@mui/material/IconButton'
 import TableBody from '@mui/material/TableBody'
 import { useNavigate } from 'react-router-dom'
 
+import { AddPackType } from '../../../api/cards-api'
+import { ChangeModal } from '../../../common/components/modals/changeModal/ChangeModal'
+import { DeleteModal } from '../../../common/components/modals/deleteModal/DeleteModal'
 import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
 import { StyledTableCell, StyledTableRow } from '../../../common/styles/styledTableElements'
 import style from '../packsPage/Packs.module.css'
@@ -29,8 +30,8 @@ export const PackTableBody = () => {
   const learnFromPack = (packId: string) => {
     console.log('learn')
   }
-  const editButtonHandler = (packId: string) => {
-    dispatch(editPack<{ name: string }>(packId, { name: 'updated name' }))
+  const editButtonHandler = (packId: string, data: AddPackType) => {
+    dispatch(editPack<AddPackType>(packId, data))
   }
   const deleteButtonHandler = (packId: string) => {
     dispatch(deletePack(packId))
@@ -54,14 +55,18 @@ export const PackTableBody = () => {
                 <SchoolOutlinedIcon />
               </IconButton>
               {isMyPack(pack.user_name) && (
-                <IconButton onClick={() => editButtonHandler(pack._id)}>
-                  <DriveFileRenameOutlineIcon />
-                </IconButton>
+                <ChangeModal
+                  editButtonHandler={editButtonHandler}
+                  name={pack.name}
+                  packId={pack._id}
+                />
               )}
               {isMyPack(pack.user_name) && (
-                <IconButton onClick={() => deleteButtonHandler(pack._id)}>
-                  <DeleteOutline />
-                </IconButton>
+                <DeleteModal
+                  name={pack.name}
+                  packId={pack._id}
+                  deleteButtonHandler={deleteButtonHandler}
+                />
               )}
             </div>
           </StyledTableCell>

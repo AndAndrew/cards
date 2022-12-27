@@ -1,4 +1,4 @@
-import { cardsApi, CardsPackType, CardType } from '../../api/cards-api'
+import { cardsApi, CardsPackType, CardEditType, CardType } from '../../api/cards-api'
 import { setAppStatus } from '../../app/appReducer'
 import { AppThunk } from '../../app/store'
 
@@ -63,10 +63,10 @@ export const getCards =
   }
 
 export const addCard =
-  (cardsPack_id: string, question?: string, answer?: string): AppThunk =>
+  (data: CardType): AppThunk =>
   dispatch => {
     dispatch(setAppStatus('loading'))
-    cardsApi.addCard(cardsPack_id, question, answer).then(res => {
+    cardsApi.addCard(data).then(res => {
       dispatch(addCardAC(res.data.newCard))
       dispatch(setAppStatus('successes'))
     })
@@ -81,10 +81,10 @@ export const deleteCard =
     })
   }
 export const editCard =
-  <T>(cardId: string, value: T): AppThunk =>
+  (data: CardEditType): AppThunk =>
   dispatch => {
     dispatch(setAppStatus('loading'))
-    cardsApi.editCard<T>(cardId, value).then(res => {
+    cardsApi.editCard(data).then(res => {
       dispatch(editCardAC(res.data.updatedCard))
       dispatch(setAppStatus('successes'))
     })

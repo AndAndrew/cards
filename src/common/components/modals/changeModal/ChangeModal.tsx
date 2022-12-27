@@ -9,7 +9,7 @@ import { BasicModal } from '../basicModal/BasicModal'
 import style from './../style/Modal.module.css'
 
 type ChangeModalPropsType = {
-  editButtonHandler: (data: AddPackType) => void
+  editButtonHandler: (id: string, data: AddPackType) => void
   packId: string
   name: string
 }
@@ -31,7 +31,7 @@ export const ChangeModal = (props: ChangeModalPropsType) => {
       isPrivate: checked,
     }
 
-    props.editButtonHandler(data)
+    props.editButtonHandler(props.packId, data)
     SetPackName('')
   }
 
@@ -39,7 +39,7 @@ export const ChangeModal = (props: ChangeModalPropsType) => {
     <BasicModal icon={<DriveFileRenameOutlineIcon />}>
       <div className={style.modal}>
         <div className={style.modalTitle}>
-          <h1> Change Pack Name </h1>
+          <h2> Change Pack Name </h2>
           <Button>x</Button>
         </div>
         <TextField
@@ -58,7 +58,9 @@ export const ChangeModal = (props: ChangeModalPropsType) => {
         </div>
         <div className={style.modalButtons}>
           <Button>cancel</Button>
-          <Button onClick={changePackName}>save</Button>
+          <Button color={'primary'} variant={'contained'} onClick={changePackName}>
+            save
+          </Button>
         </div>
       </div>
     </BasicModal>

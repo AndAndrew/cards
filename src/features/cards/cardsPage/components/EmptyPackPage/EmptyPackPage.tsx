@@ -5,6 +5,8 @@ import Button from '@mui/material/Button'
 import Icon from '@mui/material/Icon'
 import { useNavigate } from 'react-router-dom'
 
+import { CardType } from '../../../../../api/cards-api'
+import { AddCardsModal } from '../../../../../common/components/modals/addCardsModal/AddCardsModal'
 import { useAppDispatch } from '../../../../../common/hooks/react-redux-hooks'
 import { buttonFontStyle } from '../../../../../common/styles/fontStyles'
 import { resetToDefault } from '../../../cardsReducer'
@@ -13,8 +15,9 @@ import style from './EmptyPackPage.module.css'
 
 type PropsType = {
   packTitle: string
+  packId: string
   isMyPack: boolean
-  addButtonHandler: () => void
+  addButtonHandler: (data: CardType) => void
 }
 export const EmptyPackPage = (props: PropsType) => {
   const navigate = useNavigate()
@@ -38,14 +41,7 @@ export const EmptyPackPage = (props: PropsType) => {
           <div className={style.message}>
             This pack is empty. Click add new card to fill this pack
           </div>
-          <Button
-            variant={'contained'}
-            style={buttonFontStyle}
-            color={'primary'}
-            onClick={props.addButtonHandler}
-          >
-            Add new pack
-          </Button>
+          <AddCardsModal addCardHandler={props.addButtonHandler} packId={props.packId} />
         </div>
       )}
     </div>

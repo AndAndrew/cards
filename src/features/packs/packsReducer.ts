@@ -154,11 +154,12 @@ export const deletePack =
     })
   }
 export const editPack =
-  <T>(packId: string, value: T): AppThunk =>
+  <T>(packId: string, data: T): AppThunk =>
   dispatch => {
     dispatch(setAppStatus('loading'))
-    cardsApi.editPack<T>(packId, value).then(res => {
+    cardsApi.editPack<T>(packId, data).then(res => {
       dispatch(editPackAC(res.data.updatedCardsPack))
+      console.log(res.data.updatedCardsPack)
       dispatch(setAppStatus('idle'))
     })
   }

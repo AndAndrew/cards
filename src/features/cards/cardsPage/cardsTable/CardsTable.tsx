@@ -1,16 +1,14 @@
 import React from 'react'
 
-import DeleteOutline from '@mui/icons-material/DeleteOutline'
-import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
-import IconButton from '@mui/material/IconButton'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
-import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
-import TableRow from '@mui/material/TableRow'
 
+import { CardEditType } from '../../../../api/cards-api'
+import { ChangeCardModal } from '../../../../common/components/modals/changeCardModal/ChangeCardModal'
+import { DeleteCardModal } from '../../../../common/components/modals/deleteCartModal/DeleteCardModal'
 import { useAppDispatch, useAppSelector } from '../../../../common/hooks/react-redux-hooks'
 import { StyledTableCell, StyledTableRow } from '../../../../common/styles/styledTableElements'
 import { deleteCard, editCard } from '../../cardsReducer'
@@ -19,8 +17,8 @@ export const CardsTable = () => {
   const dispatch = useAppDispatch()
   const cardPack = useAppSelector(state => state.cardPack)
   const profileId = useAppSelector(state => state.profile._id)
-  const editButtonHandler = (cardId: string) => {
-    dispatch(editCard(cardId, { question: 'new' }))
+  const editButtonHandler = (data: CardEditType) => {
+    dispatch(editCard(data))
   }
   const deleteButtonHandler = (id: string) => {
     dispatch(deleteCard(id))
@@ -49,14 +47,19 @@ export const CardsTable = () => {
               <StyledTableCell align="center">{card.grade}</StyledTableCell>
               <StyledTableCell align="center">
                 {cardPack.packUserId === profileId && (
-                  <IconButton onClick={() => editButtonHandler(card._id)}>
-                    <DriveFileRenameOutlineIcon />
-                  </IconButton>
+                  <ChangeCardModal
+                    editCardHandler={editButtonHandler}
+                    answer={card.answer}
+                    question={card.question}
+                    cardId={card._id}
+                  />
                 )}
                 {cardPack.packUserId === profileId && (
-                  <IconButton onClick={() => deleteButtonHandler(card._id)}>
-                    <DeleteOutline />
-                  </IconButton>
+                  <DeleteCardModal
+                    deleteButtonHandler={deleteButtonHandler}
+                    question={card.question}
+                    cardId={card._id}
+                  />
                 )}
               </StyledTableCell>
             </StyledTableRow>

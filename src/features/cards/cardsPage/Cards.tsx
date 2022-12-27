@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 
 import ArrowBackIosNewOutlined from '@mui/icons-material/ArrowBackIosNewOutlined'
-import Button from '@mui/material/Button'
 import Icon from '@mui/material/Icon'
 import { useNavigate, useParams } from 'react-router-dom'
 
+import { CardType } from '../../../api/cards-api'
+import { AddCardsModal } from '../../../common/components/modals/addCardsModal/AddCardsModal'
 import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
-import { buttonFontStyle } from '../../../common/styles/fontStyles'
 import style from '../cardsPage/Cards.module.css'
 import { addCard, getCards, resetToDefault } from '../cardsReducer'
 
@@ -21,23 +21,20 @@ export const Cards = () => {
   const navigate = useNavigate()
   const { packId } = useParams()
 
-  useEffect(() => {
-    dispatch(getCards(packId ? packId : '', 1, 10))
-  }, [])
+  const cardPackId = packId ? packId : ''
 
+  useEffect(() => {
+    dispatch(getCards(cardPackId, 1, 10))
+  }, [])
+  const addNewCard = (data: CardType) => {
+    dispatch(addCard(data))
+  }
   const isMyPack = cardPack.packUserId === profileId
   const getTitles = (): { packTitle: string; buttonTitle: string } => {
     return isMyPack
       ? { packTitle: 'My Pack', buttonTitle: 'Add new card' }
       : { packTitle: "Friend's pack", buttonTitle: 'Learn to pack' }
   }
-
-  const addNewCard = () => {
-    const id = packId ? packId : ''
-
-    dispatch(addCard(id, 'question', 'answer'))
-  }
-
   const onBackButtonClick = () => {
     dispatch(resetToDefault())
     navigate('/packsPage')
@@ -52,6 +49,7 @@ export const Cards = () => {
   if (cardPack.cards.length === 0) {
     return (
       <EmptyPackPage
+        packId={cardPackId}
         packTitle={getTitles().packTitle}
         isMyPack={isMyPack}
         addButtonHandler={addNewCard}
@@ -69,14 +67,7 @@ export const Cards = () => {
       </button>
       <div className={style.titleBlock}>
         <div className={style.title}>{getTitles().packTitle}</div>
-        <Button
-          variant={'contained'}
-          style={buttonFontStyle}
-          color={'primary'}
-          onClick={addNewCard}
-        >
-          {getTitles().buttonTitle}
-        </Button>
+        <AddCardsModal addCardHandler={addNewCard} packId={cardPackId} />
       </div>
       <CardsTable />
     </div>
