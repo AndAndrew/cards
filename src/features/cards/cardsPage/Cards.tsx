@@ -29,6 +29,7 @@ export const Cards = () => {
   const addNewCard = (data: CardType) => {
     dispatch(addCard(data))
   }
+
   const isMyPack = cardPack.packUserId === profileId
   const getTitles = (): { packTitle: string; buttonTitle: string } => {
     return isMyPack
