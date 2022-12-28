@@ -1,4 +1,14 @@
 .container {
+  width: 80%;
+
+  font-family: 'Montserrat', serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  margin: 0 auto;
+}
+
+.profile {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -19,34 +29,58 @@
   font-weight: 600;
 }
 
+.backButton {
+  padding: 15px 0;
+  max-width: 200px;
+  display: flex;
+  justify-content: left;
+  background-color: rgba(255,255,255, 0);
+  border: 0;
+  font-family: 'Montserrat', serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.backButton:hover {
+  color: #7c8385;
+}
+
 .ProfileAvatar {
   display: flex;
   flex-direction: column;
   align-items: end;
   justify-content: end;
 
-  width: 96px;
-  height: 96px;
+  width: 150px;
+  height: 150px;
 
-  background-image: url('https://klike.net/uploads/posts/2019-06/1560329641_2.jpg');
+  background-image: url('https://abrakadabra.fun/uploads/posts/2021-12/1640528661_1-abrakadabra-fun-p-serii-chelovek-na-avu-1.png');
   background-size: cover;
   border: 1px solid green;
-  border-radius: 50px;
+  border-radius: 75px;
 }
 
-img {
-  width: 96px;
-  height: 96px;
-}
-
-.Title {
-  margin: 0;
-}
-
-.blockDescription {
-  height: 200px;
+.cameraButton {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  border: #7c8385 solid 1px;
+  background-color: #7c8385;
+  color: #d9d9d9;
+}
+
+.cameraButton:hover {
+  background-color: dimgray;
+}
+
+.logout {
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  color: black;
 }

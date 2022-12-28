@@ -62,7 +62,7 @@ export const LoginPage = () => {
   })
 
   if (isLoggedIn) {
-    navigate('/packsPage')
+    navigate('/profile')
   }
 
   const handleClickShowPasswordInputOne = () => {

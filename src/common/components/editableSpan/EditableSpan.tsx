@@ -1,5 +1,9 @@
 import { ChangeEvent, useState } from 'react'
 
+import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
+
+import style from './EditableSpan.module.css'
+
 type PropsType = {
   name: string
   ChangeName: (name: string) => void
@@ -22,13 +26,15 @@ export const EditableSpan = (props: PropsType) => {
   }
 
   return (
-    <span>
+    <span className={style.editableSpan}>
       {editMode ? (
         <input value={title} onBlur={onBlurHandler} onChange={onChangeInputHandler}></input>
       ) : (
         title
       )}
-      <span onClick={onClickHandler}>--edit--</span>
+      <span className={style.editIcon} onClick={onClickHandler}>
+        <DriveFileRenameOutlineIcon />
+      </span>
     </span>
   )
 }

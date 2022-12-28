@@ -1,0 +1,13 @@
+.editableSpan {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.editIcon {
+    padding: 0 10px;
+}
+
+.editIcon:hover {
+    color: #7c8385;
+}
