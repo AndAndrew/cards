@@ -42,6 +42,9 @@ export const cardsApi = {
   editCard(data: CardEditType) {
     return instance.put('cards/card', data)
   },
+  changeGrade(data: GradeChangeType) {
+    return instance.put('/cards/grade', data)
+  },
 }
 export type AddPackType = {
   name?: string | null
@@ -82,11 +85,17 @@ export type CardsPackType = {
   packUserId: string
 }
 
+export type GradeChangeType = {
+  card_id: string
+  grade: number | undefined
+  cardsPack_id: string | undefined
+}
+
 export type CardType = {
   answer: string
   question: string
   cardsPack_id?: string
-  grade?: number
+  grade?: number | undefined
   shots?: number
   user_id?: string
   created?: string

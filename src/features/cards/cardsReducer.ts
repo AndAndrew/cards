@@ -1,4 +1,10 @@
-import { cardsApi, CardsPackType, CardEditType, CardType } from '../../api/cards-api'
+import {
+  cardsApi,
+  CardsPackType,
+  CardEditType,
+  CardType,
+  GradeChangeType,
+} from '../../api/cards-api'
 import { setAppStatus } from '../../app/appReducer'
 import { AppThunk } from '../../app/store'
 
@@ -86,6 +92,15 @@ export const editCard =
     dispatch(setAppStatus('loading'))
     cardsApi.editCard(data).then(res => {
       dispatch(editCardAC(res.data.updatedCard))
+      dispatch(setAppStatus('successes'))
+    })
+  }
+export const changeGradeTC =
+  (data: GradeChangeType): AppThunk =>
+  dispatch => {
+    dispatch(setAppStatus('loading'))
+    cardsApi.changeGrade(data).then(res => {
+      dispatch(getCards(data.cardsPack_id, 2, 2))
       dispatch(setAppStatus('successes'))
     })
   }
