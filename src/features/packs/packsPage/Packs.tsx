@@ -27,7 +27,7 @@ export const Packs = () => {
     dispatch(setPacksDataTC({}))
   }, [page, pageCount, packName, sortPacks, search, userId, minMaxCardsCount])
   const addButtonHandler = () => {
-    dispatch(addPack({ name: 'New pack', deckCover: '', isPrivate: false }))
+    dispatch(addPack({ name: 'New pack', deckCover: '', private: false }))
   }
 
   const handlePageClick = (data: { selected: number }) => {

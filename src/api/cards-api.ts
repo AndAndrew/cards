@@ -46,7 +46,7 @@ export const cardsApi = {
 export type AddPackType = {
   name?: string | null
   deckCover?: string
-  isPrivate?: boolean
+  private?: boolean
 }
 
 export type ParamsPacksType = {
@@ -61,6 +61,7 @@ export type ParamsPacksType = {
 }
 
 export type PacksPackType = {
+  private: boolean
   _id: string
   user_id: string
   name: string

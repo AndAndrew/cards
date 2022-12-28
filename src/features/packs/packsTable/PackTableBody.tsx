@@ -59,6 +59,7 @@ export const PackTableBody = () => {
                   editButtonHandler={editButtonHandler}
                   name={pack.name}
                   packId={pack._id}
+                  private={pack.private}
                 />
               )}
               {isMyPack(pack.user_name) && (

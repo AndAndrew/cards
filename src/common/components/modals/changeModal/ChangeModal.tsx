@@ -12,11 +12,12 @@ type ChangeModalPropsType = {
   editButtonHandler: (id: string, data: AddPackType) => void
   packId: string
   name: string
+  private: boolean
 }
 
 export const ChangeModal = (props: ChangeModalPropsType) => {
   const [packName, SetPackName] = useState(props.name)
-  const [checked, setChecked] = useState(false)
+  const [checked, setChecked] = useState(props.private)
 
   const createNewPackName = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     SetPackName(e.currentTarget.value)
@@ -28,20 +29,23 @@ export const ChangeModal = (props: ChangeModalPropsType) => {
     const data = {
       _id: props.packId,
       name: packName,
-      isPrivate: checked,
+      private: checked,
     }
 
-    props.editButtonHandler(props.packId, data)
+    props.editButtonHandler(data._id, data)
     SetPackName('')
   }
 
   return (
-    <BasicModal icon={<DriveFileRenameOutlineIcon />}>
+    <BasicModal
+      title={'Change Pack Name'}
+      callback={changePackName}
+      icon={<DriveFileRenameOutlineIcon />}
+      buttonTitle={'save'}
+      color={'primary'}
+    >
       <div className={style.modal}>
-        <div className={style.modalTitle}>
-          <h2> Change Pack Name </h2>
-          <Button>x</Button>
-        </div>
+        <div className={style.modalTitle}></div>
         <TextField
           value={packName}
           onChange={createNewPackName}
@@ -56,13 +60,66 @@ export const ChangeModal = (props: ChangeModalPropsType) => {
             labelPlacement="end"
           />
         </div>
-        <div className={style.modalButtons}>
-          <Button>cancel</Button>
-          <Button color={'primary'} variant={'contained'} onClick={changePackName}>
-            save
-          </Button>
-        </div>
+        <div className={style.modalButtons}></div>
       </div>
     </BasicModal>
   )
 }
+// type ChangeModalPropsType = {
+//   editButtonHandler: (id: string, data: AddPackType) => void
+//   packId: string
+//   name: string
+// }
+//
+// export const ChangeModal = (props: ChangeModalPropsType) => {
+//   const [packName, SetPackName] = useState(props.name)
+//   const [checked, setChecked] = useState(false)
+//
+//   const createNewPackName = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+//     SetPackName(e.currentTarget.value)
+//   }
+//   const isChecked = () => {
+//     setChecked(!checked)
+//   }
+//   const changePackName = () => {
+//     const data = {
+//       _id: props.packId,
+//       name: packName,
+//       isPrivate: checked,
+//     }
+//
+//     props.editButtonHandler(props.packId, data)
+//     SetPackName('')
+//   }
+//
+//   return (
+//     <BasicModal icon={<DriveFileRenameOutlineIcon />}>
+//       <div className={style.modal}>
+//         <div className={style.modalTitle}>
+//           <h2> Change Pack Name </h2>
+//           <Button>x</Button>
+//         </div>
+//         <TextField
+//           value={packName}
+//           onChange={createNewPackName}
+//           label="Name Pack"
+//           variant="outlined"
+//         />
+//         <div className={style.modalInput}>
+//           <FormControlLabel
+//             value="end"
+//             control={<Checkbox onChange={isChecked} checked={checked} />}
+//             label="Private Pack"
+//             labelPlacement="end"
+//           />
+//         </div>
+//         <div className={style.modalButtons}>
+//           <Button>cancel</Button>
+//           <Button color={'primary'} variant={'contained'} onClick={changePackName}>
+//             save
+//           </Button>
+//         </div>
+//       </div>
+//     </BasicModal>
+//   )
+// }

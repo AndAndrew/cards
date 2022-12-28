@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useState } from 'react'
 
-import { Button, Checkbox, FormControlLabel, TextField } from '@mui/material'
+import { Checkbox, FormControlLabel, TextField } from '@mui/material'
 
-import { AddPackType, CardType } from '../../../../api/cards-api'
+import { AddPackType } from '../../../../api/cards-api'
 import { BasicModal } from '../basicModal/BasicModal'
 
 import style from './../style/Modal.module.css'
@@ -25,7 +25,7 @@ export const AddModal = (props: AddModalPropsType) => {
     const data: AddPackType = {
       name: packName,
       deckCover: '',
-      isPrivate: checked,
+      private: checked,
     }
 
     props.addPackHandler(data)
@@ -33,12 +33,13 @@ export const AddModal = (props: AddModalPropsType) => {
   }
 
   return (
-    <BasicModal>
+    <BasicModal
+      color={'primary'}
+      title={' Add new Pack'}
+      buttonTitle={'save'}
+      callback={AddNewPack}
+    >
       <div className={style.modal}>
-        <div className={style.modalTitle}>
-          <h2> Add new Pack </h2>
-          <Button>x</Button>
-        </div>
         <TextField
           value={packName}
           onChange={createPackName}
@@ -53,13 +54,37 @@ export const AddModal = (props: AddModalPropsType) => {
             labelPlacement="end"
           />
         </div>
-        <div className={style.modalButtons}>
-          <Button>cancel</Button>
-          <Button color={'primary'} variant={'contained'} onClick={AddNewPack}>
-            save
-          </Button>
-        </div>
       </div>
     </BasicModal>
   )
 }
+//     <BasicModal>
+//       <div className={style.modal}>
+//         <div className={style.modalTitle}>
+//           <h2> Add new Pack </h2>
+//           <Button>x</Button>
+//         </div>
+//         <TextField
+//           value={packName}
+//           onChange={createPackName}
+//           label="Name Pack"
+//           variant="outlined"
+//         />
+//         <div className={style.modalInput}>
+//           <FormControlLabel
+//             value="end"
+//             control={<Checkbox onChange={isChecked} checked={checked} />}
+//             label="Private Pack"
+//             labelPlacement="end"
+//           />
+//         </div>
+//         <div className={style.modalButtons}>
+//           <Button>cancel</Button>
+//           <Button color={'primary'} variant={'contained'} onClick={AddNewPack}>
+//             save
+//           </Button>
+//         </div>
+//       </div>
+//     </BasicModal>
+//   )
+// }

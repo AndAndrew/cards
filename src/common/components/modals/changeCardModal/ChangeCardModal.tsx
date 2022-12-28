@@ -1,9 +1,9 @@
 import React, { ChangeEvent, useState } from 'react'
 
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
-import { Button, Checkbox, FormControlLabel, TextField } from '@mui/material'
+import { Button, TextField } from '@mui/material'
 
-import { AddPackType, CardEditType, CardType } from '../../../../api/cards-api'
+import { CardEditType } from '../../../../api/cards-api'
 import ControllableStates from '../../optionInput/OptionInput'
 import { BasicModal } from '../basicModal/BasicModal'
 
@@ -42,12 +42,14 @@ export const ChangeCardModal = (props: ChangeModalPropsType) => {
   }
 
   return (
-    <BasicModal icon={<DriveFileRenameOutlineIcon />}>
+    <BasicModal
+      icon={<DriveFileRenameOutlineIcon />}
+      color={'primary'}
+      callback={AddNewCard}
+      buttonTitle={'save'}
+      title={'Edit Card'}
+    >
       <div className={style.modal}>
-        <div className={style.modalTitle}>
-          <h2> Edit Card </h2>
-          <Button>x</Button>
-        </div>
         <ControllableStates />
         <TextField
           value={question}
@@ -57,12 +59,7 @@ export const ChangeCardModal = (props: ChangeModalPropsType) => {
         />
         <TextField value={answer} onChange={createCardAnswer} label="Answer" variant="outlined" />
       </div>
-      <div className={style.modalButtons}>
-        <Button>cancel</Button>
-        <Button onClick={AddNewCard} color={'primary'} variant={'contained'}>
-          save
-        </Button>
-      </div>
+      <div className={style.modalButtons}></div>
     </BasicModal>
   )
 }
