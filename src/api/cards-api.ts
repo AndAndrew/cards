@@ -97,6 +97,7 @@ export type CardType = {
   cardsPack_id?: string | undefined
   grade?: number | undefined
   shots?: number
+  user_name?: string
   user_id?: string
   created?: string
   updated?: string
