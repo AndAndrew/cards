@@ -45,7 +45,7 @@ export const isInitializedTC = (): AppThunk => dispatch => {
       dispatch(showProfileEmailAC(res.data.email))
     })
     .catch(e => {
-      console.log(e)
+      console.log(e.message)
     })
     .finally(() => {
       dispatch(isInitializedAC(true))

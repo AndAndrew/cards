@@ -1,12 +1,12 @@
 import React from 'react'
 
-import { Button } from '@mui/material'
-import { Navigate } from 'react-router-dom'
+import Button from '@mui/material/Button'
+import { useNavigate } from 'react-router-dom'
 
-import { EditableSpan } from '../../../common/components/EditableSpan/EditableSpan'
-import { Title } from '../../../common/components/title/Title'
+import { EditableSpan } from '../../../common/components/editableSpan/EditableSpan'
 import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
 import style from '../../../common/styles/common.container.module.css'
+import { buttonFontStyle } from '../../../common/styles/fontStyles'
 import { logOutTC } from '../../auth/authReducer'
 import { ChangeProfileTC } from '../profileReducer'
 
@@ -17,9 +17,10 @@ export const Profile = () => {
   const ActualEmail = useAppSelector(state => state.profile.email)
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
   const ActualName = useAppSelector(state => state.profile.name)
+  const navigate = useNavigate()
 
   if (!isLoggedIn) {
-    return <Navigate to={'/login'} />
+    navigate('/login')
   }
   const LogoutButtonHandler = () => {
     dispatch(logOutTC())
@@ -32,30 +33,24 @@ export const Profile = () => {
   return (
     <div className={style.AppContainer}>
       <div className={style.personalInformationBlock}>
-        <div className={s.blockDescription}>
-          <Title title={'Personal Information'} />
-
+        <div className={s.container}>
+          <div className={s.title}>Personal Information</div>
           <div className={s.ProfileAvatar}>
             <button>+</button>
           </div>
+
+          <EditableSpan ChangeName={ChangeName} name={ActualName} />
+          <div style={{ color: 'gray' }}>{ActualEmail}</div>
+          <Button
+            style={buttonFontStyle}
+            type={'submit'}
+            variant={'contained'}
+            color={'primary'}
+            onClick={LogoutButtonHandler}
+          >
+            Log out
+          </Button>
         </div>
-        <EditableSpan ChangeName={ChangeName} name={ActualName} />
-        <div style={{ color: 'gray' }}>{ActualEmail}</div>
-        <Button
-          style={{
-            fontFamily: 'Montserrat',
-            fontWeight: '500',
-            borderRadius: '20px',
-            fontSize: '16px',
-            textTransform: 'capitalize',
-          }}
-          type={'submit'}
-          variant={'contained'}
-          color={'primary'}
-          onClick={LogoutButtonHandler}
-        >
-          Log out
-        </Button>
       </div>
     </div>
   )

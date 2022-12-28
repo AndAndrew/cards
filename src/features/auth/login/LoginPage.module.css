@@ -6,7 +6,7 @@
   width: 90%;
   min-height: 520px;
 
-  font-family: 'Montserrat';
+  font-family: 'Montserrat', serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
@@ -22,8 +22,17 @@
   text-decoration: none;
 }
 
+.forgotPass:hover {
+  color: #7c8385;
+}
+
 .signUp {
   font-weight: 500;
+  text-decoration: none;
+}
+
+.signUp:hover {
+  color: #7c8385;
 }
 
 .haveAcc {

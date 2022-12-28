@@ -1,22 +1,21 @@
 import React, { useState } from 'react'
 
-import { VisibilityOff } from '@material-ui/icons'
 import Visibility from '@material-ui/icons/Visibility'
-import {
-  Button,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormGroup,
-  FormLabel,
-  IconButton,
-  TextField,
-} from '@mui/material'
+import VisibilityOff from '@material-ui/icons/VisibilityOff'
+import Button from '@mui/material/Button'
+import Checkbox from '@mui/material/Checkbox'
+import FormControl from '@mui/material/FormControl'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import FormGroup from '@mui/material/FormGroup'
+import FormLabel from '@mui/material/FormLabel'
+import IconButton from '@mui/material/IconButton'
+import TextField from '@mui/material/TextField'
 import { useFormik } from 'formik'
-import { Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
 import commonStyles from '../../../common/styles/common.container.module.css'
+import { buttonFontStyle, labelStyle, textFieldStyle } from '../../../common/styles/fontStyles'
 import { LoginTC } from '../authReducer'
 
 import styles from './LoginPage.module.css'
@@ -26,6 +25,7 @@ export const LoginPage = () => {
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
   const error = useAppSelector(state => state.auth.error)
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
   type FormikErrorType = {
     email?: string
@@ -34,26 +34,26 @@ export const LoginPage = () => {
   }
   const formik = useFormik({
     initialValues: {
-      email: 'platonoff9168@gmail.com',
-      password: 'hellokitty',
+      email: '',
+      password: '',
       rememberMe: false,
     },
     validate: values => {
-      const errors: FormikErrorType = {}
+      const error: FormikErrorType = {}
 
       if (!values.email && formik.touched.email) {
-        errors.email = 'Required'
+        error.email = 'Required'
       } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = `Invalid email`
+        error.email = `Invalid email`
       }
 
       if (!values.password) {
-        errors.password = 'Required'
+        error.password = 'Required'
       } else if (values.password.length < 8) {
-        errors.password = 'Invalid password'
+        error.password = 'Invalid password'
       }
 
-      return errors
+      return error
     },
     onSubmit: values => {
       dispatch(LoginTC(values))
@@ -62,7 +62,7 @@ export const LoginPage = () => {
   })
 
   if (isLoggedIn) {
-    return <Navigate to={'/packsPage'} />
+    navigate('/packsPage')
   }
 
   const handleClickShowPasswordInputOne = () => {
@@ -72,30 +72,12 @@ export const LoginPage = () => {
   return (
     <div className={commonStyles.AppContainer}>
       <div className={commonStyles.personalInformationBlock}>
-        <form onSubmit={formik.handleSubmit} onChange={formik.handleChange}>
+        <form onSubmit={formik.handleSubmit}>
           <FormControl className={styles.form}>
-            <FormLabel
-              style={{
-                fontFamily: 'Montserrat',
-                fontWeight: '600',
-                fontSize: '26px',
-                color: 'black',
-              }}
-            >
-              Sign in
-            </FormLabel>
+            <FormLabel style={labelStyle}>Sign in</FormLabel>
             <FormGroup>
               <TextField
-                sx={{
-                  '& .MuiInputLabel-root': { fontFamily: 'Montserrat', fontWeight: '400' },
-                  '& .MuiInputLabel-root.Mui-focused': {
-                    fontFamily: 'Montserrat',
-                    fontWeight: '400',
-                  },
-                  '& .MuiInputBase-root': {
-                    '& input': { fontFamily: 'Montserrat', fontWeight: '500' },
-                  },
-                }}
+                sx={textFieldStyle}
                 error={formik.touched.email && formik.errors.email !== undefined}
                 {...formik.getFieldProps('email')}
                 id="email"
@@ -105,17 +87,7 @@ export const LoginPage = () => {
               />
               <div className={styles.passwordInputContainer}>
                 <TextField
-                  sx={{
-                    '& .MuiInputLabel-root': { fontFamily: 'Montserrat', fontWeight: '400' },
-                    '& .MuiInputLabel-root.Mui-focused': {
-                      fontFamily: 'Montserrat',
-                      fontWeight: '400',
-                    },
-                    '& .MuiInputBase-root': {
-                      '& input': { fontFamily: 'Montserrat', fontWeight: '500' },
-                    },
-                    width: '100%',
-                  }}
+                  sx={textFieldStyle}
                   error={formik.touched.password && formik.errors.password !== undefined}
                   {...formik.getFieldProps('password')}
                   type={showPasswordInput ? 'text' : 'password'}
@@ -144,17 +116,11 @@ export const LoginPage = () => {
                 {...formik.getFieldProps('rememberMe')}
                 checked={formik.values.rememberMe}
               />
-              <a className={styles.forgotPass} href={'/cards/#/passRecovery'}>
+              <a className={styles.forgotPass} onClick={() => navigate('/passRecovery')}>
                 Forgot Password?
               </a>
               <Button
-                style={{
-                  fontFamily: 'Montserrat',
-                  fontWeight: '500',
-                  borderRadius: '20px',
-                  fontSize: '16px',
-                  textTransform: 'capitalize',
-                }}
+                style={buttonFontStyle}
                 type={'submit'}
                 variant={'contained'}
                 color={'primary'}
@@ -165,7 +131,7 @@ export const LoginPage = () => {
             {error && <div className={styles.error}>{error}</div>}
             <div>
               <div className={styles.haveAcc}>Already have an account?</div>
-              <a className={styles.signUp} href={'/cards/#/register'}>
+              <a className={styles.signUp} onClick={() => navigate('/register')}>
                 Sign Up
               </a>
             </div>

@@ -1,12 +1,14 @@
 import React, { ChangeEvent, useState } from 'react'
 
-import { Button, TextField } from '@mui/material'
+import Button from '@mui/material/Button'
+import TextField from '@mui/material/TextField'
 import { useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { CreateNewPasswordType } from '../../../api/auth-api'
 import { AppRootStateType } from '../../../app/store'
 import { useAppDispatch } from '../../../common/hooks/react-redux-hooks'
+import { buttonFontStyle, textFieldStyle } from '../../../common/styles/fontStyles'
 import { NewPasswordTC } from '../authReducer'
 
 import style from './../../../common/styles/common.container.module.css'
@@ -25,7 +27,6 @@ export const NewPassInputPage = () => {
     SetNewPass(e.currentTarget.value)
   }
 
-  console.log(token)
   const NewPass: CreateNewPasswordType = {
     password: newPass,
     resetPasswordToken: token,
@@ -36,7 +37,7 @@ export const NewPassInputPage = () => {
   }
 
   if (isNewPasswordCorrect) {
-    navigate('/cards/#/login')
+    navigate('/login')
   }
 
   return (
@@ -45,32 +46,18 @@ export const NewPassInputPage = () => {
         <div className={styles.form}>
           <div className={styles.title}>Create new password</div>
           <TextField
-            sx={{
-              '& .MuiInputLabel-root': { fontFamily: 'Montserrat', fontWeight: '400' },
-              '& .MuiInputLabel-root.Mui-focused': {
-                fontFamily: 'Montserrat',
-                fontWeight: '400',
-              },
-              '& .MuiInputBase-root': {
-                '& input': { fontFamily: 'Montserrat', fontWeight: '500' },
-              },
-            }}
+            sx={textFieldStyle}
             value={newPass}
             onChange={inputChanging}
-            label="Password"
+            label={'Password'}
+            type={'password'}
             variant={'standard'}
           />
           <span style={{ color: 'grey', textAlign: 'left' }}>
             Create new password and we will send you further instructions to email
           </span>
           <Button
-            style={{
-              fontFamily: 'Montserrat',
-              fontWeight: '500',
-              borderRadius: '20px',
-              fontSize: '16px',
-              textTransform: 'capitalize',
-            }}
+            style={buttonFontStyle}
             onClick={SubmitNewPassword}
             type={'submit'}
             variant={'contained'}

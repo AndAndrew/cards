@@ -49,7 +49,6 @@ export const ChangeProfileTC =
     }
 
     authApi.changeProfileData(ApiModel).then(res => {
-      console.log(res)
       dispatch(profileAC(res.data.updatedUser))
     })
   }

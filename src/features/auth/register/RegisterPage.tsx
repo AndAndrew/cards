@@ -1,15 +1,21 @@
 import React, { useState } from 'react'
 
-import { VisibilityOff } from '@material-ui/icons'
 import Visibility from '@material-ui/icons/Visibility'
-import { Button, FormControl, FormGroup, FormLabel, IconButton, TextField } from '@mui/material'
+import VisibilityOff from '@material-ui/icons/VisibilityOff'
+import Button from '@mui/material/Button'
+import FormControl from '@mui/material/FormControl'
+import FormGroup from '@mui/material/FormGroup'
+import FormLabel from '@mui/material/FormLabel'
+import IconButton from '@mui/material/IconButton'
+import TextField from '@mui/material/TextField'
 import { useFormik } from 'formik'
 import { useSelector } from 'react-redux'
-import { Navigate, NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { AppRootStateType } from '../../../app/store'
 import { useAppDispatch } from '../../../common/hooks/react-redux-hooks'
 import style from '../../../common/styles/common.container.module.css'
+import { buttonFontStyle, textFieldStyle } from '../../../common/styles/fontStyles'
 import { registerTC } from '../authReducer'
 
 import styles from './RegisterPage.module.css'
@@ -21,6 +27,7 @@ export const RegisterPage = () => {
   const [showPasswordInputTwo, setShowPasswordInputTwo] = useState(false)
 
   const dispatch = useAppDispatch()
+  const navgate = useNavigate()
 
   type FormikErrorType = {
     email?: string
@@ -61,7 +68,7 @@ export const RegisterPage = () => {
   })
 
   if (registered) {
-    return <Navigate to={'/login'} />
+    navgate('/login')
   }
 
   const handleClickShowPasswordInputOne = () => {
@@ -89,16 +96,7 @@ export const RegisterPage = () => {
             </FormLabel>
             <FormGroup>
               <TextField
-                sx={{
-                  '& .MuiInputLabel-root': { fontFamily: 'Montserrat', fontWeight: '400' },
-                  '& .MuiInputLabel-root.Mui-focused': {
-                    fontFamily: 'Montserrat',
-                    fontWeight: '400',
-                  },
-                  '& .MuiInputBase-root': {
-                    '& input': { fontFamily: 'Montserrat', fontWeight: '500' },
-                  },
-                }}
+                sx={textFieldStyle}
                 error={formik.touched.email && formik.errors.email !== undefined}
                 {...formik.getFieldProps('email')}
                 id="email"
@@ -108,17 +106,7 @@ export const RegisterPage = () => {
               />
               <div className={styles.passwordInputContainer}>
                 <TextField
-                  sx={{
-                    '& .MuiInputLabel-root': { fontFamily: 'Montserrat', fontWeight: '400' },
-                    '& .MuiInputLabel-root.Mui-focused': {
-                      fontFamily: 'Montserrat',
-                      fontWeight: '400',
-                    },
-                    '& .MuiInputBase-root': {
-                      '& input': { fontFamily: 'Montserrat', fontWeight: '500' },
-                    },
-                    width: '100%',
-                  }}
+                  sx={textFieldStyle}
                   error={formik.touched.password && formik.errors.password !== undefined}
                   {...formik.getFieldProps('password')}
                   type={showPasswordInputOne ? 'text' : 'password'}
@@ -139,17 +127,7 @@ export const RegisterPage = () => {
               </div>
               <div className={styles.passwordInputContainer}>
                 <TextField
-                  sx={{
-                    '& .MuiInputLabel-root': { fontFamily: 'Montserrat', fontWeight: '400' },
-                    '& .MuiInputLabel-root.Mui-focused': {
-                      fontFamily: 'Montserrat',
-                      fontWeight: '400',
-                    },
-                    '& .MuiInputBase-root': {
-                      '& input': { fontFamily: 'Montserrat', fontWeight: '500' },
-                    },
-                    width: '100%',
-                  }}
+                  sx={textFieldStyle}
                   error={
                     formik.touched.confirm_password && formik.errors.confirm_password !== undefined
                   }
@@ -171,14 +149,7 @@ export const RegisterPage = () => {
                 </IconButton>
               </div>
               <Button
-                style={{
-                  fontFamily: 'Montserrat',
-                  fontWeight: '500',
-                  borderRadius: '20px',
-                  fontSize: '16px',
-                  textTransform: 'capitalize',
-                  margin: '50px 0 5px 0',
-                }}
+                style={{ ...buttonFontStyle, margin: '65px 0 10px 0' }}
                 type={'submit'}
                 variant={'contained'}
                 color={'primary'}
@@ -188,7 +159,7 @@ export const RegisterPage = () => {
             </FormGroup>
             <div>
               <div className={styles.haveAcc}>Already have an account?</div>
-              <NavLink to={'/login'}>Sign in</NavLink>
+              <a onClick={() => navgate('/login')}>Sign in</a>
             </div>
           </FormControl>
         </form>

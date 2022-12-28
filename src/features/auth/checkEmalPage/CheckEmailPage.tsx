@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../common/hooks/react-redux-hooks'
 import style from '../../../common/styles/common.container.module.css'
-import { isMessagesentAC } from '../authReducer'
+import { buttonFontStyle } from '../../../common/styles/fontStyles'
+import { isMessageSendAC } from '../authReducer'
 
 import styles from './CheckEmailPage.module.css'
 
@@ -18,10 +19,8 @@ export const CheckEmailPage = (props: PropsType) => {
   const navigate = useNavigate()
   const ToLogin = () => {
     navigate('/login')
-    dispatch(isMessagesentAC(false))
+    dispatch(isMessageSendAC(false))
   }
-
-  console.log(props.email)
 
   return (
     <div className={style.AppContainer}>
@@ -37,13 +36,7 @@ export const CheckEmailPage = (props: PropsType) => {
           </div>
           <div>We have sent an Email with instruction to {props.email}</div>
           <Button
-            style={{
-              fontFamily: 'Montserrat',
-              fontWeight: '500',
-              borderRadius: '20px',
-              fontSize: '16px',
-              textTransform: 'capitalize',
-            }}
+            style={buttonFontStyle}
             type={'submit'}
             variant={'contained'}
             color={'primary'}

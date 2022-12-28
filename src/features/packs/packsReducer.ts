@@ -128,8 +128,7 @@ export const setPacksDataTC =
     cardsApi.getPacksData(sortData).then(res => {
       dispatch(setPacksDataAC(res.data))
       dispatch(setCardPacksAC(res.data.cardPacks))
-      console.log(res.data)
-      dispatch(setAppStatus('idle'))
+      dispatch(setAppStatus('successes'))
       /* dispatch(setSortPacksAC())*/
     })
   }
@@ -140,7 +139,7 @@ export const addPack =
     dispatch(setAppStatus('loading'))
     cardsApi.addPack(data).then(res => {
       dispatch(addPackAC(res.data.newCardsPack))
-      dispatch(setAppStatus('idle'))
+      dispatch(setAppStatus('successes'))
     })
   }
 
@@ -150,7 +149,7 @@ export const deletePack =
     dispatch(setAppStatus('loading'))
     cardsApi.deletePack(packId).then(res => {
       dispatch(deletePackAC(res.data.deletedCardsPack._id))
-      dispatch(setAppStatus('idle'))
+      dispatch(setAppStatus('successes'))
     })
   }
 export const editPack =
@@ -159,8 +158,7 @@ export const editPack =
     dispatch(setAppStatus('loading'))
     cardsApi.editPack<T>(packId, data).then(res => {
       dispatch(editPackAC(res.data.updatedCardsPack))
-      console.log(res.data.updatedCardsPack)
-      dispatch(setAppStatus('idle'))
+      dispatch(setAppStatus('successes'))
     })
   }
 

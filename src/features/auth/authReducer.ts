@@ -23,7 +23,7 @@ export type AuthActionsType =
   | ReturnType<typeof setIsLoggedInAC>
   | ReturnType<typeof setProfileNameAC>
   | ReturnType<typeof setError>
-  | ReturnType<typeof isMessagesentAC>
+  | ReturnType<typeof isMessageSendAC>
   | ReturnType<typeof isNewPasswordCorrectAC>
   | ReturnType<typeof setIsRegisteredAC>
 
@@ -33,7 +33,7 @@ export const authReducer = (state: typeof InitialState = InitialState, action: A
       return { ...state, isLoggedIn: action.value }
     case 'LOGIN/SET-PROFILE-NAME':
       return { ...state, profileName: action.name }
-    case 'IS-MESSAGE-SENT':
+    case 'IS-MESSAGE-SEND':
       return { ...state, isMessageSent: action.value }
     case 'IS-NEW-PASSWORD-CORRECT':
       return { ...state, isNewPasswordCorrect: action.value }
@@ -64,9 +64,9 @@ export const setError = (message: null | string) => {
     message,
   } as const
 }
-export const isMessagesentAC = (value: boolean) => {
+export const isMessageSendAC = (value: boolean) => {
   return {
-    type: 'IS-MESSAGE-SENT',
+    type: 'IS-MESSAGE-SEND',
     value,
   } as const
 }
@@ -89,7 +89,6 @@ export const LoginTC =
     authApi
       .login(data)
       .then(res => {
-        console.log(res)
         dispatch(setIsLoggedInAC(true))
         dispatch(showProfileEmailAC(res.data.email))
         dispatch(profileAC({ name: res.data.name, avatar: '' }))
@@ -124,7 +123,7 @@ export const passwordRecoveryTC =
   (data: RecoveryPasswordType): AppThunk =>
   dispatch => {
     authApi.recoveryPassword(data).then(res => {
-      dispatch(isMessagesentAC(true))
+      dispatch(isMessageSendAC(true))
     })
   }
 export const NewPasswordTC =

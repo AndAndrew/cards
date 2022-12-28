@@ -1,12 +1,14 @@
 import React, { ChangeEvent, useState } from 'react'
 
-import { Button, TextField } from '@mui/material'
-import { Navigate } from 'react-router-dom'
+import Button from '@mui/material/Button'
+import TextField from '@mui/material/TextField'
+import { useNavigate } from 'react-router-dom'
 
 import { RecoveryPasswordType } from '../../../api/auth-api'
 import { useAppDispatch, useAppSelector } from '../../../common/hooks/react-redux-hooks'
+import { buttonFontStyle, textFieldStyle } from '../../../common/styles/fontStyles'
 import { passwordRecoveryTC } from '../authReducer'
-import { CheckEmailPage } from '../CheckEmalPage/CheckEmailPage'
+import { CheckEmailPage } from '../checkEmalPage/CheckEmailPage'
 
 import style from './../../../common/styles/common.container.module.css'
 import styles from './PassRecoveryPage.module.css'
@@ -17,9 +19,10 @@ export const PassRecoveryPage = () => {
 
   const [emailTitle, setEmailTitle] = useState('')
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
   if (isLoggedIn) {
-    return <Navigate to={'/profile'} />
+    navigate('/profile')
   }
 
   const SendInstruction = () => {
@@ -50,16 +53,7 @@ link</a>
         <div className={styles.form}>
           <div className={styles.title}>Forgot your pass?</div>
           <TextField
-            sx={{
-              '& .MuiInputLabel-root': { fontFamily: 'Montserrat', fontWeight: '400' },
-              '& .MuiInputLabel-root.Mui-focused': {
-                fontFamily: 'Montserrat',
-                fontWeight: '400',
-              },
-              '& .MuiInputBase-root': {
-                '& input': { fontFamily: 'Montserrat', fontWeight: '500' },
-              },
-            }}
+            sx={textFieldStyle}
             value={emailTitle}
             onChange={EmailInputChanging}
             label="Email"
@@ -69,13 +63,7 @@ link</a>
             Enter your email address and we will send you further instruction
           </span>
           <Button
-            style={{
-              fontFamily: 'Montserrat',
-              fontWeight: '500',
-              borderRadius: '20px',
-              fontSize: '16px',
-              textTransform: 'capitalize',
-            }}
+            style={buttonFontStyle}
             onClick={SendInstruction}
             type={'submit'}
             variant={'contained'}
@@ -85,7 +73,7 @@ link</a>
           </Button>
           <div>
             <div className={styles.rememberPass}>Did you remember your password?</div>
-            <a className={styles.loginIn} href={'/cards/#/login'}>
+            <a className={styles.loginIn} onClick={() => navigate('/login')}>
               Try Logging In
             </a>
           </div>
