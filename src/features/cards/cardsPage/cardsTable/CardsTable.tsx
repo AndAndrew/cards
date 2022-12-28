@@ -6,7 +6,7 @@ import TableBody from '@mui/material/TableBody'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 
-import { CardEditType, CardType, GradeChangeType } from '../../../../api/cards-api'
+import { CardEditType, GradeChangeType } from '../../../../api/cards-api'
 import { Grade } from '../../../../common/components/grade/Grade'
 import { ChangeCardModal } from '../../../../common/components/modals/changeCardModal/ChangeCardModal'
 import { DeleteCardModal } from '../../../../common/components/modals/deleteCartModal/DeleteCardModal'
@@ -18,6 +18,7 @@ export const CardsTable = () => {
   const dispatch = useAppDispatch()
   const cardPack = useAppSelector(state => state.cardPack)
   const profileId = useAppSelector(state => state.profile._id)
+
   const editButtonHandler = (data: CardEditType) => {
     dispatch(editCard(data))
   }

@@ -26,6 +26,7 @@ export type CardsActionsType =
   | ReturnType<typeof deleteCardAC>
   | ReturnType<typeof editCardAC>
   | ReturnType<typeof resetToDefault>
+  | ReturnType<typeof changeCardsGradeAC>
 
 export const cardsReducer = (
   state: InitialStateType = initialState,
@@ -45,11 +46,20 @@ export const cardsReducer = (
       }
     case 'CARDS/RESET_TO_DEFAULT':
       return initialState
+    case 'CARDS/CHANGE-GRADE':
+      return {
+        ...state,
+        cards: state.cards.map(card =>
+          card._id === action.id ? { ...card, grade: action.value } : card
+        ),
+      }
     default:
       return state
   }
 }
-
+export const changeCardsGradeAC = (id: string, value: number) => {
+  return { type: 'CARDS/CHANGE-GRADE', id, value } as const
+}
 export const setCardsPack = (cardPack: CardsPackType) =>
   ({ type: 'CARDS/SET_CARDS_PACK', cardPack } as const)
 export const addCardAC = (card: CardType) => ({ type: 'CARDS/ADD_CARD', card } as const)
@@ -100,7 +110,8 @@ export const changeGradeTC =
   dispatch => {
     dispatch(setAppStatus('loading'))
     cardsApi.changeGrade(data).then(res => {
-      dispatch(getCards(data.cardsPack_id, 2, 2))
+      console.log(res)
+      dispatch(changeCardsGradeAC(res.data.updatedGrade.card_id, res.data.updatedGrade.grade))
       dispatch(setAppStatus('successes'))
     })
   }

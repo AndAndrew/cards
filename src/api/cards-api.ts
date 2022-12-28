@@ -88,13 +88,13 @@ export type CardsPackType = {
 export type GradeChangeType = {
   card_id: string
   grade: number | undefined
-  cardsPack_id: string | undefined
+  cardsPack_id?: string | undefined
 }
 
 export type CardType = {
   answer: string
   question: string
-  cardsPack_id?: string
+  cardsPack_id?: string | undefined
   grade?: number | undefined
   shots?: number
   user_id?: string
