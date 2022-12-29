@@ -15,12 +15,12 @@ import { deletePack, editPack } from '../packsReducer'
 
 export const PackTableBody = () => {
   const dispatch = useAppDispatch()
-  const profileName = useAppSelector(state => state.profile.name)
+  const profileId = useAppSelector(state => state.profile._id)
   const packs = useAppSelector(state => state.packs.cardPacks)
   const navigate = useNavigate()
 
-  const isMyPack = (name: string) => {
-    return name === profileName
+  const isMyPack = (id: string) => {
+    return id === profileId
   }
 
   const onNameButtonClick = (packId: string) => {
@@ -54,7 +54,7 @@ export const PackTableBody = () => {
               <IconButton onClick={() => learnFromPack(pack._id)}>
                 <SchoolOutlinedIcon />
               </IconButton>
-              {isMyPack(pack.user_name) && (
+              {isMyPack(pack.user_id) && (
                 <ChangeModal
                   editButtonHandler={editButtonHandler}
                   name={pack.name}
@@ -62,7 +62,7 @@ export const PackTableBody = () => {
                   private={pack.private}
                 />
               )}
-              {isMyPack(pack.user_name) && (
+              {isMyPack(pack.user_id) && (
                 <DeleteModal
                   name={pack.name}
                   packId={pack._id}

@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from 'react'
 
-import { Button, TextField } from '@mui/material'
+import TextField from '@mui/material/TextField'
 
 import { CardType } from '../../../../api/cards-api'
 import ControllableStates from '../../optionInput/OptionInput'
@@ -11,6 +11,7 @@ import style from './../style/Modal.module.css'
 type AddModalPropsType = {
   addCardHandler: (data: CardType) => void
   packId: string
+  title?: string
 }
 
 export const AddCardsModal = (props: AddModalPropsType) => {
@@ -38,7 +39,7 @@ export const AddCardsModal = (props: AddModalPropsType) => {
   }
 
   return (
-    <BasicModal buttonTitle={'save'} color={'primary'} title={' Edit Card'} callback={AddNewCard}>
+    <BasicModal buttonTitle={'save'} color={'primary'} title={props.title} callback={AddNewCard}>
       <div className={style.modal}>
         <div className={style.modalTitle}></div>
         <ControllableStates />
@@ -53,28 +54,3 @@ export const AddCardsModal = (props: AddModalPropsType) => {
     </BasicModal>
   )
 }
-
-// <BasicModal>
-//   <div className={style.modal}>
-//     <div className={style.modalTitle}>
-//       <h2> Edit Card </h2>
-//       <Button>x</Button>
-//     </div>
-//     <ControllableStates />
-//     <TextField
-//       value={question}
-//       onChange={createCardQuestion}
-//       label="Question"
-//       variant="outlined"
-//     />
-//     <TextField value={answer} onChange={createCardAnswer} label="Answer" variant="outlined" />
-//   </div>
-//   <div className={style.modalButtons}>
-//     <Button>cancel</Button>
-//     <Button onClick={AddNewCard} color={'primary'} variant={'contained'}>
-//       save
-//     </Button>
-//   </div>
-// </BasicModal>
-//   )
-// }

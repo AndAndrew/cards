@@ -30,10 +30,10 @@ export const Cards = () => {
     dispatch(addCard(data))
   }
   const isMyPack = cardPack.packUserId === profileId
-  const getTitles = (): { packTitle: string; buttonTitle: string } => {
+  const getTitles = (packName: string): { packTitle: string; buttonTitle: string } => {
     return isMyPack
-      ? { packTitle: 'My Pack', buttonTitle: 'Add new card' }
-      : { packTitle: "Friend's pack", buttonTitle: 'Learn to pack' }
+      ? { packTitle: packName, buttonTitle: 'Add new card' }
+      : { packTitle: packName, buttonTitle: 'Learn to pack' }
   }
   const onBackButtonClick = () => {
     dispatch(resetToDefault())
@@ -50,7 +50,7 @@ export const Cards = () => {
     return (
       <EmptyPackPage
         packId={cardPackId}
-        packTitle={getTitles().packTitle}
+        packTitle={getTitles(cardPack.packName).packTitle}
         isMyPack={isMyPack}
         addButtonHandler={addNewCard}
       />
@@ -66,8 +66,12 @@ export const Cards = () => {
         <span>Back to Packs List</span>
       </button>
       <div className={style.titleBlock}>
-        <div className={style.title}>{getTitles().packTitle}</div>
-        <AddCardsModal addCardHandler={addNewCard} packId={cardPackId} />
+        <div className={style.title}>{getTitles(cardPack.packName).packTitle}</div>
+        <AddCardsModal
+          addCardHandler={addNewCard}
+          packId={cardPackId}
+          title={getTitles(cardPack.packName).buttonTitle}
+        />
       </div>
       <CardsTable />
     </div>

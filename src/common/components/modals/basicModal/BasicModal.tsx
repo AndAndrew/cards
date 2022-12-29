@@ -6,6 +6,8 @@ import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import Modal from '@mui/material/Modal'
 
+import { buttonFontStyle } from '../../../styles/fontStyles'
+
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',
@@ -46,17 +48,11 @@ export const BasicModal = (props: PropsType) => {
       ) : (
         <Button
           onClick={handleOpen}
-          style={{
-            fontFamily: 'Montserrat',
-            fontWeight: '500',
-            borderRadius: '20px',
-            fontSize: '16px',
-            textTransform: 'capitalize',
-          }}
+          style={buttonFontStyle}
           variant={'contained'}
           color={'primary'}
         >
-          Add New Pack
+          {props.title}
         </Button>
       )}
       <Modal open={open} onClose={handleClose}>
