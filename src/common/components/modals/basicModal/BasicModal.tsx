@@ -8,6 +8,8 @@ import Modal from '@mui/material/Modal'
 
 import { buttonFontStyle } from '../../../styles/fontStyles'
 
+import { ButtonSave } from '../../buttonSave/ButtonSave'
+
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',
@@ -69,17 +71,5 @@ export const BasicModal = (props: PropsType) => {
         </Box>
       </Modal>
     </div>
-  )
-}
-
-const ButtonSave = (props: {
-  color: 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning' | undefined
-  title: string
-  callback: () => void
-}) => {
-  return (
-    <Button color={props.color} variant={'contained'} onClick={props.callback}>
-      {props.title}
-    </Button>
   )
 }
