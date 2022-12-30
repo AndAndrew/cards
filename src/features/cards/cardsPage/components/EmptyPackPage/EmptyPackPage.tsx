@@ -41,7 +41,11 @@ export const EmptyPackPage = (props: PropsType) => {
           <div className={style.message}>
             This pack is empty. Click add new card to fill this pack
           </div>
-          <AddCardsModal addCardHandler={props.addButtonHandler} packId={props.packId} />
+          <AddCardsModal
+            addCardHandler={props.addButtonHandler}
+            packId={props.packId}
+            title={props.isMyPack && 'Add New Pack'}
+          />
         </div>
       )}
     </div>
