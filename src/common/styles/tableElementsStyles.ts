@@ -1,5 +1,5 @@
 export const tableCellStyle = {
-  width: '10%',
+  width: '15%',
   display: 'flex',
   justifyContent: 'row',
 }

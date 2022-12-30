@@ -23,6 +23,12 @@ export const PackTableBody = () => {
     return id === profileId
   }
 
+  const getDate = (date: string) => {
+    const newDate = new Date(date)
+
+    return `${newDate.getDate()}.${newDate.getMonth()}.${newDate.getFullYear()}`
+  }
+
   const onNameButtonClick = (packId: string) => {
     navigate(`/cardsPage/${packId}`)
   }
@@ -50,7 +56,7 @@ export const PackTableBody = () => {
             {pack.cardsCount}
           </StyledTableCell>
           <StyledTableCell style={{ width: '10%' }} align="center">
-            {pack.updated}
+            {getDate(pack.updated)}
           </StyledTableCell>
           <StyledTableCell style={{ width: '10%' }} align="center">
             {pack.user_name}

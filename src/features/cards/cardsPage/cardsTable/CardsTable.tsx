@@ -20,6 +20,11 @@ export const CardsTable = () => {
   const cardPack = useAppSelector(state => state.cardPack)
   const profileId = useAppSelector(state => state.profile._id)
 
+  const getDate = (date: string) => {
+    const newDate = new Date(date)
+
+    return `${newDate.getDate()}.${newDate.getMonth()}.${newDate.getFullYear()}`
+  }
   const editButtonHandler = (data: CardEditType) => {
     dispatch(editCard(data))
   }
@@ -32,53 +37,65 @@ export const CardsTable = () => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <StyledTableRow>
-            <StyledTableCell style={{ width: '25%' }} align="center">
+            <StyledTableCell style={{ width: '30%' }} align="center">
               Question
             </StyledTableCell>
-            <StyledTableCell style={{ width: '25%' }} align="center">
+            <StyledTableCell style={{ width: '30%' }} align="center">
               Answer
             </StyledTableCell>
-            <StyledTableCell style={{ width: '10%' }} align="center">
+            <StyledTableCell
+              style={cardPack.packUserId === profileId ? { width: '10' } : { width: '20%' }}
+              align="center"
+            >
               Last updated
             </StyledTableCell>
-            <StyledTableCell style={{ width: '10%' }} align="center">
+            <StyledTableCell
+              style={cardPack.packUserId === profileId ? { width: '15%' } : { width: '20%' }}
+              align="center"
+            >
               Grade
             </StyledTableCell>
-            <StyledTableCell style={{ width: '10%' }} align="center"></StyledTableCell>
+            {cardPack.packUserId === profileId && (
+              <StyledTableCell style={{ width: '15%' }} align="center"></StyledTableCell>
+            )}
           </StyledTableRow>
         </TableHead>
         <TableBody>
           {cardPack.cards.map(card => (
             <StyledTableRow key={card._id}>
-              <StyledTableCell style={{ width: '25%' }} align={'center'}>
+              <StyledTableCell style={{ width: '30%' }} align={'center'}>
                 {card.question}
               </StyledTableCell>
-              <StyledTableCell style={{ width: '25%' }} align="center">
+              <StyledTableCell style={{ width: '30%' }} align="center">
                 {card.answer}
               </StyledTableCell>
-              <StyledTableCell style={{ width: '10%' }} align="center">
-                {card.updated}
+              <StyledTableCell
+                style={cardPack.packUserId === profileId ? { width: '10%' } : { width: '20%' }}
+                align="center"
+              >
+                {getDate(card.updated!)}
               </StyledTableCell>
-              <StyledTableCell style={{ width: '10%' }} align="center">
+              <StyledTableCell
+                style={cardPack.packUserId === profileId ? { width: '15%' } : { width: '20%' }}
+                align="center"
+              >
                 <Grade value={card.grade} />
               </StyledTableCell>
-              <StyledTableCell style={tableCellStyle} align="center">
-                {cardPack.packUserId === profileId && (
+              {cardPack.packUserId === profileId && (
+                <StyledTableCell style={tableCellStyle} align="center">
                   <ChangeCardModal
                     editCardHandler={editButtonHandler}
                     answer={card.answer}
                     question={card.question}
                     cardId={card._id}
                   />
-                )}
-                {cardPack.packUserId === profileId && (
                   <DeleteCardModal
                     deleteButtonHandler={deleteButtonHandler}
                     question={card.question}
                     cardId={card._id}
                   />
-                )}
-              </StyledTableCell>
+                </StyledTableCell>
+              )}
             </StyledTableRow>
           ))}
         </TableBody>
