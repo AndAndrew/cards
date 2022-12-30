@@ -4,6 +4,7 @@ import ToggleButton from '@mui/material/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import Typography from '@mui/material/Typography'
 
+import { authApi } from '../../../../api/auth-api'
 import s from '../../../../common/components/search/Search.module.css'
 import { useAppDispatch, useAppSelector } from '../../../../common/hooks/react-redux-hooks'
 import { titleStyle } from '../../../../common/styles/fontStyles'
@@ -17,7 +18,7 @@ const ToggleMyOrAll = memo(() => {
   const userId = useAppSelector(state => state.profile._id)
   const userCardId = useAppSelector(state => state.packs.user_id)
   const dispatch = useAppDispatch()
-  const [alignment, setAlignment] = useState<alignmentType>('All')
+  const [alignment, setAlignment] = useState<alignmentType>('My')
 
   const My = userCardId ? 'My' : 'All'
 
@@ -27,6 +28,9 @@ const ToggleMyOrAll = memo(() => {
 
   const handleChange = (event: React.MouseEvent<HTMLElement>, newAlignment: alignmentType) => {
     if (newAlignment === 'My') {
+      if (!userId) {
+        authApi.me().then(() => dispatch(setUserIdAC(userId)))
+      }
       dispatch(setUserIdAC(userId))
     }
     if (newAlignment === 'All') {
