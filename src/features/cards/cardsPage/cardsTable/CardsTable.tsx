@@ -12,6 +12,7 @@ import { ChangeCardModal } from '../../../../common/components/modals/changeCard
 import { DeleteCardModal } from '../../../../common/components/modals/deleteCartModal/DeleteCardModal'
 import { useAppDispatch, useAppSelector } from '../../../../common/hooks/react-redux-hooks'
 import { StyledTableCell, StyledTableRow } from '../../../../common/styles/styledTableElements'
+import { tableCellStyle } from '../../../../common/styles/tableElementsStyles'
 import { deleteCard, editCard } from '../../cardsReducer'
 
 export const CardsTable = () => {
@@ -31,27 +32,37 @@ export const CardsTable = () => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <StyledTableRow>
-            <StyledTableCell>Question</StyledTableCell>
-            <StyledTableCell align="center">Answer</StyledTableCell>
-            <StyledTableCell align="center">Last updated</StyledTableCell>
-            <StyledTableCell align="center">Grade</StyledTableCell>
-            <StyledTableCell align="center"></StyledTableCell>
+            <StyledTableCell style={{ width: '25%' }} align="center">
+              Question
+            </StyledTableCell>
+            <StyledTableCell style={{ width: '25%' }} align="center">
+              Answer
+            </StyledTableCell>
+            <StyledTableCell style={{ width: '10%' }} align="center">
+              Last updated
+            </StyledTableCell>
+            <StyledTableCell style={{ width: '10%' }} align="center">
+              Grade
+            </StyledTableCell>
+            <StyledTableCell style={{ width: '10%' }} align="center"></StyledTableCell>
           </StyledTableRow>
         </TableHead>
         <TableBody>
           {cardPack.cards.map(card => (
             <StyledTableRow key={card._id}>
-              <StyledTableCell component="th" scope="row">
+              <StyledTableCell style={{ width: '25%' }} align={'center'}>
                 {card.question}
               </StyledTableCell>
-              <StyledTableCell align="center">{card.answer}</StyledTableCell>
-              <StyledTableCell align="center">{card.updated}</StyledTableCell>
-              <StyledTableCell align="center">
-                <div style={{ marginLeft: '90px' }}>
-                  <Grade value={card.grade} />
-                </div>
+              <StyledTableCell style={{ width: '25%' }} align="center">
+                {card.answer}
               </StyledTableCell>
-              <StyledTableCell align="center">
+              <StyledTableCell style={{ width: '10%' }} align="center">
+                {card.updated}
+              </StyledTableCell>
+              <StyledTableCell style={{ width: '10%' }} align="center">
+                <Grade value={card.grade} />
+              </StyledTableCell>
+              <StyledTableCell style={tableCellStyle} align="center">
                 {cardPack.packUserId === profileId && (
                   <ChangeCardModal
                     editCardHandler={editButtonHandler}

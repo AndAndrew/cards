@@ -12,7 +12,7 @@ export const Grade = (props: GradePropsType) => {
   return (
     <Box
       sx={{
-        width: 200,
+        width: '100%',
         display: 'flex',
         alignItems: 'center',
       }}

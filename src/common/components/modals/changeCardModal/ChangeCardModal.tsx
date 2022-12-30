@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useState } from 'react'
 
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline'
-import { Button, TextField } from '@mui/material'
+import TextField from '@mui/material/TextField'
 
 import { CardEditType } from '../../../../api/cards-api'
 import ControllableStates from '../../optionInput/OptionInput'

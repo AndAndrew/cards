@@ -41,15 +41,21 @@ export const PackTableBody = () => {
     <TableBody>
       {packs.map(pack => (
         <StyledTableRow key={pack._id}>
-          <StyledTableCell align="center">
+          <StyledTableCell style={{ width: '25%' }} align="center">
             <button className={style.tableNameButton} onClick={() => onNameButtonClick(pack._id)}>
               {pack.name}
             </button>
           </StyledTableCell>
-          <StyledTableCell align="center">{pack.cardsCount}</StyledTableCell>
-          <StyledTableCell align="center">{pack.updated}</StyledTableCell>
-          <StyledTableCell align="center">{pack.user_name}</StyledTableCell>
-          <StyledTableCell align={'center'}>
+          <StyledTableCell style={{ width: '25%' }} align="center">
+            {pack.cardsCount}
+          </StyledTableCell>
+          <StyledTableCell style={{ width: '10%' }} align="center">
+            {pack.updated}
+          </StyledTableCell>
+          <StyledTableCell style={{ width: '10%' }} align="center">
+            {pack.user_name}
+          </StyledTableCell>
+          <StyledTableCell style={{ width: '10%' }} align={'center'}>
             <div className={style.tableIconButtonsBlock}>
               <IconButton onClick={() => learnFromPack(pack._id)}>
                 <SchoolOutlinedIcon />

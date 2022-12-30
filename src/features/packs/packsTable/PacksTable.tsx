@@ -48,27 +48,43 @@ export const PacksTable = () => {
   }
 
   return (
-    <TableContainer sx={{ maxHeight: 490 }} component={Paper}>
+    <TableContainer component={Paper}>
       <Table>
         <TableHead>
           <TableRow>
-            <StyledTableCell onClick={() => handleSortRequest('name')} sx={{ width: '200px' }}>
+            <StyledTableCell
+              onClick={() => handleSortRequest('name')}
+              style={{ width: '25%' }}
+              align={'center'}
+            >
               <TableSortLabel direction={orderNameDirection} active={true}>
                 Name
               </TableSortLabel>
             </StyledTableCell>
-            <StyledTableCell align="center">Cards</StyledTableCell>
-            <StyledTableCell onClick={() => handleSortRequest('updated')} align="center">
+            <StyledTableCell style={{ width: '25%' }} align="center">
+              Cards
+            </StyledTableCell>
+            <StyledTableCell
+              onClick={() => handleSortRequest('updated')}
+              style={{ width: '10%' }}
+              align="center"
+            >
               <TableSortLabel direction={orderDirection} active={true}>
                 Last Updated
               </TableSortLabel>
             </StyledTableCell>
-            <StyledTableCell onClick={() => handleSortRequest('user_name')} align="center">
+            <StyledTableCell
+              onClick={() => handleSortRequest('user_name')}
+              style={{ width: '10%' }}
+              align="center"
+            >
               <TableSortLabel direction={orderCreatorDirection} active={true}>
                 Created by
               </TableSortLabel>
             </StyledTableCell>
-            <StyledTableCell align="center">Actions</StyledTableCell>
+            <StyledTableCell style={{ width: '10%' }} align="center">
+              Actions
+            </StyledTableCell>
           </TableRow>
         </TableHead>
         <PackTableBody />
