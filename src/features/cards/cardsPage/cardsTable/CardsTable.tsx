@@ -6,13 +6,13 @@ import TableBody from '@mui/material/TableBody'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 
-import { CardEditType, GradeChangeType } from '../../../../api/cards-api'
+import { CardEditType } from '../../../../api/cards-api'
 import { Grade } from '../../../../common/components/grade/Grade'
 import { ChangeCardModal } from '../../../../common/components/modals/changeCardModal/ChangeCardModal'
 import { DeleteCardModal } from '../../../../common/components/modals/deleteCartModal/DeleteCardModal'
 import { useAppDispatch, useAppSelector } from '../../../../common/hooks/react-redux-hooks'
 import { StyledTableCell, StyledTableRow } from '../../../../common/styles/styledTableElements'
-import { changeGradeTC, deleteCard, editCard } from '../../cardsReducer'
+import { deleteCard, editCard } from '../../cardsReducer'
 
 export const CardsTable = () => {
   const dispatch = useAppDispatch()
@@ -24,10 +24,6 @@ export const CardsTable = () => {
   }
   const deleteButtonHandler = (id: string) => {
     dispatch(deleteCard(id))
-  }
-
-  const sendGrade = (data: GradeChangeType) => {
-    dispatch(changeGradeTC(data))
   }
 
   return (
@@ -52,12 +48,7 @@ export const CardsTable = () => {
               <StyledTableCell align="center">{card.updated}</StyledTableCell>
               <StyledTableCell align="center">
                 <div style={{ marginLeft: '90px' }}>
-                  <Grade
-                    sendGrade={sendGrade}
-                    value={card.grade}
-                    cardPackId={card.cardsPack_id}
-                    cardId={card._id}
-                  />
+                  <Grade value={card.grade} />
                 </div>
               </StyledTableCell>
               <StyledTableCell align="center">
