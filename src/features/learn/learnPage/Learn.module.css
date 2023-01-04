@@ -1,0 +1,61 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    width: 80%;
+    margin: 0 auto;
+}
+
+.backButton {
+    padding: 15px 0;
+    max-width: 200px;
+    display: flex;
+    justify-content: left;
+    background-color: rgba(255,255,255, 0);
+    border: 0;
+    font-family: 'Montserrat', serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.backButton:hover {
+    color: #7c8385;
+}
+
+.title {
+    padding: 90px 0 30px 0;
+    width: 100%;
+    font-family: 'Montserrat', serif;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 27px;
+}
+
+.questionBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.question {
+    width: 50%;
+    font-family: 'Montserrat', serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.questionSpan {
+    font-weight: 600;
+}
+
+.numberOfTries {
+    padding: 20px;
+}
+
+.tries {
+    font-weight: 600;
+}

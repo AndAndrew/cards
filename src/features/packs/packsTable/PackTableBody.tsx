@@ -34,7 +34,7 @@ export const PackTableBody = () => {
   }
 
   const learnFromPack = (packId: string) => {
-    console.log('learn')
+    navigate(`/learnPage/${packId}`)
   }
   const editButtonHandler = (packId: string, data: AddPackType) => {
     dispatch(editPack<AddPackType>(packId, data))
